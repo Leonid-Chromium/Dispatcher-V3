@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<configuration>
-  <ConString>
+<settings>
+  <setting Name="ConString">
     Data Source=192.168.1.118,1433\SQLEXPRESS;Initial Catalog=NewDispatcher;Persist Security Info=True;User ID=Admin;Password=Admin
-  </ConString>
-</configuration>
+  </setting>
+  <setting Name="Language">
+    Ru
+  </setting>
+</settings>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configurations>
+  <configuration Name="Standart">
+    <locations>
+      <location Name="settings">/Dispatcher/Files/Settings.xml</location>
+    </locations>
+  </configuration>
+  <configuration Name="Castom">
+    <locations>
+      <location Name="settings">Manual</location>
+    </locations>
+  </configuration>
+  <configuration Name="Test">
+    <locations>
+      <location Name="settings">Auto</location>
+    </locations>
+  </configuration>
+</configurations>

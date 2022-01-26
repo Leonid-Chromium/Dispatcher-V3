@@ -18,7 +18,7 @@ namespace Dispatcher
             //Выполняется при запуске
             //Class.TestCore core = new Class.TestCore(); //Тестовое ядро запускающее 5 стандартных окон
             Class.Core core = new Class.Core(); //Запуск нового ядра
-            core.OpenMainWindow();
+            //core.OpenMainWindow();
         }
         
     }

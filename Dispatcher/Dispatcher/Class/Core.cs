@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,13 @@ namespace Dispatcher.Class
         public Core()
         {
             //Выполняется при запуске
-
+            Config config = new Config();
+            Configuration actualConfiguration = config.GetConfigV1("Castom");
+            actualConfiguration.TraceConfiguration();
+            //Configuration newConfiguration = new Configuration();
+            //newConfiguration.Name = "Test";
+            //newConfiguration.settingsPath = "dfsgdh";
+            //config.SetConfigV1(newConfiguration);
         }
     }
 }
