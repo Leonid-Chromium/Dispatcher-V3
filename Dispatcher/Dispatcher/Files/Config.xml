@@ -2,8 +2,15 @@
 <configurations>
   <configuration Name="Standart">
     <locations>
-      <location Name="settings">/Dispatcher/Files/Settings.xml</location>
+      <location Name="themePath">manual themePath</location>
+      <location Name="assetsPath">manual assetsPath</location>
+      <location Name="logPath">manual logPath</location>
     </locations>
+    <settings>
+      <theme>Dark</theme>
+      <SQLConnectionString>Data Source=192.168.1.118,1433\SQLEXPRESS;Initial Catalog=NewDispatcher;Persist Security Info=True;User ID=Admin;Password=Admin</SQLConnectionString>
+      <district>1</district>
+    </settings>
   </configuration>
   <configuration Name="Castom">
     <locations>
@@ -14,5 +21,53 @@
     <locations>
       <location Name="settings">Auto</location>
     </locations>
+  </configuration>
+  <configuration Name="Test2">
+    <locations>
+      <location Name="test themePath" />
+      <location Name="test assetsPath" />
+      <location Name="test logPath" />
+    </locations>
+    <settings>
+      <theme>test theme</theme>
+      <SQLConnectionString>test sql</SQLConnectionString>
+      <district>test district</district>
+    </settings>
+  </configuration>
+  <configuration Name="Test2.1">
+    <locations>
+      <location Name="themePath">test themePath</location>
+      <location Name="assetsPath">test assetsPath</location>
+      <location Name="logPath">test logPath</location>
+    </locations>
+    <settings>
+      <theme>test theme</theme>
+      <SQLConnectionString>test sql</SQLConnectionString>
+      <district>test district</district>
+    </settings>
+  </configuration>
+  <configuration Name="Test2.2">
+    <locations>
+      <location Name="themePath">test themePath</location>
+      <location Name="assetsPath">test assetsPath</location>
+      <location Name="logPath">test logPath</location>
+    </locations>
+    <settings>
+      <theme>test theme</theme>
+      <SQLConnectionString>test sql</SQLConnectionString>
+      <district>test district</district>
+    </settings>
+  </configuration>
+  <configuration Name="Test2.3">
+    <locations>
+      <location Name="themePath">test themePath</location>
+      <location Name="assetsPath">test assetsPath</location>
+      <location Name="logPath">test logPath</location>
+    </locations>
+    <settings>
+      <theme>test theme</theme>
+      <SQLConnectionString>test sql</SQLConnectionString>
+      <district>test district</district>
+    </settings>
   </configuration>
 </configurations>

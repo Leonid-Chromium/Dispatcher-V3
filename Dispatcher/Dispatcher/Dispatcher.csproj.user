@@ -6,6 +6,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Update="Windows\MainWindow.xaml">
       <SubType>Designer</SubType>
