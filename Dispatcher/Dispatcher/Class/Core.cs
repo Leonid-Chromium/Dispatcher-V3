@@ -45,7 +45,14 @@ namespace Dispatcher.Class
         public Core()
         {
             //Выполняется при запуске
-            TestConfig();
+            TestNetClass net = new TestNetClass();
+            //net.Fun1();
+            //Скачивает фалй с сервера
+            //net.DownloadFile("file://192.168.1.160/Crystal_monitoring/NewDispatcher/TestFile.txt", @"D:\File\TestDir\Test\File.txt");
+            //Читает файл в Trace
+            net.streamFile("file://192.168.1.160/Crystal_monitoring/NewDispatcher/TestFile.txt");
+            //Загружает файл на сервер
+            net.UploadFile("file://192.168.1.160/Crystal_monitoring/NewDispatcher/TestFile.txt", @"D:\File\TestDir\Test\File.txt");
         }
     }
 }
