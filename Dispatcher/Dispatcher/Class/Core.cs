@@ -25,15 +25,15 @@ namespace Dispatcher.Class
             }
 
         }
-        public Core()
+
+        public void TestConfig()
         {
-            //Выполняется при запуске
             Config config = new Config();
             Configuration actualConfiguration = config.GetConfigV1("Standart");
             Trace.WriteLine("\n\n\n");
             actualConfiguration.TraceConfiguration();
             Configuration newConfiguration = new Configuration();
-            newConfiguration.Name = "Test2.3";
+            newConfiguration.Name = "Test2.4";
             newConfiguration.themePath = "test themePath";
             newConfiguration.assetsPath = "test assetsPath";
             newConfiguration.logPath = "test logPath";
@@ -41,6 +41,11 @@ namespace Dispatcher.Class
             newConfiguration.SQLConnectionString = "test sql";
             newConfiguration.district = "test district";
             config.SetConfigV2(newConfiguration);
+        }
+        public Core()
+        {
+            //Выполняется при запуске
+            TestConfig();
         }
     }
 }

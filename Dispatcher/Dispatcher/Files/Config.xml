@@ -70,4 +70,28 @@
       <district>test district</district>
     </settings>
   </configuration>
+  <configuration Name="Test2.4">
+    <locations>
+      <location Name="themePath">test themePath</location>
+      <location Name="assetsPath">test assetsPath</location>
+      <location Name="logPath">test logPath</location>
+    </locations>
+    <settings>
+      <theme>test theme</theme>
+      <SQLConnectionString>test sql</SQLConnectionString>
+      <district>test district</district>
+    </settings>
+  </configuration>
+  <configuration Name="Test2.4">
+    <locations>
+      <location Name="themePath">test themePath</location>
+      <location Name="assetsPath">test assetsPath</location>
+      <location Name="logPath">test logPath</location>
+    </locations>
+    <settings>
+      <theme>test theme</theme>
+      <SQLConnectionString>test sql</SQLConnectionString>
+      <district>test district</district>
+    </settings>
+  </configuration>
 </configurations>
