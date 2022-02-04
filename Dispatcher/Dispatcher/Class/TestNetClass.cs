@@ -11,6 +11,7 @@ namespace Dispatcher.Class
 {
     class TestNetClass
     {
+        //Дич какая-то
         public int Fun1()
         {
             IPHostEntry host1 = Dns.GetHostEntry("www.microsoft.com");

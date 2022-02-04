@@ -9,6 +9,9 @@ namespace Dispatcher.Class
 {
     class Core
     {
+        public string version = "0.5";
+        public string user { get; set; }
+
         public int OpenMainWindow()
         {
             MainWindow mainWindow = new MainWindow();
@@ -42,17 +45,40 @@ namespace Dispatcher.Class
             newConfiguration.district = "test district";
             config.SetConfigV2(newConfiguration);
         }
+
+        public int TestNet()
+        {
+            TestNetClass net = new TestNetClass();
+
+            //Prostodich
+            //net.Fun1();
+
+            //Скачивает файл с сервера
+            //net.DownloadFile("file://192.168.1.160/Crystal_monitoring/NewDispatcher/TestFile.txt", @"D:\File\TestDir\Test\File.txt");
+
+            //Читает файл в Trace
+            net.streamFile("file://192.168.1.160/Crystal_monitoring/NewDispatcher/TestFile.txt");
+
+            //Загружает файл на сервер
+            net.UploadFile("file://192.168.1.160/Crystal_monitoring/NewDispatcher/TestFile.txt", @"D:\File\TestDir\Test\File.txt");
+
+            return 0;
+        }
+
+        public int TestLog()
+        {
+            Log log = new Log(this, 0, "testLog2");
+            TestJsonLogClass json = new TestJsonLogClass();
+            return 0;
+        }
+        
         public Core()
         {
             //Выполняется при запуске
-            TestNetClass net = new TestNetClass();
-            //net.Fun1();
-            //Скачивает фалй с сервера
-            //net.DownloadFile("file://192.168.1.160/Crystal_monitoring/NewDispatcher/TestFile.txt", @"D:\File\TestDir\Test\File.txt");
-            //Читает файл в Trace
-            net.streamFile("file://192.168.1.160/Crystal_monitoring/NewDispatcher/TestFile.txt");
-            //Загружает файл на сервер
-            net.UploadFile("file://192.168.1.160/Crystal_monitoring/NewDispatcher/TestFile.txt", @"D:\File\TestDir\Test\File.txt");
+            Core core = this;
+            user = "User";
+
+            TestLog();
         }
     }
 }
