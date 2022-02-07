@@ -13,12 +13,27 @@ namespace Dispatcher
     /// </summary>
     public partial class App : Application
     {
+        public string version = "0.5";
+        public string user { get; set; }
+
+        public int OpenMainWindow()
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            return 0;
+        }
+
+        public int OpenTestWindow()
+        {
+            Windows.TestWindow testWindow = new Windows.TestWindow();
+            testWindow.Show();
+            return 0;
+        }
+
         public App()
         {
             //Выполняется при запуске
-            //Class.TestCore core = new Class.TestCore(); //Тестовое ядро запускающее 5 стандартных окон
-            Class.Core core = new Class.Core(); //Запуск нового ядра
-            //core.OpenMainWindow();
+
         }
         
     }

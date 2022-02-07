@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dispatcher.Windows"
+        xmlns:localUC="clr-namespace:Dispatcher.UCs"
         mc:Ignorable="d"
-        Title="TestWindow" Height="450" Width="800">
+        Title="TestWindow" Height="450" Width="800"
+        Loaded="Window_Loaded">
     <Grid>
-        
+        <localUC:UniversalDataGrid/>
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,27 @@ namespace Dispatcher.Windows
         public TestWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            Process proc = Process.GetProcessesByName("Dispatcher")[0];
+            Trace.WriteLine($"ID: {proc.Id}");
+
+            ProcessThreadCollection processThreads = proc.Threads;
+
+            foreach (ProcessThread thread in processThreads)
+            {
+                Trace.WriteLine($"ThreadId: {thread.Id}  StartTime: {thread.StartTime}");
+            }
+
+            ProcessModuleCollection modules = proc.Modules;
+
+            foreach (ProcessModule module in modules)
+            {
+                Trace.WriteLine($"Name: {module.ModuleName}  MemorySize: {module.ModuleMemorySize}");
+            }
         }
     }
 }

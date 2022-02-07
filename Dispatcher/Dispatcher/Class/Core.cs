@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Dispatcher.Class
 {
@@ -78,14 +79,40 @@ namespace Dispatcher.Class
             TestJsonLogClass json = new TestJsonLogClass();
             return 0;
         }
+
+        public int TestThread()
+        {
+
+            // получаем текущий поток
+            Thread currentThread = Thread.CurrentThread;
+
+            //получаем имя потока
+            Trace.WriteLine($"Имя потока: {currentThread.Name}");
+            currentThread.Name = "Метод Main";
+            Trace.WriteLine($"Имя потока: {currentThread.Name}");
+
+            Trace.WriteLine($"Запущен ли поток: {currentThread.IsAlive}");
+            Trace.WriteLine($"Id потока: {currentThread.ManagedThreadId}");
+            Trace.WriteLine($"Приоритет потока: {currentThread.Priority}");
+            Trace.WriteLine($"Статус потока: {currentThread.ThreadState}");
+
+            return 0;
+        }
+
+        public int TestThread2()
+        {
+            // получаем текущий поток
+            Thread currentThread = Thread.CurrentThread;
+
+            AppDomain appDomain = Thread.GetDomain();
+            return 0;
+        }
         
         public Core()
         {
             //Выполняется при запуске
             Core core = this;
             user = "User";
-
-            OpenMainWindow();
         }
     }
 }
