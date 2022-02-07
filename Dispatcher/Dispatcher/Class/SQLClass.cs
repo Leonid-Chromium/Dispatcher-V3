@@ -64,5 +64,15 @@ namespace Dispatcher.Class
         {
             return NoReturn(standartConString, Query);
         }
+
+        public static string ArrayToValue(string[] valueName, string[] value) // Используется для формирования строки-перечисления пар ([название столбца] = [значение])
+        {
+            List<string> valueСollection = new List<string>();
+            for (int i = 0; i < valueName.Length; i++)
+                valueСollection.Add(String.Concat(valueName[i], "=", value[i]));
+            string resultStr = String.Join(", ", valueСollection);
+            Trace.WriteLine(resultStr);
+            return resultStr;
+        }
     }
 }
