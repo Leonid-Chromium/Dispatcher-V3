@@ -19,6 +19,13 @@ namespace Dispatcher.Class
             return 0;
         }
 
+        public int OpenTestWindow()
+        {
+            Windows.TestWindow testWindow = new Windows.TestWindow();
+            testWindow.Show();
+            return 0;
+        }
+
         public void OpenCascade(int count)
         {
             for (int i = 0; i < count; i++)
@@ -78,7 +85,7 @@ namespace Dispatcher.Class
             Core core = this;
             user = "User";
 
-            TestLog();
+            OpenMainWindow();
         }
     }
 }
