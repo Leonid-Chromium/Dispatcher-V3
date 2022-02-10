@@ -58,6 +58,8 @@ namespace Dispatcher
         public App()
         {
             //Выполняется при запуске
+            //TODO Придумай откуда брать пользователя
+            user = "TestUser";
             configuration = Class.ConfigManage.GetConfiguration("Manual");
             configuration.TraceConfiguration();
             OpenTestWindow();

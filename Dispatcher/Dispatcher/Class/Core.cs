@@ -113,21 +113,6 @@ namespace Dispatcher.Class
             }
         }
 
-        public int TestLog()
-        {
-            try
-            {
-                Log log = new Log(0, "testLog2");
-                TestJsonLogClass json = new TestJsonLogClass();
-
-                return 0;
-            }
-            catch
-            {
-                return 1;
-            }
-        }
-
         public int TestThread()
         {
             try

@@ -4,7 +4,7 @@
     <themePath>Themes\\</themePath>
     <theme>Light</theme>
     <assetsPath>Assets\\</assetsPath>
-    <logPath>Log\\</logPath>
+    <logPath>D:\File\TestDir\Test\Log2.json</logPath>
     <SQLConnectionString>Data Source=192.168.1.118,1433\SQLEXPRESS;Initial Catalog=NewDispatcher;Persist Security Info=True;User ID=Admin;Password=Admin</SQLConnectionString>
     <serverIp>192.168.1.51</serverIp>
     <serverPort>8880</serverPort>

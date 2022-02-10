@@ -7,51 +7,92 @@ using System.Threading.Tasks;
 
 namespace Dispatcher.Class
 {
+    [Serializable]
     class Log
     {
-        public static string level { get; set; }
-        public static DateTime dateTime { get; set; }
-        public static string version { get; set; }
-        public static uint code { get; set; }
-        public static string user { get; set; }
-        public static string message { get; set; }
+        public string level { get; set; }
+        public DateTime dateTime { get; set; }
+        public string version { get; set; }
+        public uint code { get; set; }
+        public string user { get; set; }
+        public string message { get; set; }
 
-        //public Core core { get; set; }
+        //WARNING надо сделать конструктор без параметров
+        //public Log(uint ncode, string nmessage)
+        //{
+        //    switch (ncode / 100)
+        //    {
+        //        case 0:
+        //            level = "debug";
+        //            break;
+        //    }
 
-        public Log(uint ncode, string nmessage)
+        //    dateTime = DateTime.Now;
+
+        //    version = App.version;
+
+        //    code = ncode;
+
+        //    user = App.user;
+
+        //    message = nmessage;
+
+        //    LogTrace();
+        //}
+
+        public Log()
         {
-            switch (code % 100)
-            {
-                case 0:
-                    level = "debug";
-                    break;
-            }
 
-            dateTime = DateTime.Now;
-
-            version = App.version;
-
-            code = ncode;
-
-            user = App.user;
-
-            message = nmessage;
-
-            LogTrace();
-            Task taskS = TestJsonLogClass.Serializer(this);
-            taskS.Start();
         }
 
-        public int LogTrace()
+        //WARNING  Я чуствую здесь подвох.
+        public static int NewLog(uint icode, string imessage)
         {
             try
             {
-                Trace.WriteLine("Level: " + level);
-                Trace.WriteLine("Data-time: " + dateTime);
-                Trace.WriteLine("Version: " + version);
-                Trace.WriteLine("Code: " + code);
-                Trace.WriteLine("User: " + user);
-                Trace.WriteLine("Message: " + message);
+                string ilevel = "";
+                switch (icode / 100)
+                {
+                    case 0:
+                        ilevel = "debug";
+                        break;
+                }
+                Log log = new Log {level =  ilevel,
+                    dateTime = DateTime.Now,
+                    version = App.version,
+                    code = icode,
+                    user = App.user,
+                    message = imessage
+                };
+
+
+                //log.dateTime = DateTime.Now;
+                //log.version = App.version;
+                //log.code = icode;
+                //log.user = App.user;
+                //log.message = imessage;
+
+                Task task = Task.Run(() => TestJsonLogClass.Serializer(log));
+                
+                Trace.WriteLine("Сериализация закончена");
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
+        }
+
+        public static int LogTrace(Log log)
+        {
+            try
+            {
+                Trace.WriteLine("Level: " + log.level);
+                Trace.WriteLine("Data-time: " + log.dateTime);
+                Trace.WriteLine("Version: " + log.version);
+                Trace.WriteLine("Code: " + log.code);
+                Trace.WriteLine("User: " + log.user);
+                Trace.WriteLine("Message: " + log.message);
 
                 return 0;
             }
