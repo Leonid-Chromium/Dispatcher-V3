@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,20 +15,13 @@ using System.Windows.Shapes;
 namespace Dispatcher.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для TestWindow.xaml
+    /// Логика взаимодействия для WorkWindow.xaml
     /// </summary>
-    public partial class TestWindow : Window
+    public partial class WorkWindow : Window
     {
-        public object parent { get; set; }
-
-        public TestWindow()
+        public WorkWindow()
         {
             InitializeComponent();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            configurationUC.parent = this;
         }
     }
 }

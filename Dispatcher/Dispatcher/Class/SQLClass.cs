@@ -62,7 +62,14 @@ namespace Dispatcher.Class
 
         public static int NoReturn(string Query)
         {
-            return NoReturn(standartConString, Query);
+            try
+            {
+                return NoReturn(standartConString, Query);
+            }
+            catch
+            {
+                return 1;
+            }
         }
 
         public static string ArrayToValue(string[] valueName, string[] value) // Используется для формирования строки-перечисления пар ([название столбца] = [значение])

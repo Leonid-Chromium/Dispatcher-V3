@@ -9,16 +9,16 @@ namespace Dispatcher.Class
 {
     class Log
     {
-        public string level { get; set; }
-        public DateTime dateTime { get; set; }
-        public string version { get; set; }
-        public uint code { get; set; }
-        public string user { get; set; }
-        public string message { get; set; }
+        public static string level { get; set; }
+        public static DateTime dateTime { get; set; }
+        public static string version { get; set; }
+        public static uint code { get; set; }
+        public static string user { get; set; }
+        public static string message { get; set; }
 
         //public Core core { get; set; }
 
-        public Log(object sendler, uint code, string message)
+        public Log(uint ncode, string nmessage)
         {
             switch (code % 100)
             {
@@ -29,29 +29,36 @@ namespace Dispatcher.Class
 
             dateTime = DateTime.Now;
 
-            Core core = (Core)sendler;
+            version = App.version;
 
-            version = core.version;
+            code = ncode;
 
-            this.code = code;
+            user = App.user;
 
-            user = core.user;
-
-            this.message = message;
+            message = nmessage;
 
             LogTrace();
-            TestJsonLogClass test = new TestJsonLogClass();
-            Task taskS = test.Serializer(this);
+            Task taskS = TestJsonLogClass.Serializer(this);
+            taskS.Start();
         }
 
-        public void LogTrace()
+        public int LogTrace()
         {
-            Trace.WriteLine("Level: " + level);
-            Trace.WriteLine("Data-time: " + dateTime);
-            Trace.WriteLine("Version: " + version);
-            Trace.WriteLine("Code: " + code);
-            Trace.WriteLine("User: " + user);
-            Trace.WriteLine("Message: " + message);
+            try
+            {
+                Trace.WriteLine("Level: " + level);
+                Trace.WriteLine("Data-time: " + dateTime);
+                Trace.WriteLine("Version: " + version);
+                Trace.WriteLine("Code: " + code);
+                Trace.WriteLine("User: " + user);
+                Trace.WriteLine("Message: " + message);
+
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
         }
     }
 }

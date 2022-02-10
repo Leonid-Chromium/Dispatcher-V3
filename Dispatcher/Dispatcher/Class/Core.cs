@@ -15,99 +15,191 @@ namespace Dispatcher.Class
 
         public int OpenMainWindow()
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            return 0;
+            try
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
         }
 
         public int OpenTestWindow()
         {
-            Windows.TestWindow testWindow = new Windows.TestWindow();
-            testWindow.Show();
-            return 0;
+            try
+            {
+                Windows.TestWindow testWindow = new Windows.TestWindow();
+                testWindow.Show();
+
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
         }
 
-        public void OpenCascade(int count)
+        public int OpenCascade(int count)
         {
-            for (int i = 0; i < count; i++)
+            try
             {
-                OpenMainWindow();
-                //break;
+                for (int i = 0; i < count; i++)
+                {
+                    OpenMainWindow();
+                    //break;
+                }
+
+                return 0;
+            }
+            catch
+            {
+                return 1;
             }
 
         }
 
-        public void TestConfig()
+        public int TestConfig()
         {
-            Config config = new Config();
-            Configuration actualConfiguration = config.GetConfigV1("Standart");
-            Trace.WriteLine("\n\n\n");
-            actualConfiguration.TraceConfiguration();
-            Configuration newConfiguration = new Configuration();
-            newConfiguration.Name = "Test2.4";
-            newConfiguration.themePath = "test themePath";
-            newConfiguration.assetsPath = "test assetsPath";
-            newConfiguration.logPath = "test logPath";
-            newConfiguration.theme = "test theme";
-            newConfiguration.SQLConnectionString = "test sql";
-            newConfiguration.district = "test district";
-            config.SetConfigV2(newConfiguration);
+            try
+            {
+                Config config = new Config();
+                Configuration actualConfiguration = config.GetConfigV1("Standart");
+                Trace.WriteLine("\n\n\n");
+                actualConfiguration.TraceConfiguration();
+                Configuration newConfiguration = new Configuration();
+                newConfiguration.name = "Test2.4";
+                newConfiguration.themePath = "test themePath";
+                newConfiguration.assetsPath = "test assetsPath";
+                newConfiguration.logPath = "test logPath";
+                newConfiguration.theme = "test theme";
+                newConfiguration.SQLConnectionString = "test sql";
+                newConfiguration.district = "test district";
+                config.SetConfigV2(newConfiguration);
+
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
+            
         }
 
         public int TestNet()
         {
-            TestNetClass net = new TestNetClass();
+            try
+            {
+                //Prostodich
+                //net.Fun1();
 
-            //Prostodich
-            //net.Fun1();
+                //Скачивает файл с сервера на указаный путь
+                //net.DownloadFile("file://192.168.1.160/Crystal_monitoring/NewDispatcher/TestFile.txt", @"D:\File\TestDir\Test\File.txt");
 
-            //Скачивает файл с сервера
-            //net.DownloadFile("file://192.168.1.160/Crystal_monitoring/NewDispatcher/TestFile.txt", @"D:\File\TestDir\Test\File.txt");
+                //Читает файл в Trace
+                TestNetClass.streamFile("file://192.168.1.160/Crystal_monitoring/NewDispatcher/TestFile.txt");
 
-            //Читает файл в Trace
-            net.streamFile("file://192.168.1.160/Crystal_monitoring/NewDispatcher/TestFile.txt");
+                //Загружает файл на сервер с указаного пути
+                TestNetClass.UploadFile("file://192.168.1.160/Crystal_monitoring/NewDispatcher/TestFile.txt", @"D:\File\TestDir\Test\File.txt");
 
-            //Загружает файл на сервер
-            net.UploadFile("file://192.168.1.160/Crystal_monitoring/NewDispatcher/TestFile.txt", @"D:\File\TestDir\Test\File.txt");
-
-            return 0;
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
         }
 
         public int TestLog()
         {
-            Log log = new Log(this, 0, "testLog2");
-            TestJsonLogClass json = new TestJsonLogClass();
-            return 0;
+            try
+            {
+                Log log = new Log(0, "testLog2");
+                TestJsonLogClass json = new TestJsonLogClass();
+
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
         }
 
         public int TestThread()
         {
+            try
+            {
+                // получаем текущий поток
+                Thread currentThread = Thread.CurrentThread;
 
-            // получаем текущий поток
-            Thread currentThread = Thread.CurrentThread;
+                //получаем имя потока
+                Trace.WriteLine($"Имя потока: {currentThread.Name}");
+                currentThread.Name = "Метод Main";
+                Trace.WriteLine($"Имя потока: {currentThread.Name}");
 
-            //получаем имя потока
-            Trace.WriteLine($"Имя потока: {currentThread.Name}");
-            currentThread.Name = "Метод Main";
-            Trace.WriteLine($"Имя потока: {currentThread.Name}");
+                Trace.WriteLine($"Запущен ли поток: {currentThread.IsAlive}");
+                Trace.WriteLine($"Id потока: {currentThread.ManagedThreadId}");
+                Trace.WriteLine($"Приоритет потока: {currentThread.Priority}");
+                Trace.WriteLine($"Статус потока: {currentThread.ThreadState}");
 
-            Trace.WriteLine($"Запущен ли поток: {currentThread.IsAlive}");
-            Trace.WriteLine($"Id потока: {currentThread.ManagedThreadId}");
-            Trace.WriteLine($"Приоритет потока: {currentThread.Priority}");
-            Trace.WriteLine($"Статус потока: {currentThread.ThreadState}");
-
-            return 0;
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
         }
 
         public int TestThread2()
         {
-            // получаем текущий поток
-            Thread currentThread = Thread.CurrentThread;
+            try
+            {
+                // получаем текущий поток
+                Thread currentThread = Thread.CurrentThread;
 
-            AppDomain appDomain = Thread.GetDomain();
-            return 0;
+                AppDomain appDomain = Thread.GetDomain();
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
+            
         }
         
+        public int TestThread3()
+        {
+            try
+            {
+                Process proc = Process.GetProcessesByName("Dispatcher")[0];
+                Trace.WriteLine($"ID: {proc.Id}");
+
+                ProcessThreadCollection processThreads = proc.Threads;
+
+                foreach (ProcessThread thread in processThreads)
+                {
+                    Trace.WriteLine($"ThreadId: {thread.Id}  StartTime: {thread.StartTime}");
+                }
+
+                ProcessModuleCollection modules = proc.Modules;
+
+                foreach (ProcessModule module in modules)
+                {
+                    Trace.WriteLine($"Name: {module.ModuleName}  MemorySize: {module.ModuleMemorySize}");
+                }
+
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
+            
+        }
+
         public Core()
         {
             //Выполняется при запуске

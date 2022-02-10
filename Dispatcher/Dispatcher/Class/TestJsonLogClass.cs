@@ -13,7 +13,7 @@ namespace Dispatcher.Class
     {
         public int serialJson()
         {
-            Log log = new Log(this, 0, "testLog");
+            Log log = new Log(0, "testLog");
             string json = JsonSerializer.Serialize<Log>(log);
             Trace.WriteLine(json);
             Log restoredLog = JsonSerializer.Deserialize<Log>(json);
@@ -22,16 +22,15 @@ namespace Dispatcher.Class
             return 0;
         }
 
-        public async Task Serializer(Log log)
+        public static async Task Serializer(Log log)
         {
-            // сохранение данных
-            using (FileStream fs = new FileStream(@"D:\File\TestDir\Test\Log.json", FileMode.OpenOrCreate))
+            // запускаем новый поток
+            using (FileStream fileStream = new FileStream(@"D:\File\TestDir\Test\Log.json", FileMode.OpenOrCreate))
             {
                 Trace.WriteLine("Начинаем сериализацию");
-                fs.Seek(0, SeekOrigin.End);
-                await JsonSerializer.SerializeAsync<Log>(fs, log);
-                fs.Write(Encoding.Default.GetBytes(@"
-"));
+                fileStream.Seek(0, SeekOrigin.End); // Перевод курсора в конец файла
+                fileStream.Write(Encoding.Default.GetBytes("\n")); // Добавление новой строуи
+                await JsonSerializer.SerializeAsync<Log>(fileStream, log); // записываем лог
                 Trace.WriteLine("Data has been saved to file");
             }
         }

@@ -26,7 +26,7 @@ namespace Dispatcher.Class
             //создаем атрибут name для configuration
             XmlAttribute configurationNameAttr = xDoc.CreateAttribute("Name");
             //создаём значение для атрибута Name
-            XmlText configurationAttrValue = xDoc.CreateTextNode(newConfiguration.Name);
+            XmlText configurationAttrValue = xDoc.CreateTextNode(newConfiguration.name);
 
             // создаём новый элемент locations
             XmlElement locations = xDoc.CreateElement("locations");
@@ -217,7 +217,7 @@ namespace Dispatcher.Class
             Trace.WriteLine("Поиск начат");
 
             Configuration configurationOut = new Configuration();
-            configurationOut.Name = Name;
+            configurationOut.name = Name;
 
             XmlDocument xDoc = new XmlDocument(); //Создаём экземпляр документа
             xDoc.Load(configurationPath); //Загружаем Стандартный config файл
