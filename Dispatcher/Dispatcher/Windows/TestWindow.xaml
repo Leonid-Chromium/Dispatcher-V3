@@ -1,0 +1,22 @@
+﻿<Window x:Class="Dispatcher.Windows.TestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dispatcher.Windows"
+        xmlns:localUC="clr-namespace:Dispatcher.UCs"
+        mc:Ignorable="d"
+        Title="TestWindow" Height="450" Width="800"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <localUC:UniversalDataGrid Grid.Column="0"/>
+        <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3"
+        HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+        <localUC:ConfigurationUC x:Name="configurationUC" Grid.Column="2"/>
+    </Grid>
+</Window>

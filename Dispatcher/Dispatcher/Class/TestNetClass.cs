@@ -12,7 +12,7 @@ namespace Dispatcher.Class
     class TestNetClass
     {
         //Дич какая-то
-        public int Fun1()
+        public static int Fun1()
         {
             IPHostEntry host1 = Dns.GetHostEntry("www.microsoft.com");
             Trace.WriteLine(host1.HostName);
@@ -29,41 +29,64 @@ namespace Dispatcher.Class
             return 0;
         }
 
-        public int DownloadFile(string address, string fileName)
+        public static int DownloadFile(string address, string fileName)
         {
-            WebClient client = new WebClient();
-            client.DownloadFile(address, fileName);
-            Trace.WriteLine("Файл загружен");
+            try
+            {
+                WebClient client = new WebClient();
+                client.DownloadFile(address, fileName);
+                Trace.WriteLine("Файл загружен");
 
-            return 0;
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
         }
 
-        public void streamFile(string fileAddress)
+        public static int streamFile(string fileAddress)
         {
-            WebRequest request = WebRequest.Create(fileAddress);
-            WebResponse response = request.GetResponse();
-            using (Stream stream = response.GetResponseStream())
+            try
             {
-                using (StreamReader reader = new StreamReader(stream))
+                WebRequest request = WebRequest.Create(fileAddress);
+                WebResponse response = request.GetResponse();
+                using (Stream stream = response.GetResponseStream())
                 {
-                    string line = "";
-                    while ((line = reader.ReadLine()) != null)
+                    using (StreamReader reader = new StreamReader(stream))
                     {
-                        Trace.WriteLine(line);
+                        string line = "";
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            Trace.WriteLine(line);
+                        }
                     }
                 }
+                response.Close();
+                Trace.WriteLine("Запрос выполнен");
+
+                return 0;
             }
-            response.Close();
-            Trace.WriteLine("Запрос выполнен");
+            catch
+            {
+                return 1;
+            }
         }
 
-        public int UploadFile(string address, string fileName)
+        public static int UploadFile(string address, string fileName)
         {
-            WebClient webClient = new WebClient();
-            webClient.UploadFile(address, fileName);
-            Trace.WriteLine("Файл отправлен");
+            try
+            {
+                WebClient webClient = new WebClient();
+                webClient.UploadFile(address, fileName);
+                Trace.WriteLine("Файл отправлен");
 
-            return 0;
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
         }
     }
 }

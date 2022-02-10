@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="Dispatcher.UCs.ConfigurationUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Dispatcher.UCs"
+             mc:Ignorable="d"
+             Loaded="UserControl_Loaded"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Конфигурация"
+               Grid.Row="0" Grid.Column="0"/>
+        <ComboBox x:Name="ConfigurationCB"
+                  Grid.Row="0" Grid.Column="1" Margin="5"
+                  DropDownClosed="ConfigurationCB_DropDownClosed"/>
+        
+        <Label Content="SQLConnectionString"
+               Grid.Row="1" Grid.Column="0"/>
+        <TextBox x:Name="SQLConnectionStringTB"
+                 Grid.Row="1" Grid.Column="1" Margin="5"
+                 TextChanged="SQLConnectionStringTB_TextChanged"/>
+        
+        <Label Content="Server IP"
+               Grid.Row="2" Grid.Column="0"/>
+        <TextBox x:Name="serverIpTB"
+                 Grid.Row="2" Grid.Column="1" Margin="5"
+                 TextChanged="serverIpTB_TextChanged"/>
+        
+        <Label Content="Server port"
+               Grid.Row="3" Grid.Column="0"/>
+        <TextBox x:Name="serverPortTB"
+                 Grid.Row="3" Grid.Column="1" Margin="5"
+                 TextChanged="serverPortTB_TextChanged"/>
+        
+        <Label Content="Net path"
+               Grid.Row="4" Grid.Column="0"/>
+        <TextBox x:Name="netPathTB"
+                 Grid.Row="4" Grid.Column="1" Margin="5"
+                 TextChanged="netPathTB_TextChanged"/>
+        
+        <Label Content="District"
+               Grid.Row="5" Grid.Column="0"/>
+        <TextBox x:Name="DistrictTB"
+                 Grid.Row="5" Grid.Column="1" Margin="5"
+                 TextChanged="DistrictTB_TextChanged"/>
+        
+        <Label Content="Room"
+               Grid.Row="6" Grid.Column="0"/>
+        <TextBox x:Name="roomTB"
+                 Grid.Row="6" Grid.Column="1" Margin="5"
+                 TextChanged="roomTB_TextChanged"/>
+        
+        <Label Content="Theme path"
+               Grid.Row="7" Grid.Column="0"/>
+        <TextBox x:Name="themePathTB"
+                 Grid.Row="7" Grid.Column="1" Margin="5"
+                 TextChanged="themePathTB_TextChanged"/>
+        
+        <Label Content="theme"
+               Grid.Row="8" Grid.Column="0"/>
+        <TextBox x:Name="themeTB"
+                 Grid.Row="8" Grid.Column="1" Margin="5"
+                 TextChanged="themeTB_TextChanged"/>
+        
+        <Label Content="Assets path"
+               Grid.Row="9" Grid.Column="0"/>
+        <TextBox x:Name="assetsPathTB"
+                 Grid.Row="9" Grid.Column="1" Margin="5"
+                 TextChanged="assetsPathTB_TextChanged"/>
+        
+        <Label Content="Log path"
+               Grid.Row="10" Grid.Column="0"/>
+        <TextBox x:Name="logPathTB"
+                 Grid.Row="10" Grid.Column="1" Margin="5"
+                 TextChanged="logPathTB_TextChanged"/>
+        <Grid Grid.Row="11" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="delConfButton" Content="Удалить  конфигурацию" Click="delConfButton_Click" Grid.Column="0" Margin="5"/>
+        </Grid>
+    </Grid>
+</UserControl>
