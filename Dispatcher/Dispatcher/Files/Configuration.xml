@@ -12,11 +12,23 @@
     <district>0</district>
     <room>0</room>
   </configuration>
-  <configuration name="TestChange">
+  <configuration name="TestChange2">
     <themePath>Themes\\</themePath>
     <theme>Light</theme>
     <assetsPath>Assets\\</assetsPath>
-    <logPath>Log\\</logPath>
+    <logPath>D:\File\TestDir\Test\Log2.json</logPath>
+    <SQLConnectionString>Data Source=192.168.1.118,1433\SQLEXPRESS;Initial Catalog=NewDispatcher;Persist Security Info=True;User ID=Admin;Password=Admin</SQLConnectionString>
+    <serverIp>192.168.1.51</serverIp>
+    <serverPort>8880</serverPort>
+    <netPath>file://192.168.1.160/Crystal_monitoring/NewDispatcher/</netPath>
+    <district>0</district>
+    <room>4</room>
+  </configuration>
+  <configuration name="Test">
+    <themePath>Themes\\</themePath>
+    <theme>Dark</theme>
+    <assetsPath>Assets\\</assetsPath>
+    <logPath>D:\File\TestDir\Test\Log2.json</logPath>
     <SQLConnectionString>Data Source=192.168.1.118,1433\SQLEXPRESS;Initial Catalog=NewDispatcher;Persist Security Info=True;User ID=Admin;Password=Admin</SQLConnectionString>
     <serverIp>192.168.1.51</serverIp>
     <serverPort>8880</serverPort>
@@ -24,16 +36,16 @@
     <district>0</district>
     <room>0</room>
   </configuration>
-  <configuration name="Test">
+  <configuration name="TestChange3">
     <themePath>Themes\\</themePath>
-    <theme>Dark</theme>
+    <theme>Light</theme>
     <assetsPath>Assets\\</assetsPath>
-    <logPath>Log\\</logPath>
+    <logPath>D:\File\TestDir\Test\Log2.json</logPath>
     <SQLConnectionString>Data Source=192.168.1.118,1433\SQLEXPRESS;Initial Catalog=NewDispatcher;Persist Security Info=True;User ID=Admin;Password=Admin</SQLConnectionString>
     <serverIp>192.168.1.51</serverIp>
     <serverPort>8880</serverPort>
     <netPath>file://192.168.1.160/Crystal_monitoring/NewDispatcher/</netPath>
     <district>0</district>
-    <room>0</room>
+    <room>4</room>
   </configuration>
 </configurations>

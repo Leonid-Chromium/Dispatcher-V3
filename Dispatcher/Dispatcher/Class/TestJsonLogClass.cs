@@ -26,6 +26,10 @@ namespace Dispatcher.Class
                     //Включает перенос строки поле ккаждого поля
                     //WriteIndented = true
                 };
+                /*
+                 * Возникает исключение IOException: The process cannot access the file 'file path' because it is being used by another process C#
+                 * В параметрах исключений => Common Language надо поднять флак System.IO.IOException
+                 */
                 using (FileStream fileStream = new FileStream(App.configuration.logPath, FileMode.OpenOrCreate))
                 {
                     fileStream.Seek(0, SeekOrigin.End); // Перевод курсора в конец файла

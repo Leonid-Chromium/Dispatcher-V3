@@ -60,7 +60,9 @@ namespace Dispatcher
             //Выполняется при запуске
             //TODO Придумай откуда брать пользователя
             user = "TestUser";
-            configuration = Class.ConfigManage.GetConfiguration("Manual");
+            //TODO Продумай случай если нет файла или конфигураций в файле
+            List<string> configurationsName = ConfigManage.GetAllConfigurationName();
+            configuration = Class.ConfigManage.GetConfiguration(configurationsName.First());
             configuration.TraceConfiguration();
             OpenTestWindow();
         }
