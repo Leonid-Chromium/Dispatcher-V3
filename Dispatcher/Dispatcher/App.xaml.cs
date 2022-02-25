@@ -61,8 +61,16 @@ namespace Dispatcher
             //TODO Придумай откуда брать пользователя
             user = "TestUser";
             //TODO Продумай случай если нет файла или конфигураций в файле
-            List<string> configurationsName = ConfigManage.GetAllConfigurationName();
-            configuration = Class.ConfigManage.GetConfiguration(configurationsName.First());
+            try
+            {
+                configuration = Class.ConfigManage.GetConfiguration("Manual Test");
+            }
+            catch
+            {
+                List<string> configurationsName = ConfigManage.GetAllConfigurationName();
+                configuration = Class.ConfigManage.GetConfiguration(configurationsName.First());
+            }
+            //TODO Нужен лог
             configuration.TraceConfiguration();
             OpenTestWindow();
         }

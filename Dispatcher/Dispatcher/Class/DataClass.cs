@@ -5,6 +5,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Dispatcher.Class
 {
@@ -41,5 +43,35 @@ namespace Dispatcher.Class
                 return 1;
             }
         }
+
+        //TODO Избавься от следующих двух методов заменив их чем то адекватным
+        public static object[] MyGetArray(DataGrid dataGrid)
+        {
+            try
+            {
+                DataRowView row = dataGrid.SelectedItem as DataRowView;
+                return row.Row.ItemArray;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+
+        public static string MyGetItemArray(DataGrid dataGrid, int i)
+        {
+            try
+            {
+                object[] array = MyGetArray(dataGrid);
+                return array[i].ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+
     }
 }
