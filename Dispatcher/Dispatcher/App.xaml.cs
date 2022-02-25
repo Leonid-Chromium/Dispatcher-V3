@@ -20,7 +20,7 @@ namespace Dispatcher
         
 
         public static string version = "0.5";
-        public static string user { get; set; }
+        public static string user { get; set; } = "Unknown";
 
         public static Class.Configuration configuration { get; set; }
 
@@ -58,8 +58,6 @@ namespace Dispatcher
         public App()
         {
             //Выполняется при запуске
-            //TODO Придумай откуда брать пользователя
-            user = "TestUser";
             //TODO Продумай случай если нет файла или конфигураций в файле
             try
             {
