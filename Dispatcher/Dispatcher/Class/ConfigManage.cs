@@ -392,7 +392,7 @@ namespace Dispatcher.Class
             }
         }
 
-        //TODO Получение списка конфигураций
+        // Получение списка конфигураций
         public static List<string> GetAllConfigurationName(string configurationPath)
         {
             List<string> configurationsName = new List<string> { };

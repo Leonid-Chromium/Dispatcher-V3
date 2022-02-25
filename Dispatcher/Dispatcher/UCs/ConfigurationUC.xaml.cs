@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Dispatcher.Class;
 
 namespace Dispatcher.UCs
 {
@@ -122,16 +123,21 @@ namespace Dispatcher.UCs
 
         private void delConfButton_Click(object sender, RoutedEventArgs e)
         {
-            Trace.WriteLine("Конфигурацию собираются удалить");
+            Trace.WriteLine("Конфигурацию " + ConfigurationCB.SelectedItem.ToString() + " собираются удалить");
+            Trace.WriteLine(Log.NewLog(001, "Конфигурацию " + ConfigurationCB.SelectedItem.ToString() + " собираются удалить"));
+
             MessageBoxResult result = MessageBox.Show("Вы уверены что собираетесь удалить крнфигурацию.\nЭта операция необратима", "Выберите один из вариантов", MessageBoxButton.YesNo, MessageBoxImage.Information, MessageBoxResult.Yes, MessageBoxOptions.DefaultDesktopOnly);
             Trace.WriteLine("result = " + result);
+            
             if(result == MessageBoxResult.Yes)
             {
                 //TODO Сделать удаление конфигурации
                 Trace.WriteLine("Конфигурация удалена");
+                Log.NewLog(001, "Конфигурацию " + ConfigurationCB.SelectedItem.ToString() + " удалили");
             }
             else
             {
+                Log.NewLog(001, "Конфигурацию " + ConfigurationCB.SelectedItem.ToString() + " не удалили");
                 Trace.WriteLine("Отмена удаления");
             }
         }
