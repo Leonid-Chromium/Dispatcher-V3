@@ -61,7 +61,7 @@ namespace Dispatcher
             //TODO Продумай случай если нет файла или конфигураций в файле
             try
             {
-                configuration = Class.ConfigManage.GetConfiguration("Manual Test");
+                configuration = Class.ConfigManage.GetConfiguration(ConfigManage.GetSavedConfiguration());
             }
             catch
             {
