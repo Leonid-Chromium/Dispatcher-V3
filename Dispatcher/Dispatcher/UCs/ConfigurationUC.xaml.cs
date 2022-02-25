@@ -382,7 +382,7 @@ namespace Dispatcher.UCs
 
                     ConfigManage.SetConfiguration(newConfiguration); //добавляем новую конфигурацию
                     App.configuration = ConfigManage.GetConfiguration(newConfiguration.name); //Выбираем её для использования
-                    Log.NewLog(001, "Добавили новую конфигурацию " + App.configuration.name);
+                    Log.NewLog(101, "Добавили новую конфигурацию " + App.configuration.name);
                 }
                 updateInfoAboutConfig();
             }
