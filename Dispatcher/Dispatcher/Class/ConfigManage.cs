@@ -10,7 +10,7 @@ namespace Dispatcher.Class
 {
     class ConfigManage
     {
-        public static string StandartConfigurationAddres = "../../../Files/Configuration.xml";
+        public static string standartConfigurationAddres = "../../../Files/Configuration.xml";
 
         //Создание новой конфигурации
         //TODO переделай на циклы
@@ -85,10 +85,13 @@ namespace Dispatcher.Class
                 //сохраняем документ
                 xDoc.Save(configurationPath);
 
+                Log.NewLog(101, "Добавленна новая конфигурация " + newConfiguration.name);
                 return 0;
             }
-            catch
+            catch(Exception ex)
             {
+                Log.NewLog(301, "Ошибка при создании конфигурации " + newConfiguration.name);
+                Log.NewLog(301, ex.Message);
                 return 1;
             }
         }
@@ -97,10 +100,11 @@ namespace Dispatcher.Class
         {
             try
             {
-                return SetConfiguration(newConfiguration, StandartConfigurationAddres);
+                return SetConfiguration(newConfiguration, standartConfigurationAddres);
             }
-            catch
+            catch(Exception ex)
             {
+                Log.NewLog(302, ex.Message);
                 return 1;
             }
         }
@@ -112,106 +116,171 @@ namespace Dispatcher.Class
 
             Configuration configurationOut = new Configuration();
             configurationOut.name = name;
-
-            XmlDocument xDoc = new XmlDocument(); //Создаём экземпляр документа
-            xDoc.Load(configurationPath); //Загружаем Стандартный config файл
-
-            // получим корневой элемент
-            XmlElement configurations = xDoc.DocumentElement;
-
-            foreach (XmlElement configuration in configurations)
+            try
             {
-                Trace.WriteLine(configuration.GetAttribute("name"));
+                XmlDocument xDoc = new XmlDocument(); //Создаём экземпляр документа
+                xDoc.Load(configurationPath); //Загружаем Стандартный config файл
 
-                // Находим интересующию нас конфигурацию
-                if (configuration.GetAttribute("name") == name)
+                // получим корневой элемент
+                XmlElement configurations = xDoc.DocumentElement;
+
+                foreach (XmlElement configuration in configurations)
                 {
-                    Trace.WriteLine("\t^Это1");
+                    Trace.WriteLine(configuration.GetAttribute("name"));
 
-                    //Перебираем узлы конфигурации
-                    foreach (XmlElement configurationChildNode in configuration.ChildNodes)
+                    // Находим интересующию нас конфигурацию
+                    if (configuration.GetAttribute("name") == name)
                     {
-                        Trace.Write("\t|" + configurationChildNode.Name + ":\n\t|\t");
+                        Trace.WriteLine("\t^Это1");
 
-                        // если узел - theme
-                        if (configurationChildNode.Name == "theme")
+                        //Перебираем узлы конфигурации
+                        foreach (XmlElement configurationChildNode in configuration.ChildNodes)
                         {
-                            configurationOut.theme = configurationChildNode.InnerText;
-                            Trace.WriteLine(configurationChildNode.InnerText);
-                        }
+                            Trace.Write("\t|" + configurationChildNode.Name + ":\n\t|\t");
 
-                        // если узел - themePath
-                        if (configurationChildNode.Name == "themePath")
-                        {
-                            configurationOut.themePath = configurationChildNode.InnerXml;
-                            Trace.WriteLine(configurationChildNode.InnerXml);
-                        }
+                            //DEBUG Переделай на switch( Наверное )
+                            //TODO Trace кривой
 
-                        // если узел - assetsPath
-                        if (configurationChildNode.Name == "assetsPath")
-                        {
-                            configurationOut.assetsPath = configurationChildNode.InnerXml;
-                            Trace.WriteLine(configurationChildNode.InnerXml);
-                        }
+                            switch (configurationChildNode.Name)
+                            {
+                                case "theme":
+                                    configurationOut.theme = configurationChildNode.InnerText;
+                                    Trace.WriteLine(configurationChildNode.InnerText);
+                                    break;
 
-                        // если узел - logPath
-                        if (configurationChildNode.Name == "logPath")
-                        {
-                            configurationOut.logPath = configurationChildNode.InnerXml;
-                            Trace.WriteLine(configurationChildNode.InnerXml);
-                        }
+                                case "themePath":
+                                    configurationOut.themePath = configurationChildNode.InnerXml;
+                                    Trace.WriteLine(configurationChildNode.InnerXml);
+                                    break;
 
-                        // если узел - SQLConnectionString
-                        if (configurationChildNode.Name == "SQLConnectionString")
-                        {
-                            configurationOut.SQLConnectionString = configurationChildNode.InnerXml;
-                            Trace.WriteLine(configurationChildNode.InnerXml);
-                        }
+                                case "assetsPath":
+                                    configurationOut.assetsPath = configurationChildNode.InnerXml;
+                                    Trace.WriteLine(configurationChildNode.InnerXml);
+                                    break;
 
-                        // если узел - serverIp
-                        if (configurationChildNode.Name == "serverIp")
-                        {
-                            configurationOut.serverIp = configurationChildNode.InnerXml;
-                            Trace.WriteLine(configurationChildNode.InnerXml);
-                        }
+                                case "logPath":
+                                    configurationOut.logPath = configurationChildNode.InnerXml;
+                                    Trace.WriteLine(configurationChildNode.InnerXml);
+                                    break;
 
-                        // если узел - serverPort
-                        if (configurationChildNode.Name == "serverPort")
-                        {
-                            configurationOut.serverPort = configurationChildNode.InnerXml;
-                            Trace.WriteLine(configurationChildNode.InnerXml);
-                        }
+                                case "SQLConnectionString":
+                                    configurationOut.SQLConnectionString = configurationChildNode.InnerXml;
+                                    Trace.WriteLine(configurationChildNode.InnerXml);
+                                    break;
 
-                        // если узел - netPath
-                        if (configurationChildNode.Name == "netPath")
-                        {
-                            configurationOut.netPath = configurationChildNode.InnerXml;
-                            Trace.WriteLine(configurationChildNode.InnerXml);
-                        }
+                                case "serverIp":
+                                    configurationOut.serverIp = configurationChildNode.InnerXml;
+                                    Trace.WriteLine(configurationChildNode.InnerXml);
+                                    break;
 
-                        // если узел - district
-                        if (configurationChildNode.Name == "district")
-                        {
-                            configurationOut.district = configurationChildNode.InnerXml;
-                            Trace.WriteLine(configurationChildNode.InnerXml);
-                        }
+                                case "serverPort":
+                                    configurationOut.serverPort = configurationChildNode.InnerXml;
+                                    Trace.WriteLine(configurationChildNode.InnerXml);
+                                    break;
 
-                        // если узел - room
-                        if (configurationChildNode.Name == "room")
-                        {
-                            configurationOut.room = configurationChildNode.InnerXml;
-                            Trace.WriteLine(configurationChildNode.InnerXml);
+                                case "netPath":
+                                    configurationOut.netPath = configurationChildNode.InnerXml;
+                                    Trace.WriteLine(configurationChildNode.InnerXml);
+                                    break;
+
+                                case "district":
+                                    configurationOut.district = configurationChildNode.InnerXml;
+                                    Trace.WriteLine(configurationChildNode.InnerXml);
+                                    break;
+
+                                case "room":
+                                    configurationOut.room = configurationChildNode.InnerXml;
+                                    Trace.WriteLine(configurationChildNode.InnerXml);
+                                    break;
+                            }
+
+
+                            /*
+                            // если узел - theme
+                            if (configurationChildNode.Name == "theme")
+                            {
+                                configurationOut.theme = configurationChildNode.InnerText;
+                                Trace.WriteLine(configurationChildNode.InnerText);
+                            }
+
+                            // если узел - themePath
+                            if (configurationChildNode.Name == "themePath")
+                            {
+                                configurationOut.themePath = configurationChildNode.InnerXml;
+                                Trace.WriteLine(configurationChildNode.InnerXml);
+                            }
+
+                            // если узел - assetsPath
+                            if (configurationChildNode.Name == "assetsPath")
+                            {
+                                configurationOut.assetsPath = configurationChildNode.InnerXml;
+                                Trace.WriteLine(configurationChildNode.InnerXml);
+                            }
+
+                            // если узел - logPath
+                            if (configurationChildNode.Name == "logPath")
+                            {
+                                configurationOut.logPath = configurationChildNode.InnerXml;
+                                Trace.WriteLine(configurationChildNode.InnerXml);
+                            }
+
+                            // если узел - SQLConnectionString
+                            if (configurationChildNode.Name == "SQLConnectionString")
+                            {
+                                configurationOut.SQLConnectionString = configurationChildNode.InnerXml;
+                                Trace.WriteLine(configurationChildNode.InnerXml);
+                            }
+
+                            // если узел - serverIp
+                            if (configurationChildNode.Name == "serverIp")
+                            {
+                                configurationOut.serverIp = configurationChildNode.InnerXml;
+                                Trace.WriteLine(configurationChildNode.InnerXml);
+                            }
+
+                            // если узел - serverPort
+                            if (configurationChildNode.Name == "serverPort")
+                            {
+                                configurationOut.serverPort = configurationChildNode.InnerXml;
+                                Trace.WriteLine(configurationChildNode.InnerXml);
+                            }
+
+                            // если узел - netPath
+                            if (configurationChildNode.Name == "netPath")
+                            {
+                                configurationOut.netPath = configurationChildNode.InnerXml;
+                                Trace.WriteLine(configurationChildNode.InnerXml);
+                            }
+
+                            // если узел - district
+                            if (configurationChildNode.Name == "district")
+                            {
+                                configurationOut.district = configurationChildNode.InnerXml;
+                                Trace.WriteLine(configurationChildNode.InnerXml);
+                            }
+
+                            // если узел - room
+                            if (configurationChildNode.Name == "room")
+                            {
+                                configurationOut.room = configurationChildNode.InnerXml;
+                                Trace.WriteLine(configurationChildNode.InnerXml);
+                            }
+                            */
                         }
                     }
                 }
+                Trace.WriteLine("Поиск закончен");
             }
-            Trace.WriteLine("Поиск закончен");
+            catch(Exception ex)
+            {
+                Log.NewLog(302, ex.Message);
+            }
             return configurationOut;
         }
 
         public static Configuration GetConfiguration(string name)
         {
-            return GetConfiguration(name, StandartConfigurationAddres);
+            return GetConfiguration(name, standartConfigurationAddres);
         }
 
         //удаление конфигурации по имени
@@ -246,10 +315,13 @@ namespace Dispatcher.Class
                 //сохранение документа
                 xDoc.Save(configurationPath);
 
+                Log.NewLog(001, "Удалена конфигурация " + name);
+
                 return 0;
             }
-            catch
+            catch(Exception ex)
             {
+                Log.NewLog(301, ex.Message);
                 return 1;
             }
         }
@@ -258,10 +330,11 @@ namespace Dispatcher.Class
         {
             try
             {
-                return DeleteConfiguration(name, StandartConfigurationAddres);
+                return DeleteConfiguration(name, standartConfigurationAddres);
             }
-            catch
+            catch(Exception ex)
             {
+                Log.NewLog(302, ex.Message);
                 return 1;
             }
         }
@@ -295,6 +368,8 @@ namespace Dispatcher.Class
                         foreach (XmlElement configurationChildNode in configuration.ChildNodes)
                         {
                             Trace.Write("\t|" + configurationChildNode.Name + ":\n\t|\t");
+
+                            //TODO Переделай на switch( Наверное )
 
                             // если узел - theme
                             if (configurationChildNode.Name == "theme")
@@ -366,12 +441,18 @@ namespace Dispatcher.Class
                                 Trace.WriteLine(configurationChildNode.InnerXml);
                             }
                         }
+
+                        Log.NewLog(101, "Изменена конфигурация " + name);
+
+                        //TODO переопредели ещё один метод без выхода после нахождения первой подходящей конфигурации
+                        //сохраняем документ
+                        xDoc.Save(configurationPath);
+                        return 0;
                     }
                 }
 
                 //сохраняем документ
                 xDoc.Save(configurationPath);
-
                 return 0;
             }
             catch
@@ -384,7 +465,7 @@ namespace Dispatcher.Class
         {
             try
             {
-                return ChangeConfiguration(name, newConfiguration, StandartConfigurationAddres);
+                return ChangeConfiguration(name, newConfiguration, standartConfigurationAddres);
             }
             catch
             {
@@ -405,28 +486,49 @@ namespace Dispatcher.Class
             // получим корневой элемент
             XmlElement configurations = xDoc.DocumentElement;
 
-            Trace.WriteLine("Ищем в конфигурация конфигурации"); //Могло быть хуже
+            Trace.WriteLine("Ищем в конфигурация конфигурации"); //Могло быть хуже //Это я об этом изречении
 
             foreach(XmlElement configuration in configurations)
             {
-                Trace.WriteLine(configuration.GetAttribute("name"));
+                //Trace.WriteLine(configuration.GetAttribute("name"));
                 configurationsName.Add(configuration.GetAttribute("name"));
-                //configurationsName.Append(configuration.GetAttribute("name").ToString());
             }
+
             //Проверка
             Trace.WriteLine("Начинаем проверку GetAllConfigurationName");
             Trace.WriteLine("В массиве " + configurationsName.Count() + " элементов");
             foreach (string configuration in configurationsName)
-            {
                 Trace.WriteLine(configuration);
-            }
             Trace.WriteLine("Проверка закончена");
+
             return configurationsName;
         }
 
         public static List<string> GetAllConfigurationName()
         {
-            return GetAllConfigurationName(StandartConfigurationAddres);
+            return GetAllConfigurationName(standartConfigurationAddres);
+        }
+
+        //DEBUG Проверка на повторяемость имени
+        public static bool HaveName(string name, string configurationPath)
+        {
+            try
+            {
+                List<string> configurationsName = GetAllConfigurationName(configurationPath);
+                foreach(string configurationName in configurationsName)
+                    if (configurationName == name)
+                        return true;
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static bool HaveName(string name)
+        {
+            return HaveName(name, standartConfigurationAddres);
         }
     }
 }

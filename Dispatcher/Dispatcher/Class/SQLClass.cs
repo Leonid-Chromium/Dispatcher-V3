@@ -14,15 +14,16 @@ namespace Dispatcher.Class
     {
         public static string standartConString = @"Data Source=192.168.1.118,1433\SQLEXPRESS;Initial Catalog=NewDispatcher;Persist Security Info=True;User ID=Admin;Password=Admin";
 
-        public DataTable ReturnDT(string ConStr, string  Query)
+        public static DataTable ReturnDT(string Query, string ConStr)
         {
             DataTable dataTable = new DataTable();
+
             try
             {
                 Trace.WriteLine("ConString = " + ConStr);
                 Trace.WriteLine("Query = " + Query);
 
-                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(Query,ConStr);
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(Query, ConStr);
                 sqlDataAdapter.Fill(dataTable);
             }
             catch (Exception ex)
@@ -32,12 +33,12 @@ namespace Dispatcher.Class
             return dataTable;
         }
 
-        public DataTable ReturnDT(string Query)
+        public static DataTable ReturnDT(string Query)
         {
-            return ReturnDT(standartConString, Query);
+            return ReturnDT(Query, standartConString);
         }
 
-        public static int NoReturn(string ConStr, string Query)
+        public static int NoReturn(string Query, string ConStr)
         {
             try
             {
@@ -64,7 +65,7 @@ namespace Dispatcher.Class
         {
             try
             {
-                return NoReturn(standartConString, Query);
+                return NoReturn(Query, standartConString);
             }
             catch
             {

@@ -30,7 +30,9 @@
                Grid.Row="0" Grid.Column="0"/>
         <ComboBox x:Name="ConfigurationCB"
                   Grid.Row="0" Grid.Column="1" Margin="5"
-                  DropDownClosed="ConfigurationCB_DropDownClosed"/>
+                  DropDownOpened="ConfigurationCB_DropDownOpened"
+                  DropDownClosed="ConfigurationCB_DropDownClosed"
+                  IsEditable="True"/>
         
         <Label Content="SQLConnectionString"
                Grid.Row="1" Grid.Column="0"/>
@@ -56,11 +58,11 @@
                  Grid.Row="4" Grid.Column="1" Margin="5"
                  TextChanged="netPathTB_TextChanged"/>
         
-        <Label Content="District"
+        <Label Content="district"
                Grid.Row="5" Grid.Column="0"/>
-        <TextBox x:Name="DistrictTB"
+        <TextBox x:Name="districtTB"
                  Grid.Row="5" Grid.Column="1" Margin="5"
-                 TextChanged="DistrictTB_TextChanged"/>
+                 TextChanged="districtTB_TextChanged"/>
         
         <Label Content="Room"
                Grid.Row="6" Grid.Column="0"/>
@@ -95,8 +97,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button x:Name="delConfButton" Content="Удалить  конфигурацию" Click="delConfButton_Click" Grid.Column="0" Margin="5"/>
+            <Button x:Name="saveConfButton" Content="Сохранить конфигурацию" Click="saveConfButton_Click" Grid.Column="1" Margin="5"/>
+            <Button x:Name="addConfButton" Content="Добавить новую конфигурацию" Click="addConfButton_Click" Grid.Column="2" Margin="5"/>
         </Grid>
     </Grid>
 </UserControl>

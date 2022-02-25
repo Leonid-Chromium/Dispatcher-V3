@@ -20,7 +20,7 @@ namespace Dispatcher
         
 
         public static string version = "0.5";
-        public static string user { get; set; }
+        public static string user { get; set; } = "Unknown";
 
         public static Class.Configuration configuration { get; set; }
 
@@ -58,9 +58,17 @@ namespace Dispatcher
         public App()
         {
             //Выполняется при запуске
-            //TODO Придумай откуда брать пользователя
-            user = "TestUser";
-            configuration = Class.ConfigManage.GetConfiguration("Manual");
+            //TODO Продумай случай если нет файла или конфигураций в файле
+            try
+            {
+                configuration = Class.ConfigManage.GetConfiguration("Manual Test");
+            }
+            catch
+            {
+                List<string> configurationsName = ConfigManage.GetAllConfigurationName();
+                configuration = Class.ConfigManage.GetConfiguration(configurationsName.First());
+            }
+            //TODO Нужен лог
             configuration.TraceConfiguration();
             OpenTestWindow();
         }
