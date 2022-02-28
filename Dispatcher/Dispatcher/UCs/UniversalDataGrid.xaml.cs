@@ -16,6 +16,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Dispatcher.Class;
 
+using SQLLib;
+using DataLib;
+
 namespace Dispatcher.UCs
 {
     /// <summary>
@@ -59,7 +62,7 @@ namespace Dispatcher.UCs
         private void MyDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             Trace.WriteLine("MyDataGrid_CellEditEnding");
-            setValues();
+            //setValues();
             TraceValues();
         }
 
@@ -98,7 +101,6 @@ namespace Dispatcher.UCs
         {
             try
             {
-                //TODO Нужен trim
                 valuesNameStr.Trim();
                 valuesName = valuesNameStr.Split(", ");
 
@@ -112,29 +114,30 @@ namespace Dispatcher.UCs
             }
         }
 
-        private int setValues()
-        {
-            try
-            {
-                List<string> valuesList = new List<string> { };
-                for(int i = 0; i < MyDataGrid.Columns.Count();i++)
-                {
-                    valuesList.Add(DataClass.MyGetItemArray(MyDataGrid, i));
-                }
+        //Что за дичь?
+        //private int setValues()
+        //{
+        //    try
+        //    {
+        //        List<string> valuesList = new List<string> { };
+        //        for(int i = 0; i < MyDataGrid.Columns.Count();i++)
+        //        {
+        //            valuesList.Add(DataClass.MyGetItemArray(MyDataGrid, i));
+        //        }
 
-                values = valuesList.ToArray();
+        //        values = valuesList.ToArray();
 
-                return 0;
-            }
-            catch(Exception ex)
-            {
-                //Дай нормальное сообщение в Лог вот здесь v
-                Log.NewLog(300, "Ошибка в UniDG при setValue" + ex.Message);
-                MessageBox.Show(ex.Message);
+        //        return 0;
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        //Дай нормальное сообщение в Лог вот здесь v
+        //        Log.NewLog(300, "Ошибка в UniDG при setValue" + ex.Message);
+        //        MessageBox.Show(ex.Message);
 
-                return 1;
-            }
-        }
+        //        return 1;
+        //    }
+        //}
 
         private int TraceValues()
         {
@@ -156,7 +159,11 @@ namespace Dispatcher.UCs
         {
             try
             {
-                dataTable = SQLClass.ReturnDT(selectStr, App.configuration.SQLConnectionString);
+                dataTable = SQL.ReturnDT(selectStr, App.configuration.SQLConnectionString, out string ex);
+                if(ex == String.Empty)
+                {
+                    Log.NewLog(300, "Ошибка в UniDG при select " + ex);
+                }
                 MyDataGrid.ItemsSource = dataTable.DefaultView;
 
                 return 0;
@@ -175,7 +182,12 @@ namespace Dispatcher.UCs
         {
             try
             {
-                return SQLClass.NoReturn(insertStr.Trim().Replace("*", " "), App.configuration.SQLConnectionString);
+                int ResultNoRuturn = SQL.NoReturn(insertStr.Trim().Replace("*", " "), App.configuration.SQLConnectionString, out string ex);
+                if (ex == String.Empty)
+                {
+                    Log.NewLog(300, "Ошибка в UniDG при select " + ex);
+                }
+                return ResultNoRuturn;
             }
             catch (Exception ex)
             {
