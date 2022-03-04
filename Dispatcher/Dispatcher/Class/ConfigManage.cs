@@ -491,7 +491,10 @@ namespace Dispatcher.Class
             foreach(XmlElement configuration in configurations)
             {
                 //Trace.WriteLine(configuration.GetAttribute("name"));
-                configurationsName.Add(configuration.GetAttribute("name"));
+                if (configuration.Name != "SavedConfiguration")
+                {
+                    configurationsName.Add(configuration.GetAttribute("name"));
+                }
             }
 
             //Проверка
@@ -529,6 +532,73 @@ namespace Dispatcher.Class
         public static bool HaveName(string name)
         {
             return HaveName(name, standartConfigurationAddres);
+        }
+
+        //Работа с сохранением выбора конфигурации
+        public static string GetSavedConfiguration(string configurationPath)
+        {
+            try
+            {
+                XmlDocument xDoc = new XmlDocument(); //Создаём экземпляр документа
+                xDoc.Load(configurationPath); //Загружаем Стандартный config файл
+
+                XmlElement configurations = xDoc.DocumentElement;
+
+                foreach(XmlElement node in configurations)
+                {
+                    if(node.Name == "SavedConfiguration")
+                    {
+                        return node.InnerText;
+                    }
+                }
+
+                return string.Empty;
+            }
+            catch(Exception ex)
+            {
+                //TODO добавь логирование
+                Trace.WriteLine(ex.Message);
+                return string.Empty;
+            }
+        }
+
+        public static string GetSavedConfiguration()
+        {
+            return GetSavedConfiguration(standartConfigurationAddres);
+        }
+
+        public static int SetSavedConfiguration(string configurationName, string configurationPath)
+        {
+            try
+            {
+                XmlDocument xDoc = new XmlDocument(); //Создаём экземпляр документа
+                xDoc.Load(configurationPath); //Загружаем Стандартный config файл
+
+                XmlElement configurations = xDoc.DocumentElement;
+
+                foreach (XmlElement node in configurations)
+                {
+                    if (node.Name == "SavedConfiguration")
+                    {
+                        //Trace.WriteLine("нашли");
+                        node.InnerText = configurationName;
+                        //Trace.WriteLine(node.InnerText);
+                    }
+                }
+
+                xDoc.Save(configurationPath);
+
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
+        }
+
+        public static int SetSavedConfiguration(string configurationName)
+        {
+            return SetSavedConfiguration(configurationName, standartConfigurationAddres);
         }
     }
 }

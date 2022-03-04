@@ -71,6 +71,7 @@ namespace Dispatcher.UCs
 
         private void ConfigurationCB_DropDownClosed(object sender, EventArgs e)
         {
+            //TODO Сделай защиту от пустого выбора
             Trace.WriteLine(ConfigurationCB.SelectedItem.ToString());
             App.configuration = ConfigManage.GetConfiguration(ConfigurationCB.SelectedItem.ToString());
             updateInfoAboutConfig();
