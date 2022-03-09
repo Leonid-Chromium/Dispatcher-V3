@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="ConvertExpressionLib">
       <HintPath>..\..\..\ConvertExpressionLib\ConvertExpressionLib\ConvertExpressionLib\bin\Debug\net5.0\ConvertExpressionLib.dll</HintPath>
     </Reference>

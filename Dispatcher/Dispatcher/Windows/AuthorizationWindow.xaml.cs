@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using SQLLib;
+using Dispatcher.Class;
 
 namespace Dispatcher.Windows
 {
@@ -26,26 +27,15 @@ namespace Dispatcher.Windows
             InitializeComponent();
         }
 
-        public bool PasswordCheck(int Level, string Password)
-        {
-            switch (Level)
-            {
-                case 0:
-                    return true;
-
-                case 1:
-                    if (Password == "0000")
-                        return true;
-                    else
-                        return false;
-
-                default:
-                    return false;
-            }
-        }
         private void EnterButton_Click(object sender, RoutedEventArgs e)
         {
-           
+            string hash = Hashing.GetMD5Hash(PasswordBox.Password);            
+            DataTable dataTable = SQL.ReturnDT("SELECT RolePassword FROM Roles WHERE IdRole = '" + ((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString() + "'", App.configuration.SQLConnectionString, out string ex);
+            for (int i = 0; i < dataTable.Rows.Count; i++)
+                if (dataTable.Rows[i].ItemArray[0].ToString() == hash)
+                    MessageBox.Show("Salam"); //Тут реализовать вход
+                else
+                    MessageBox.Show("Виталя гей"); //Тут обработка в случае неправильного ввода пароля
         }
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
@@ -54,21 +44,55 @@ namespace Dispatcher.Windows
 
             if (result == MessageBoxResult.Yes)
             {
-               
+                App.configuration = ConfigManage.GetConfiguration(ConfigComboBox.SelectedItem.ToString());
+                ConfigManage.SetSavedConfiguration(ConfigComboBox.SelectedItem.ToString());
             }
+            
+            RoleLoaded();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-             DataTable RoleDT = SQL.ReturnDT("SELECT IdRole, RoleName FROM Roles", App.configuration.SQLConnectionString, out string ex);
+            ConfigLoaded();
+        }
 
-            for (int i = 1; i <= RoleDT.Rows.Count; i++)
+        private void RoleLoaded()
+        {
+            try
             {
-                ComboBoxItem comboBoxItem = new ComboBoxItem();
-                comboBoxItem.Tag = RoleDT.Rows[i - 1].ItemArray[0];
-                comboBoxItem.Content = RoleDT.Rows[i - 1].ItemArray[1];
-                RoleComboBox.Items.Add(comboBoxItem);
+                RoleComboBox.Items.Clear();
+                DataTable RoleDT = SQL.ReturnDT("SELECT IdRole, TRIM(RoleName) FROM Roles", App.configuration.SQLConnectionString, out string ex);
+
+                for (int i = 1; i <= RoleDT.Rows.Count; i++)
+                {
+                    ComboBoxItem comboBoxItem = new ComboBoxItem();                    
+                    comboBoxItem.Tag = RoleDT.Rows[i - 1].ItemArray[0];
+                    comboBoxItem.Content = RoleDT.Rows[i - 1].ItemArray[1];
+                    RoleComboBox.Items.Add(comboBoxItem);
+                    
+                }
             }
+
+            catch (Exception exc)
+            {
+                MessageBox.Show(Convert.ToString(exc));                
+            }
+            
+        }
+
+        private void ConfigLoaded()
+        {
+            try
+            {
+                ConfigComboBox.ItemsSource = ConfigManage.GetAllConfigurationName();
+                ConfigComboBox.SelectedItem = App.configuration.name;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Convert.ToString(ex));
+            }
+           
+            RoleLoaded();
         }
     }
 }
