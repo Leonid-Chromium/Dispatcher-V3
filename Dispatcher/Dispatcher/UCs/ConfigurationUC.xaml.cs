@@ -138,7 +138,6 @@ namespace Dispatcher.UCs
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    //TODO Сделать удаление конфигурации
                     Trace.WriteLine("Конфигурация удалена");
                     Log.NewLog(001, "Конфигурацию " + ConfigurationCB.SelectedItem.ToString() + " удалили");
                 }
@@ -168,7 +167,7 @@ namespace Dispatcher.UCs
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    //TODO Сделать удаление конфигурации
+                    //DEBUG Сделать удаление конфигурации
                     ConfigManage.DeleteConfiguration(App.configuration.name);
                     App.configuration = ConfigManage.GetConfiguration(ConfigManage.GetAllConfigurationName().First());
                     Trace.WriteLine("Конфигурация удалена");
@@ -218,7 +217,6 @@ namespace Dispatcher.UCs
                     newConfiguration.room = roomTB.Text;
 
                     // Проверка на неповторяемость имён конфигурации
-                    // WARNING Очень криво
                     while (ConfigManage.HaveName(newConfiguration.name))
                         newConfiguration.name = String.Concat(newConfiguration.name, " Дублёр");
 
@@ -262,7 +260,6 @@ namespace Dispatcher.UCs
                     newConfiguration.room = roomTB.Text;
 
                     // Проверка на неповторяемость имён конфигурации
-                    // WARNING Очень криво и что то меняем
                     while (ConfigManage.HaveName(newConfiguration.name) && (newConfiguration.name != App.configuration.name))
                         newConfiguration.name = String.Concat(newConfiguration.name, " Дублёр");
 
