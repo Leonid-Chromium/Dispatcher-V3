@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using SQLLib;
 using Dispatcher.Class;
+using System.Diagnostics;
 
 namespace Dispatcher.Windows
 {
@@ -22,6 +23,7 @@ namespace Dispatcher.Windows
     /// </summary>
     public partial class AuthorizationWindow : Window
     {
+        public static int role { get; set; }
         public AuthorizationWindow()
         {
             InitializeComponent();
@@ -29,7 +31,10 @@ namespace Dispatcher.Windows
 
         private void EnterButton_Click(object sender, RoutedEventArgs e)
         {
-            string hash = Hashing.GetMD5Hash(PasswordBox.Password);            
+            SetRole(Convert.ToInt32(RoleComboBox.Tag));
+            Trace.WriteLine("Выбрана роль: " + role);
+            string hash = Hashing.GetMD5Hash(PasswordBox.Password);
+            Trace.WriteLine("Хэш: " + hash);
             DataTable dataTable = SQL.ReturnDT("SELECT RolePassword FROM Roles WHERE IdRole = '" + ((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString() + "'", App.configuration.SQLConnectionString, out string ex);
             for (int i = 0; i < dataTable.Rows.Count; i++)
                 if (dataTable.Rows[i].ItemArray[0].ToString() == hash)
@@ -65,12 +70,12 @@ namespace Dispatcher.Windows
 
                 for (int i = 1; i <= RoleDT.Rows.Count; i++)
                 {
-                    ComboBoxItem comboBoxItem = new ComboBoxItem();                    
+                    ComboBoxItem comboBoxItem = new ComboBoxItem();
                     comboBoxItem.Tag = RoleDT.Rows[i - 1].ItemArray[0];
                     comboBoxItem.Content = RoleDT.Rows[i - 1].ItemArray[1];
                     RoleComboBox.Items.Add(comboBoxItem);
-                    
                 }
+                
             }
 
             catch (Exception exc)
@@ -93,6 +98,11 @@ namespace Dispatcher.Windows
             }
            
             RoleLoaded();
+        }
+
+        public void SetRole(int newRole)
+        {
+            role = newRole;
         }
     }
 }

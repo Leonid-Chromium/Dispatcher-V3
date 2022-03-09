@@ -22,6 +22,8 @@ namespace Dispatcher
         public static string version = "0.5";
         public static string user { get; set; } = "Unknown";
 
+        public static int role;
+
         public static Class.Configuration configuration { get; set; }
 
         public static int OpenMainWindow()
