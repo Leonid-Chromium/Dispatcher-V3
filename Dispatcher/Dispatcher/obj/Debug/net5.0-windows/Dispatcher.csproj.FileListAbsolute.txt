@@ -41,4 +41,5 @@ D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\SQLL
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\ConvertExpressionLib.pdb
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\DataLib.pdb
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\SQLLib.pdb
-D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\Dispatcher.csproj.CopyComplete
+D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\ConfigurationUC2.g.cs
+D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\ConfigurationUC2.baml

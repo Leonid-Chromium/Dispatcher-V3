@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\App.xaml
-51865182332
+6-1958424903
 
-21-1467414984
+22761464774
 197-1562204886
-UCs\ConfigurationUC.xaml;UCs\UniversalDataGrid.xaml;Windows\MainWindow.xaml;Windows\TestWindow.xaml;Windows\WorkWindow.xaml;
+UCs\ConfigurationUC.xaml;UCs\ConfigurationUC2.xaml;UCs\UniversalDataGrid.xaml;Windows\MainWindow.xaml;Windows\TestWindow.xaml;Windows\WorkWindow.xaml;
 
-True
+False
 
