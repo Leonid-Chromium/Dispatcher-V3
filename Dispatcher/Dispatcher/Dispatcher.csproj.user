@@ -13,6 +13,9 @@
     <Compile Update="UCs\UniversalDataGrid.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\AuthorizationWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\TestWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -25,6 +28,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\UniversalDataGrid.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\AuthorizationWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\MainWindow.xaml">

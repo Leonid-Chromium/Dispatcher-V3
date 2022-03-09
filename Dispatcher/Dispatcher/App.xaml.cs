@@ -55,6 +55,20 @@ namespace Dispatcher
             }
         }
 
+        public int OpenAuthorizationWindow()
+        {
+            try
+            {
+                Windows.AuthorizationWindow authorizationWindow = new Windows.AuthorizationWindow();
+                authorizationWindow.Show();
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
+        }
+
         public App()
         {
             //Выполняется при запуске
@@ -70,7 +84,7 @@ namespace Dispatcher
             }
             //TODO Нужен лог
             configuration.TraceConfiguration();
-            OpenTestWindow();
+            OpenAuthorizationWindow();
         }
 
     }
