@@ -7,8 +7,7 @@
     },
     "additionalProbingPaths": [
       "C:\\Users\\thedi\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\thedi\\.nuget\\packages",
-      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      "C:\\Users\\Leonid\\.nuget\\packages"
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true
