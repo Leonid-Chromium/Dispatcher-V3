@@ -5,19 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dispatcher.Windows"
         mc:Ignorable="d"
-        Title="AuthorizationWindow" Height="400" Width="500"
-        ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    
+        Title="Окно авторизации" Height="400" Width="600"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="3"/>
+            <ColumnDefinition Width="2"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
-        <Grid Grid.Column="0" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"
+
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center"
               Width="150">
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -26,7 +26,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+
             <Label Grid.Row="0" 
                    Content="Авторизация"
                    VerticalContentAlignment="Center" 
@@ -35,7 +35,7 @@
             <Label Content="Роль"
                    Grid.Row="1"  
                    VerticalContentAlignment="Center" 
-                   HorizontalContentAlignment="Center"/>            
+                   HorizontalContentAlignment="Center"/>
             <ComboBox x:Name="RoleComboBox" 
                       Grid.Row="2" 
                       VerticalContentAlignment="Center" 
@@ -44,7 +44,7 @@
             <Label Content="Пароль"
                    Grid.Row="3" 
                    VerticalContentAlignment="Center" 
-                   HorizontalContentAlignment="Center"/>            
+                   HorizontalContentAlignment="Center"/>
             <PasswordBox x:Name="PasswordBox" 
                          Grid.Row="4" 
                          VerticalContentAlignment="Center" 
@@ -55,21 +55,16 @@
                     VerticalContentAlignment="Center" 
                     HorizontalContentAlignment="Center"
                     Click="EnterButton_Click"/>
-            
+
         </Grid>
 
         <Rectangle Grid.Column="1"
-                   HorizontalAlignment="Stretch"
-                   VerticalAlignment="Stretch"
-                   Fill="Black">
-            
-        </Rectangle>
+                   Fill="Black"/>
 
-        <Grid Grid.Column="2" 
-              Margin="5" Width="150" Height="150"
+        <Grid Grid.Column="2" Width="150" Height="150"
               HorizontalAlignment="Center" 
               VerticalAlignment="Center" >
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>

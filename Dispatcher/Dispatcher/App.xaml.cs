@@ -24,7 +24,7 @@ namespace Dispatcher
 
         public static Class.Configuration configuration { get; set; }
 
-        public int OpenMainWindow()
+        public static int OpenMainWindow()
         {
             try
             {
