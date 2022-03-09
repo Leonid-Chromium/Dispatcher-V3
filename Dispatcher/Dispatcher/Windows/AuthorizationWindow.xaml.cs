@@ -35,7 +35,7 @@ namespace Dispatcher.Windows
                 if (dataTable.Rows[i].ItemArray[0].ToString() == hash)
                     MessageBox.Show("Salam"); //Тут реализовать вход
                 else
-                    MessageBox.Show("Виталя гей"); //Тут обработка в случае неправильного ввода пароля
+                    MessageBox.Show("Неверный пароль"); //Тут обработка в случае неправильного ввода пароля
         }
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
