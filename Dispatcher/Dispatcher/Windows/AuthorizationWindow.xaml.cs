@@ -30,15 +30,20 @@ namespace Dispatcher.Windows
         }
 
         private void EnterButton_Click(object sender, RoutedEventArgs e)
-        {
-            SetRole(Convert.ToInt32(RoleComboBox.Tag));
-            Trace.WriteLine("Выбрана роль: " + role);
+        {            
+            string str = ((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString();
+            SetRole(Convert.ToInt32(str));
+            Trace.WriteLine("Выбрана роль: " + role + "\tВыбранная роль в комбобоксе: " + str);
             string hash = Hashing.GetMD5Hash(PasswordBox.Password);
             Trace.WriteLine("Хэш: " + hash);
             DataTable dataTable = SQL.ReturnDT("SELECT RolePassword FROM Roles WHERE IdRole = '" + ((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString() + "'", App.configuration.SQLConnectionString, out string ex);
             for (int i = 0; i < dataTable.Rows.Count; i++)
                 if (dataTable.Rows[i].ItemArray[0].ToString() == hash)
-                    MessageBox.Show("Salam"); //Тут реализовать вход
+                {
+                    MessageBox.Show("Salam");
+                    App.OpenMainWindow();
+                    this.Close();
+                }
                 else
                     MessageBox.Show("Неверный пароль"); //Тут обработка в случае неправильного ввода пароля
         }
