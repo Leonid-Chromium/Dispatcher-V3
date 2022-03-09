@@ -17,27 +17,11 @@ namespace Dispatcher.Class
         public string user { get; set; }
         public string message { get; set; }
 
-        //public Log(uint ncode, string nmessage)
-        //{
-        //    switch (ncode / 100)
-        //    {
-        //        case 0:
-        //            level = "debug";
-        //            break;
-        //    }
-        //    dateTime = DateTime.Now;
-        //    version = App.version;
-        //    code = ncode;
-        //    user = App.user;
-        //    message = nmessage;
-        //}
-
         public Log()
         {
 
         }
 
-        //WARNING  Я чуствую здесь подвох.
         public static int NewLog(uint icode, string imessage)
         {
             try

@@ -29,7 +29,7 @@ namespace Dispatcher.Windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            configurationUC.parent = this;
+
         }
     }
 }

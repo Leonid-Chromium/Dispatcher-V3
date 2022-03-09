@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\
+D:\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\
 Dispatcher
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\App.xaml
-51865182332
+D:\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\App.xaml
+6-1958424903
 
-21-1467414984
-197-1562204886
-UCs\ConfigurationUC.xaml;UCs\UniversalDataGrid.xaml;Windows\MainWindow.xaml;Windows\TestWindow.xaml;Windows\WorkWindow.xaml;
+22761464774
+195-2041019969
+UCs\ConfigurationUC.xaml;UCs\ConfigurationUC2.xaml;UCs\UniversalDataGrid.xaml;Windows\MainWindow.xaml;Windows\TestWindow.xaml;Windows\WorkWindow.xaml;
 
-True
+False
 

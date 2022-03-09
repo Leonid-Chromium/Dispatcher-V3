@@ -138,7 +138,6 @@ namespace Dispatcher.Class
                         {
                             Trace.Write("\t|" + configurationChildNode.Name + ":\n\t|\t");
 
-                            //DEBUG Переделай на switch( Наверное )
                             //TODO Trace кривой
 
                             switch (configurationChildNode.Name)
@@ -512,7 +511,7 @@ namespace Dispatcher.Class
             return GetAllConfigurationName(standartConfigurationAddres);
         }
 
-        //DEBUG Проверка на повторяемость имени
+        //Проверка на повторяемость имени
         public static bool HaveName(string name, string configurationPath)
         {
             try
