@@ -41,3 +41,5 @@ D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\Conv
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\SQLLib.pdb
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\ConfigurationUC2.g.cs
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\ConfigurationUC2.baml
+D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\Windows\AuthorizationWindow.g.cs
+D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\Windows\AuthorizationWindow.baml

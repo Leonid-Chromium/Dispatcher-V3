@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <configurations>
-  <SavedConfiguration>TestChange2</SavedConfiguration>
+  <SavedConfiguration>Manual Test</SavedConfiguration>
   <configuration name="Manual">
     <themePath>Themes\\</themePath>
     <theme>Light</theme>
