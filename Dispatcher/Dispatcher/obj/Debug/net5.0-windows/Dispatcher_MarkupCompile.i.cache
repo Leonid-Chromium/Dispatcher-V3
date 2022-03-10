@@ -14,7 +14,6 @@ D:\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\App.xaml
 
 22761464774
 195-2041019969
-UCs\ConfigurationUC.xaml;UCs\ConfigurationUC2.xaml;UCs\UniversalDataGrid.xaml;Windows\MainWindow.xaml;Windows\TestWindow.xaml;Windows\WorkWindow.xaml;
+UCs\ConfigurationUC.xaml;UCs\ConfigurationUC2.xaml;UCs\UniversalDataGrid.xaml;Windows\AuthorizationWindow.xaml;Windows\MainWindow.xaml;Windows\TestWindow.xaml;Windows\WorkWindow.xaml;
 
 False
-
