@@ -17,6 +17,6 @@
         <localUC:UniversalDataGrid Grid.Column="0"  selectStr="SELECT * FROM EmployeeStatus" valuesNameStr="IdStatus, Name"/>
         <GridSplitter Grid.Column="1" ShowsPreview="False" Width="10"
         HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-        <localUC:ConfigurationUC x:Name="configurationUC" Grid.Column="2"/>
+        <localUC:ConfigurationUC2 x:Name="configurationUC" Grid.Column="2"/>
     </Grid>
 </Window>

@@ -10,6 +10,9 @@
     <Compile Update="UCs\ConfigurationUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UCs\ConfigurationUC2.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UCs\UniversalDataGrid.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -25,6 +28,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="UCs\ConfigurationUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\ConfigurationUC2.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\UniversalDataGrid.xaml">

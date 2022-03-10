@@ -74,7 +74,7 @@ namespace Dispatcher
         public App()
         {
             //Выполняется при запуске
-            //TODO Продумай случай если нет файла или конфигураций в файле
+            //TODO Продумай случай если нет файла конфигураций
             try
             {
                 configuration = Class.ConfigManage.GetConfiguration(ConfigManage.GetSavedConfiguration());
