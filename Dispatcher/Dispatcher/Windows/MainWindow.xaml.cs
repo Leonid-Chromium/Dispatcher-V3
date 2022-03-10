@@ -23,6 +23,7 @@ namespace Dispatcher
     {
         public MainWindow()
         {
+            Trace.WriteLine("Выбрана роль: MainWindow\t" + App.role);
             InitializeComponent();
         }
     }

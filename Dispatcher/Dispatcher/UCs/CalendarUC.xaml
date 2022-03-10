@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="Dispatcher.UCs.CalendarUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Dispatcher.UCs"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="250">
+    <Grid Background="SteelBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="170"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Viewbox>
+        <Calendar Grid.Row="0" x:Name="Calendar" 
+                  Margin="5" 
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Center"/>
+        </Viewbox>
+        <Border Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <DatePicker x:Name="FirstDatePicker"
+                            Grid.Row="0" Grid.Column="0"
+                            VerticalAlignment="Center" HorizontalAlignment="Center"
+                            SelectedDateChanged="FirstDatePicker_SelectedDateChanged"/>
+                <DatePicker x:Name="SecondDatePicker"
+                            Grid.Row="0" Grid.Column="1"
+                            VerticalAlignment="Center" HorizontalAlignment="Center"
+                            SelectedDateChanged="SecondDatePicker_SelectedDateChanged"/>
+                <Button x:Name="Default"
+                        Grid.Row="1" Grid.ColumnSpan="2"
+                        Background="AliceBlue"
+                        Margin="10" Content="Сброс"
+                        Click="Default_Click"/>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -31,16 +31,16 @@ namespace Dispatcher.Windows
 
         private void EnterButton_Click(object sender, RoutedEventArgs e)
         {            
-            string str = ((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString();
-            SetRole(Convert.ToInt32(str));
-            Trace.WriteLine("Выбрана роль: " + role + "\tВыбранная роль в комбобоксе: " + str);
             string hash = Hashing.GetMD5Hash(PasswordBox.Password);
-            Trace.WriteLine("Хэш: " + hash);
+            //Trace.WriteLine("Хэш: " + hash);
             DataTable dataTable = SQL.ReturnDT("SELECT RolePassword FROM Roles WHERE IdRole = '" + ((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString() + "'", App.configuration.SQLConnectionString, out string ex);
             for (int i = 0; i < dataTable.Rows.Count; i++)
                 if (dataTable.Rows[i].ItemArray[0].ToString() == hash)
                 {
+                    string str = ((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString();
+                    SetRole(Convert.ToInt32(str));
                     MessageBox.Show("Salam");
+                    App.role = Convert.ToInt32(((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString());
                     App.OpenMainWindow();
                     this.Close();
                 }
