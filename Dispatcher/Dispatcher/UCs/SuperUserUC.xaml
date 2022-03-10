@@ -31,7 +31,8 @@
 							  Grid.Row="0" Grid.Column="1"
 							  HorizontalAlignment="Stretch" VerticalAlignment="Center"
 							  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
-							  Margin="5"/>
+							  Margin="5"
+							  DropDownClosed="RoleCB_DropDownClosed"/>
 
 					<Label Content="Идентификатор роли"
 						   Grid.Row="1" Grid.Column="0"
@@ -40,7 +41,7 @@
 							 Grid.Row="1" Grid.Column="1"
 							 HorizontalAlignment="Stretch" VerticalAlignment="Center"
 							 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
-							 Margin="5"/>
+							 Margin="5" IsReadOnly="True"/>
 
 					<Label Content="Имя роли"
 						   Grid.Row="2" Grid.Column="0"
@@ -58,7 +59,8 @@
 							Grid.Row="3" Grid.Column="1"
 							HorizontalAlignment="Stretch" VerticalAlignment="Center"
 							HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
-							Margin="5"/>
+							Margin="5"
+							 TextChanged="RolePasswordTB_TextChanged"/>
 
 					<Label Content="Хэш роли"
 						   Grid.Row="4" Grid.Column="0"
