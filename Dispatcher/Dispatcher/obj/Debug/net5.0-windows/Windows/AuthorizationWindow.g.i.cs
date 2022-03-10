@@ -34,55 +34,55 @@ using System.Windows.Shell;
 
 
 namespace Dispatcher.Windows {
-    
-    
+
+
     /// <summary>
     /// AuthorizationWindow
     /// </summary>
     public partial class AuthorizationWindow : System.Windows.Window, System.Windows.Markup.IComponentConnector {
-        
-        
+
+
         #line 39 "..\..\..\..\Windows\AuthorizationWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBox RoleComboBox;
-        
+
         #line default
         #line hidden
-        
-        
+
+
         #line 48 "..\..\..\..\Windows\AuthorizationWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.PasswordBox PasswordBox;
-        
+
         #line default
         #line hidden
-        
-        
+
+
         #line 53 "..\..\..\..\Windows\AuthorizationWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button EnterButton;
-        
+
         #line default
         #line hidden
-        
-        
+
+
         #line 79 "..\..\..\..\Windows\AuthorizationWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBox ConfigComboBox;
-        
+
         #line default
         #line hidden
-        
-        
+
+
         #line 84 "..\..\..\..\Windows\AuthorizationWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button ConfirmButton;
-        
+
         #line default
         #line hidden
-        
+
         private bool _contentLoaded;
-        
+
         /// <summary>
         /// InitializeComponent
         /// </summary>
@@ -93,15 +93,16 @@ namespace Dispatcher.Windows {
                 return;
             }
             _contentLoaded = true;
+            System.Uri resourceLocater = new System.Uri("/Dispatcher;component/windows/authorizationwindow.xaml", System.UriKind.Relative);
             System.Uri resourceLocater = new System.Uri("/Dispatcher;V1.0.0.0;component/windows/authorizationwindow.xaml", System.UriKind.Relative);
-            
+
             #line 1 "..\..\..\..\Windows\AuthorizationWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
-            
+
             #line default
             #line hidden
         }
-        
+
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "6.0.2.0")]
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
@@ -112,10 +113,10 @@ namespace Dispatcher.Windows {
             switch (connectionId)
             {
             case 1:
-            
+
             #line 9 "..\..\..\..\Windows\AuthorizationWindow.xaml"
             ((Dispatcher.Windows.AuthorizationWindow)(target)).Loaded += new System.Windows.RoutedEventHandler(this.Window_Loaded);
-            
+
             #line default
             #line hidden
             return;
@@ -127,10 +128,10 @@ namespace Dispatcher.Windows {
             return;
             case 4:
             this.EnterButton = ((System.Windows.Controls.Button)(target));
-            
+
             #line 57 "..\..\..\..\Windows\AuthorizationWindow.xaml"
             this.EnterButton.Click += new System.Windows.RoutedEventHandler(this.EnterButton_Click);
-            
+
             #line default
             #line hidden
             return;
@@ -139,10 +140,10 @@ namespace Dispatcher.Windows {
             return;
             case 6:
             this.ConfirmButton = ((System.Windows.Controls.Button)(target));
-            
+
             #line 89 "..\..\..\..\Windows\AuthorizationWindow.xaml"
             this.ConfirmButton.Click += new System.Windows.RoutedEventHandler(this.ConfirmButton_Click);
-            
+
             #line default
             #line hidden
             return;
@@ -151,4 +152,3 @@ namespace Dispatcher.Windows {
         }
     }
 }
-
