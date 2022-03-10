@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="UCs\CalendarUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UCs\ConfigurationUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -27,6 +30,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Style\CalendarStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\CalendarUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UCs\ConfigurationUC.xaml">
       <SubType>Designer</SubType>
     </Page>

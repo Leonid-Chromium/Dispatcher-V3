@@ -20,6 +20,8 @@ namespace Dispatcher.UCs
     /// </summary>
     public partial class CalendarUC : UserControl
     {
+        DateTime? FirstDate;
+        DateTime? SecondDate;
         public CalendarUC()
         {
             InitializeComponent();
@@ -27,7 +29,22 @@ namespace Dispatcher.UCs
 
         private void FirstDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
+            Calendar.DisplayDateStart = FirstDatePicker.SelectedDate;
+            FirstDate = FirstDatePicker.SelectedDate;
+        }
 
+        private void SecondDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Calendar.DisplayDateEnd = SecondDatePicker.SelectedDate;
+            SecondDate = SecondDatePicker.SelectedDate;
+        }
+
+        private void Default_Click(object sender, RoutedEventArgs e)
+        {
+            FirstDatePicker.SelectedDate = null;
+            SecondDatePicker.SelectedDate = null;
+            FirstDate = null;
+            SecondDate = null;
         }
     }
 }
