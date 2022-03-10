@@ -1,0 +1,92 @@
+﻿<Window x:Class="Dispatcher.Windows.AuthorizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dispatcher.Windows"
+        mc:Ignorable="d"
+        Title="Окно авторизации" Height="400" Width="600"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center"
+              Width="150">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" 
+                   Content="Авторизация"
+                   VerticalContentAlignment="Center" 
+                   HorizontalContentAlignment="Center"/>
+
+            <Label Content="Роль"
+                   Grid.Row="1"  
+                   VerticalContentAlignment="Center" 
+                   HorizontalContentAlignment="Center"/>
+            <ComboBox x:Name="RoleComboBox" 
+                      Grid.Row="2" 
+                      VerticalContentAlignment="Center" 
+                      HorizontalContentAlignment="Center"/>
+
+            <Label Content="Пароль"
+                   Grid.Row="3" 
+                   VerticalContentAlignment="Center" 
+                   HorizontalContentAlignment="Center"/>
+            <PasswordBox x:Name="PasswordBox" 
+                         Grid.Row="4" 
+                         VerticalContentAlignment="Center" 
+                         HorizontalContentAlignment="Center"/>
+
+            <Button x:Name="EnterButton" Content="Вход" 
+                    Grid.Row="5" Height="40" Margin="0 20 0 0"                    
+                    VerticalContentAlignment="Center" 
+                    HorizontalContentAlignment="Center"
+                    Click="EnterButton_Click"/>
+
+        </Grid>
+
+        <Rectangle Grid.Column="1"
+                   Fill="Black"/>
+
+        <Grid Grid.Column="2" Width="150" Height="150"
+              HorizontalAlignment="Center" 
+              VerticalAlignment="Center" >
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Конфигурация"
+                Grid.Row="0" Height="25"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"/>
+
+            <ComboBox x:Name="ConfigComboBox"
+                      Grid.Row="1" Height="25"
+                      VerticalContentAlignment="Center"
+                      HorizontalContentAlignment="Center"/>
+
+            <Button x:Name="ConfirmButton"
+                    Content="Подтвердить"
+                    Grid.Row="2" Height="40"
+                    VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    Click="ConfirmButton_Click"/>
+        </Grid>
+    </Grid>
+</Window>

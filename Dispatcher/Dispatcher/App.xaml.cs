@@ -22,9 +22,11 @@ namespace Dispatcher
         public static string version = "0.5";
         public static string user { get; set; } = "Unknown";
 
+        public static int role;
+
         public static Class.Configuration configuration { get; set; }
 
-        public int OpenMainWindow()
+        public static int OpenMainWindow()
         {
             try
             {
@@ -55,6 +57,20 @@ namespace Dispatcher
             }
         }
 
+        public int OpenAuthorizationWindow()
+        {
+            try
+            {
+                Windows.AuthorizationWindow authorizationWindow = new Windows.AuthorizationWindow();
+                authorizationWindow.Show();
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
+        }
+
         public App()
         {
             //Выполняется при запуске
@@ -70,7 +86,7 @@ namespace Dispatcher
             }
             //TODO Нужен лог
             configuration.TraceConfiguration();
-            OpenTestWindow();
+            OpenAuthorizationWindow();
         }
 
     }
