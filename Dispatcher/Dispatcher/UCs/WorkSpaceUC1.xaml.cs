@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,14 @@ namespace Dispatcher.UCs
 
 		private void UserControl_Loaded(object sender, RoutedEventArgs e)
 		{
-
+		//	Trace.WriteLine(MyTabControle.GetType());
+		//	foreach(TabItem testvar in MyTabControle.Items)
+		//	{
+		//		Trace.WriteLine("----------------------------");
+		//		Trace.WriteLine(testvar.Name);
+		//		Trace.WriteLine(testvar.Header);
+		//		Trace.WriteLine("----------------------------");
+		//	}
 		}
 	}
 }

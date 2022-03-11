@@ -36,6 +36,7 @@
 			<TabItem x:Name="SuperTab" Header="Вкладка супер-пользователя">
 				<local:SuperUserUC/>
 			</TabItem>
+			<TabItem x:Name="TestTab" Header="пуся"></TabItem>
 		</TabControl>
 	</Grid>
 </UserControl>

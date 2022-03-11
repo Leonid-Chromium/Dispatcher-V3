@@ -16,6 +16,9 @@
     <Compile Update="UCs\ConfigurationUC2.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UCs\RoleSUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UCs\SuperUserUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -46,6 +49,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\ConfigurationUC2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\RoleSUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\SuperUserUC.xaml">
