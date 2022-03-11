@@ -26,5 +26,26 @@ namespace Dispatcher
             Trace.WriteLine("Выбрана роль: MainWindow\t" + App.role);
             InitializeComponent();
         }
+
+        UserControl ActualSpace;
+        public void MainWindowSpaceControle(UserControl userControl)
+        {
+            if (ActualSpace == null)
+			{
+				ActualSpace = (UserControl)Workspace;
+				//userControl.Visibility = Visibility.Visible;
+			}
+            if (userControl == ActualSpace && ActualSpace.Visibility != Visibility.Collapsed)
+            {
+                userControl.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                if (ActualSpace != null)
+                    ActualSpace.Visibility = Visibility.Collapsed;
+                userControl.Visibility = Visibility.Visible;
+            }
+            ActualSpace = userControl;
+        }
     }
 }
