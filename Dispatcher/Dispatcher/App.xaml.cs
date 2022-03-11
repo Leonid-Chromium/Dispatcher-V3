@@ -31,6 +31,7 @@ namespace Dispatcher
             try
             {
                 MainWindow mainWindow = new MainWindow();
+                //mainWindow.Workspace.AccessCheck();
                 mainWindow.Show();
 
                 return 0;
