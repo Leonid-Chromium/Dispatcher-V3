@@ -23,9 +23,10 @@ namespace Dispatcher.UCs
 	public partial class WorkSpaceUC1 : UserControl
 	{
 		public WorkSpaceUC1()
-		{
+		{			
 			InitializeComponent();
 			AccessCheck();
+
 		}
 
 		private void SettingsButton_Click(object sender, RoutedEventArgs e)
@@ -57,10 +58,12 @@ WHERE RoleUCNode.IdRole = " + App.role, App.configuration.SQLConnectionString, o
 			if (ex != string.Empty)
 				MessageBox.Show(ex);
 
+			
+			TabItem myTabControle = this.SuperTab;
+			myTabControle.Visibility = Visibility.Collapsed;
 
-			TabControl myTabControle = this.MyTabControle;
-			myTabControle.Items.Remove(SuperTab);
-			myTabControle.Items.Add(SuperTab);
+
+
 
 			foreach (TabItem tabItem in MyTabControle.Items)
 			{
@@ -80,5 +83,10 @@ WHERE RoleUCNode.IdRole = " + App.role, App.configuration.SQLConnectionString, o
 				}
 			}
 		}
-	}
+
+        public void MyButtonPenis_Click(object sender, RoutedEventArgs e)
+        {
+			App.OpenAuthorizationWindow();
+		}
+    }
 }

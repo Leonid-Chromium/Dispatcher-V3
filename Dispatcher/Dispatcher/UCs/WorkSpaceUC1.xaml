@@ -20,6 +20,7 @@
 				<RowDefinition Height="100"/>
 			</Grid.RowDefinitions>
 			<local:CalendarUC x:Name="MyCalendarUC" Grid.Row="0"/>
+            
 			<Grid Background="Aqua" Grid.Row="2">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition/>
@@ -33,10 +34,17 @@
 		</Grid>
 		<TabControl x:Name="MyTabControle"
 					Grid.Column="1" TabStripPlacement="Top">
-			<TabItem x:Name="SuperTab" Header="Вкладка супер-пользователя">
+            <TabItem x:Name="Nulll">
+            </TabItem>
+
+
+            <TabItem x:Name="SuperTab" Header="Вкладка супер-пользователя">
 				<local:SuperUserUC/>
 			</TabItem>
-			<TabItem x:Name="TestTab" Header="пуся"></TabItem>
+			<TabItem x:Name="TestTab" Header="пуся">
+                <local:CalendarUC/>
+            </TabItem>
+            
 		</TabControl>
 	</Grid>
 </UserControl>

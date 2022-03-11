@@ -58,7 +58,7 @@ namespace Dispatcher
             }
         }
 
-        public int OpenAuthorizationWindow()
+        public static int OpenAuthorizationWindow()
         {
             try
             {
