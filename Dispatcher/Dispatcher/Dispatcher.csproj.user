@@ -7,10 +7,16 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="UCs\CalendarUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UCs\ConfigurationUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UCs\ConfigurationUC2.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\SuperUserUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UCs\UniversalDataGrid.xaml.cs">
@@ -27,10 +33,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Style\CalendarStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\CalendarUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UCs\ConfigurationUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\ConfigurationUC2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\SuperUserUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\UniversalDataGrid.xaml">

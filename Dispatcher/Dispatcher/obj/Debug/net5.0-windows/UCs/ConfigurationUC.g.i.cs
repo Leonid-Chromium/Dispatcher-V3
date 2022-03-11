@@ -165,7 +165,7 @@ namespace Dispatcher.UCs {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Dispatcher;component/ucs/configurationuc.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Dispatcher;V1.0.0.0;component/ucs/configurationuc.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\UCs\ConfigurationUC.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
