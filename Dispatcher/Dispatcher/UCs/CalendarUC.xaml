@@ -5,18 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Dispatcher.UCs"
              mc:Ignorable="d" 
-             d:DesignHeight="350" d:DesignWidth="250">
+             d:DesignHeight="350" d:DesignWidth="250"
+             MinHeight="200">
     <Grid Background="SteelBlue">
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="170"/>
+            <RowDefinition MinHeight="100"/>
+            <RowDefinition MaxHeight="170"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Viewbox>
         <Calendar Grid.Row="0" x:Name="Calendar" 
-                  Margin="5" 
+                  Margin="5"
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Center"/>
         </Viewbox>
@@ -40,6 +41,7 @@
                             SelectedDateChanged="SecondDatePicker_SelectedDateChanged"/>
                 <Button x:Name="Default"
                         Grid.Row="1" Grid.ColumnSpan="2"
+                        MinHeight="20"
                         Background="AliceBlue"
                         Margin="10" Content="Сброс"
                         Click="Default_Click"/>
