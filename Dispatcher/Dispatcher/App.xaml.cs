@@ -73,6 +73,8 @@ namespace Dispatcher
 
         public App()
         {
+
+            Trace.WriteLine(typeof(UCs.CalendarUC));
             //Выполняется при запуске
             //TODO Продумай случай если нет файла конфигураций
             try
