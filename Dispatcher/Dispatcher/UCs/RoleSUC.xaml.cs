@@ -62,23 +62,44 @@ namespace Dispatcher.UCs
 
 		private void AddButton_Click(object sender, RoutedEventArgs e)
 		{
-			SQL.NoReturn("INSERT INTO Roles (RoleName, RolePassword) VALUES ('" + RoleNameTB.Text + "', '" + RoleHashTB.Text + "')", App.configuration.SQLConnectionString, out string ex);
-			UpdateRoleCB();
-			RoleClean();
+			if (!(String.IsNullOrWhiteSpace(RoleNameTB.Text) || String.IsNullOrWhiteSpace(RoleHashTB.Text)))
+			{
+				SQL.NoReturn("INSERT INTO Roles (RoleName, RolePassword) VALUES ('" + RoleNameTB.Text + "', '" + RoleHashTB.Text + "')", App.configuration.SQLConnectionString, out string ex);
+				UpdateRoleCB();
+				RoleClean();
+			}
+			else
+			{
+				MessageBox.Show("Какие-то нужные строки не заполнены");
+			}
 		}
 
 		private void EditButton_Click(object sender, RoutedEventArgs e)
 		{
-			SQL.NoReturn("UPDATE Roles SET RoleName = '" + RoleNameTB.Text + "', RolePassword = '" + RoleHashTB.Text + "' WHERE IdRole = " + Convert.ToInt32(RoleIdTB.Text), App.configuration.SQLConnectionString, out string ex);
-			UpdateRoleCB();
-			RoleClean();
+			if(!(String.IsNullOrWhiteSpace(RoleNameTB.Text) || String.IsNullOrWhiteSpace(RoleHashTB.Text) || String.IsNullOrWhiteSpace(RoleIdTB.Text)))
+			{
+				SQL.NoReturn("UPDATE Roles SET RoleName = '" + RoleNameTB.Text + "', RolePassword = '" + RoleHashTB.Text + "' WHERE IdRole = " + Convert.ToInt32(RoleIdTB.Text), App.configuration.SQLConnectionString, out string ex);
+				UpdateRoleCB();
+				RoleClean();
+			}
+			else
+			{
+				MessageBox.Show("Какие-то нужные строки не заполнены");
+			}
 		}
 
 		private void DeleteButton_Click(object sender, RoutedEventArgs e)
 		{
-			SQL.NoReturn("DELETE FROM Roles WHERE IdRole = " + Convert.ToInt32(RoleIdTB.Text), App.configuration.SQLConnectionString, out string ex);
-			UpdateRoleCB();
-			RoleClean();
+			if (!(String.IsNullOrWhiteSpace(RoleIdTB.Text)))
+			{
+				SQL.NoReturn("DELETE FROM Roles WHERE IdRole = " + Convert.ToInt32(RoleIdTB.Text), App.configuration.SQLConnectionString, out string ex);
+				UpdateRoleCB();
+				RoleClean();
+			}
+			else
+			{
+				MessageBox.Show("Какие-то нужные строки не заполнены");
+			}
 		}
 
 		private void UserControl_Loaded(object sender, RoutedEventArgs e)

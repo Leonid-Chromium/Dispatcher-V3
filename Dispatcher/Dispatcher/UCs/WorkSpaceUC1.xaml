@@ -39,7 +39,6 @@
 					<local:SuperUserUC/>
 				</TabItem.Content>
 			</TabItem>
-			<TabItem x:Name="TestTab" Header="пуся" TabIndex="1"></TabItem>
 		</TabControl>
 	</Grid>
 </UserControl>
