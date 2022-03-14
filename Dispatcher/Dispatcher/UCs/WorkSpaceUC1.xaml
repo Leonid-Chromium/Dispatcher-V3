@@ -32,11 +32,14 @@
 			</Grid>
 		</Grid>
 		<TabControl x:Name="MyTabControle"
-					Grid.Column="1" TabStripPlacement="Top">
-			<TabItem x:Name="SuperTab" Header="Вкладка супер-пользователя">
-				<local:SuperUserUC/>
+					Grid.Column="1"
+					TabStripPlacement="Top">
+			<TabItem x:Name="SuperTab" Header="Вкладка супер-пользователя" TabIndex="0">
+				<TabItem.Content>
+					<local:SuperUserUC/>
+				</TabItem.Content>
 			</TabItem>
-			<TabItem x:Name="TestTab" Header="пуся"></TabItem>
+			<TabItem x:Name="TestTab" Header="пуся" TabIndex="1"></TabItem>
 		</TabControl>
 	</Grid>
 </UserControl>
