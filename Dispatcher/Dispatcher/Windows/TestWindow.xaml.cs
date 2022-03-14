@@ -20,8 +20,6 @@ namespace Dispatcher.Windows
     /// </summary>
     public partial class TestWindow : Window
     {
-        public object parent { get; set; }
-
         public TestWindow()
         {
             InitializeComponent();

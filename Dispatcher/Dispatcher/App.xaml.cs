@@ -40,12 +40,11 @@ namespace Dispatcher
             }
         }
 
-        public int OpenTestWindow()
+        public static int OpenTestWindow()
         {
             try
             {
                 Windows.TestWindow testWindow = new Windows.TestWindow();
-                testWindow.parent = this;
                 testWindow.Show();
 
                 return 0;
@@ -56,7 +55,7 @@ namespace Dispatcher
             }
         }
 
-        public int OpenAuthorizationWindow()
+        public static int OpenAuthorizationWindow()
         {
             try
             {

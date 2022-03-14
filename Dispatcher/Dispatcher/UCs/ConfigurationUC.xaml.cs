@@ -57,11 +57,7 @@ namespace Dispatcher.UCs
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Trace.WriteLine("parent: " + parent);
-            Windows.TestWindow testWindow = (Windows.TestWindow)parent;
-            Trace.WriteLine("parent`s parent: " + testWindow.parent);
             updateInfoAboutConfig();
-            
         }
 
         private void ConfigurationCB_DropDownOpened(object sender, EventArgs e)
