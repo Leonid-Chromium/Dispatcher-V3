@@ -42,42 +42,46 @@ namespace Dispatcher.UCs
 		public void AccessCheck()
 		{
 			DataTable Access = SQLLib.SQL.ReturnDT(@"SELECT
---RoleUCNode.IdNode
 RoleUCNode.IdRole
---, RoleUCNode.IdUC
 , Roles.RoleName
---, Roles.RolePassword
 , UCs.Name
---, UCs.Note
 FROM RoleUCNode
 LEFT JOIN Roles on Roles.IdRole = RoleUCNode.IdRole
 LEFT JOIN UCs on UCs.IdUC = RoleUCNode.IdUC
-
 WHERE RoleUCNode.IdRole = " + App.role, App.configuration.SQLConnectionString, out string ex);
 			if (ex != string.Empty)
 				MessageBox.Show(ex);
 
 
-			TabControl myTabControle = this.MyTabControle;
-			myTabControle.Items.Remove(SuperTab);
-			myTabControle.Items.Add(SuperTab);
+			//TabControl myTabControle = this.MyTabControle;
+			//myTabControle.Items.Remove(SuperTab);
+			//myTabControle.Items.Add(SuperTab);
 
-			foreach (TabItem tabItem in MyTabControle.Items)
+			Trace.WriteLine("MyTabControle.Items.Count-1 = " + (MyTabControle.Items.Count - 1));
+			for (int i = (MyTabControle.Items.Count-1); i>=0; i--)
 			{
+				Trace.WriteLine("i = " + i);
+				TabItem tabItem = (TabItem)MyTabControle.Items[i];
 				Trace.WriteLine("-----------");
 				Trace.WriteLine(tabItem.Name);
 				Trace.WriteLine(tabItem.Content);
-				//tabItem.Visibility = Visibility.Collapsed;
+
+				bool needDeleteItem = true;
+
 				foreach (DataRow dataRow in Access.Rows)
 				{
 					Trace.WriteLine(dataRow.ItemArray[2].ToString());
 					if (tabItem.Name.Trim() == dataRow.ItemArray[2].ToString().Trim())
 					{
 						Trace.WriteLine("ДА");
-						tabItem.Visibility = Visibility.Visible;
+						needDeleteItem = false;
 						break;
 					}
 				}
+
+				if(needDeleteItem)
+					MyTabControle.Items.Remove(tabItem);
+
 			}
 		}
 	}

@@ -17,8 +17,6 @@ namespace Dispatcher
 
     public partial class App : Application
     {
-        
-
         public static string version = "0.5";
         public static string user { get; set; } = "Unknown";
 
@@ -31,8 +29,8 @@ namespace Dispatcher
             try
             {
                 MainWindow mainWindow = new MainWindow();
-                //mainWindow.Workspace.AccessCheck();
-                mainWindow.Show();
+                mainWindow.Workspace.AccessCheck();
+				mainWindow.Show();
 
                 return 0;
             }
