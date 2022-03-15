@@ -31,9 +31,6 @@
     <Compile Update="UCs\WorkSpaceUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UCs\WorkSpaceUC1.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Windows\AuthorizationWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -70,9 +67,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\WorkSpaceUC.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UCs\WorkSpaceUC1.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\AuthorizationWindow.xaml">

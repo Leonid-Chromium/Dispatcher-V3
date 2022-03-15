@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:Dispatcher.Windows"
         xmlns:localUC="clr-namespace:Dispatcher.UCs"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        MinHeight="450" MinWidth="825">
+        Title="MainWindow" Height="550" Width="1100"
+        MinHeight="550" MinWidth="1100" 
+        WindowStartupLocation="CenterScreen">
+    
 	<Grid>
 		<localUC:WorkSpaceUC x:Name="Workspace"/>
 		<localUC:ConfigurationUC2 x:Name="Settings" Visibility="Collapsed"/>
