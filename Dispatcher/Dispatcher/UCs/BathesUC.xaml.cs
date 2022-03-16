@@ -51,18 +51,18 @@ namespace Dispatcher.UCs
 
                     TBLastCount.Text = dataTable.Rows[0].ItemArray[0].ToString().Trim();
 
-                    dataTable = SQL.ReturnDT(@"SELECT Equipments.IdEquipment,Equipments.InventoryNumber,Equipments.Name From Equipments 
-                        RIGHT JOIN (SELECT OperationHistory.IdBatch ,OperationHistory.LastCount ,OperationHistory.IdEquipment 
+                    dataTable = SQL.ReturnDT(@"SELECT Equipments.IdEquipment,Equipments.InventoryNumber,Equipments.Name From Equipments
+                        RIGHT JOIN (SELECT OperationHistory.IdBatch ,OperationHistory.LastCount ,OperationHistory.IdEquipment
                         FROM OperationHistory Right join (SELECT OperationHistory.IdBatch,MAX(OperationHistory.IdRecording) AS 'LastIdRecording'
-		                FROM OperationHistory Group by IdBatch) AS LastRecording ON LastRecording.LastIdRecording = OperationHistory.IdRecording) 
+		                FROM OperationHistory Group by IdBatch) AS LastRecording ON LastRecording.LastIdRecording = OperationHistory.IdRecording)
                         AS LastOperationInfo on Equipments.IdEquipment = LastOperationInfo.IdEquipment Where LastOperationInfo.IdBatch = " + TBIDBathes.Text, App.configuration.SQLConnectionString, out ex);
 
                     TBIDEquipment.Text = dataTable.Rows[0].ItemArray[0].ToString().Trim();
                     TBNumberEquipment.Text = dataTable.Rows[0].ItemArray[1].ToString().Trim();
                     TBNameEquipment.Text = dataTable.Rows[0].ItemArray[2].ToString().Trim();
 
-                    dataTable = SQL.ReturnDT(@"SELECT maxNum = CASE WHEN MAX(Operations.Number) = null THEN 0 
-                        ELSE MAX(Operations.Number) end,OperationHistory.IdBatch
+                    dataTable = SQL.ReturnDT(@"SELECT maxNum = CASE WHEN MAX(Operations.Number) = null THEN 0 ELSE MAX(Operations.Number) end,
+                        OperationHistory.IdBatch
                         FROM OperationHistory Left JOIN Operations on Operations.IdOperation = OperationHistory.IdOperation 
                         WHERE OperationHistory.IdBatch = " + TBIDBathes.Text + " Group by IdBatch", App.configuration.SQLConnectionString, out ex);
                     

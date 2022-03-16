@@ -146,7 +146,8 @@
                 </Grid>
             </GroupBox>
             <Button HorizontalAlignment="Center"
-                    VerticalAlignment="Center" Margin="15" Width="150" Height="50" x:Name="btn_Search"
+                    VerticalAlignment="Center" Margin="15" 
+                    Width="150" Height="50" x:Name="btn_Search"
                     Click="btn_Search_Click">Поиск</Button>
         </StackPanel>
         <StackPanel Grid.Column="1" >
@@ -237,11 +238,11 @@
                              Margin="10 0"
                              IsReadOnly="True"/>
 
-                    <Label Grid.Row="2" Grid.Column="0"
+                    <Label Grid.Row="4"  Grid.ColumnSpan="2"
                            Content="Примечание партии"
                            HorizontalAlignment="Center"/>
-                    <TextBox Grid.Row="3" Grid.Column="0"
-                             x:Name="TBBathcesNote"
+                    <TextBox Grid.Row="5" Grid.ColumnSpan="2"
+                             x:Name="TBBatchesNote"
                              Margin="10 0"
                              IsReadOnly="True"/>
 
@@ -253,10 +254,10 @@
                              Margin="10 0"
                              IsReadOnly="True"/>
 
-                    <Label Grid.Row="4"  Grid.ColumnSpan="2"
-                           Content="Межоперационное время" 
+                    <Label Grid.Row="2" Grid.Column="0"
+                           Content="Межоперац. время" 
                            HorizontalAlignment="Center"/>
-                    <TextBox Grid.Row="5" Grid.ColumnSpan="2"
+                    <TextBox Grid.Row="3" Grid.Column="0"
                              x:Name="TBInteroperativeTime"
                              Margin="10 0"
                              IsReadOnly="True"/>
