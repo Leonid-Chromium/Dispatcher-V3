@@ -181,7 +181,7 @@ namespace Dispatcher.UCs {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Dispatcher;component/ucs/bathesuc.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Dispatcher;V1.0.0.0;component/ucs/bathesuc.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\UCs\BathesUC.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

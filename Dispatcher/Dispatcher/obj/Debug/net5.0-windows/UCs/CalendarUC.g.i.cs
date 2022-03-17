@@ -85,7 +85,7 @@ namespace Dispatcher.UCs {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Dispatcher;component/ucs/calendaruc.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Dispatcher;V1.0.0.0;component/ucs/calendaruc.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\UCs\CalendarUC.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
