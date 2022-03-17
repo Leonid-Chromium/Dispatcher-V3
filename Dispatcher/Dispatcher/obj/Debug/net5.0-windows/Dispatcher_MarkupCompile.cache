@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\
+D:\GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\
 Dispatcher
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\App.xaml
-10-837886673
+D:\GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\App.xaml
+131249222507
 
-23-536314025
-197-593929305
-Style\CalendarStyle.xaml;UCs\CalendarUC.xaml;UCs\ConfigurationUC.xaml;UCs\ConfigurationUC2.xaml;UCs\SuperUserUC.xaml;UCs\UniversalDataGrid.xaml;Windows\AuthorizationWindow.xaml;Windows\MainWindow.xaml;Windows\TestWindow.xaml;Windows\WorkWindow.xaml;
+26-1403564497
+197441753428
+Style\CalendarStyle.xaml;UCs\BathesUC.xaml;UCs\CalendarUC.xaml;UCs\ConfigurationUC.xaml;UCs\ConfigurationUC2.xaml;UCs\RoleSUC.xaml;UCs\SuperUserUC.xaml;UCs\UniversalDataGrid.xaml;UCs\WorkSpaceUC.xaml;Windows\AuthorizationWindow.xaml;Windows\MainWindow.xaml;Windows\TestWindow.xaml;Windows\WorkWindow.xaml;
 
 False
 

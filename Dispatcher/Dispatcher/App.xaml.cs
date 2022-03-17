@@ -17,8 +17,6 @@ namespace Dispatcher
 
     public partial class App : Application
     {
-        
-
         public static string version = "0.5";
         public static string user { get; set; } = "Unknown";
 
@@ -31,7 +29,8 @@ namespace Dispatcher
             try
             {
                 MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
+                mainWindow.Workspace.AccessCheck();
+				mainWindow.Show();
 
                 return 0;
             }
@@ -41,12 +40,11 @@ namespace Dispatcher
             }
         }
 
-        public int OpenTestWindow()
+        public static int OpenTestWindow()
         {
             try
             {
                 Windows.TestWindow testWindow = new Windows.TestWindow();
-                testWindow.parent = this;
                 testWindow.Show();
 
                 return 0;
@@ -57,7 +55,7 @@ namespace Dispatcher
             }
         }
 
-        public int OpenAuthorizationWindow()
+        public static int OpenAuthorizationWindow()
         {
             try
             {
@@ -73,6 +71,8 @@ namespace Dispatcher
 
         public App()
         {
+
+            Trace.WriteLine(typeof(UCs.CalendarUC));
             //Выполняется при запуске
             //TODO Продумай случай если нет файла конфигураций
             try

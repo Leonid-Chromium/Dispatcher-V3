@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="UCs\BathesUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UCs\CalendarUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -16,10 +19,16 @@
     <Compile Update="UCs\ConfigurationUC2.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UCs\RoleSUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UCs\SuperUserUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UCs\UniversalDataGrid.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\WorkSpaceUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\AuthorizationWindow.xaml.cs">
@@ -36,6 +45,9 @@
     <Page Update="Style\CalendarStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="UCs\BathesUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UCs\CalendarUC.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -45,10 +57,16 @@
     <Page Update="UCs\ConfigurationUC2.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="UCs\RoleSUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UCs\SuperUserUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\UniversalDataGrid.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\WorkSpaceUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\AuthorizationWindow.xaml">
