@@ -39,6 +39,9 @@
 					<local:SuperUserUC/>
 				</TabItem.Content>
 			</TabItem>
+			<TabItem x:Name="EquipmentTab" Header="Оборудование">
+				<local:EquipmentUC/>
+			</TabItem>
 		</TabControl>
 	</Grid>
 </UserControl>

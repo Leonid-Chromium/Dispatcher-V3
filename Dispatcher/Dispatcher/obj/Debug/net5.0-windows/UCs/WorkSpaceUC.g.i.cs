@@ -34,63 +34,63 @@ using System.Windows.Shell;
 
 
 namespace Dispatcher.UCs {
-    
-    
+
+
     /// <summary>
     /// WorkSpaceUC
     /// </summary>
     public partial class WorkSpaceUC : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
-        
-        
+
+
         #line 15 "..\..\..\..\UCs\WorkSpaceUC.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Grid Sidebar;
-        
+
         #line default
         #line hidden
-        
-        
+
+
         #line 22 "..\..\..\..\UCs\WorkSpaceUC.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal Dispatcher.UCs.CalendarUC MyCalendarUC;
-        
+
         #line default
         #line hidden
-        
-        
+
+
         #line 27 "..\..\..\..\UCs\WorkSpaceUC.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button SettingsButton;
-        
+
         #line default
         #line hidden
-        
-        
+
+
         #line 34 "..\..\..\..\UCs\WorkSpaceUC.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TabControl MyTabControle;
-        
+
         #line default
         #line hidden
-        
-        
+
+
         #line 38 "..\..\..\..\UCs\WorkSpaceUC.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TabItem SuperTab;
-        
+
         #line default
         #line hidden
-        
-        
-        #line 43 "..\..\..\..\UCs\WorkSpaceUC.xaml"
+
+
+        #line 42 "..\..\..\..\UCs\WorkSpaceUC1.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.TabItem TestTab;
-        
+        internal System.Windows.Controls.TabItem EquipmentTab;
+
         #line default
         #line hidden
-        
+
         private bool _contentLoaded;
-        
+
         /// <summary>
         /// InitializeComponent
         /// </summary>
@@ -102,21 +102,21 @@ namespace Dispatcher.UCs {
             }
             _contentLoaded = true;
             System.Uri resourceLocater = new System.Uri("/Dispatcher;component/ucs/workspaceuc.xaml", System.UriKind.Relative);
-            
+
             #line 1 "..\..\..\..\UCs\WorkSpaceUC.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
-            
+
             #line default
             #line hidden
         }
-        
+
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "6.0.3.0")]
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal System.Delegate _CreateDelegate(System.Type delegateType, string handler) {
             return System.Delegate.CreateDelegate(delegateType, this, handler);
         }
-        
+
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "6.0.3.0")]
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
@@ -127,10 +127,10 @@ namespace Dispatcher.UCs {
             switch (connectionId)
             {
             case 1:
-            
+
             #line 9 "..\..\..\..\UCs\WorkSpaceUC.xaml"
             ((Dispatcher.UCs.WorkSpaceUC)(target)).Loaded += new System.Windows.RoutedEventHandler(this.UserControl_Loaded);
-            
+
             #line default
             #line hidden
             return;
@@ -142,10 +142,10 @@ namespace Dispatcher.UCs {
             return;
             case 4:
             this.SettingsButton = ((System.Windows.Controls.Button)(target));
-            
+
             #line 29 "..\..\..\..\UCs\WorkSpaceUC.xaml"
             this.SettingsButton.Click += new System.Windows.RoutedEventHandler(this.SettingsButton_Click);
-            
+
             #line default
             #line hidden
             return;
@@ -156,11 +156,10 @@ namespace Dispatcher.UCs {
             this.SuperTab = ((System.Windows.Controls.TabItem)(target));
             return;
             case 7:
-            this.TestTab = ((System.Windows.Controls.TabItem)(target));
+            this.EquipmentTab = ((System.Windows.Controls.TabItem)(target));
             return;
             }
             this._contentLoaded = true;
         }
     }
 }
-

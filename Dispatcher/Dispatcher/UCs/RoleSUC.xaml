@@ -10,7 +10,7 @@
     <Grid>
 		<ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
 			<StackPanel>
-				<GroupBox MaxHeight="300" Header="Роли">
+				<GroupBox MaxHeight="300" Header="Роли" Margin="10">
 					<Grid>
 						<Grid.RowDefinitions>
 							<RowDefinition/>

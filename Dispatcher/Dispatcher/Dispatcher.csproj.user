@@ -19,6 +19,21 @@
     <Compile Update="UCs\ConfigurationUC2.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UCs\EquipmentCard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\EquipmentEdit.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\EquipmentEditAndInfo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\EquipmentList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\EquipmentUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UCs\RoleSUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -55,6 +70,21 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\ConfigurationUC2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\EquipmentCard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\EquipmentEdit.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\EquipmentEditAndInfo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\EquipmentList.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\EquipmentUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\RoleSUC.xaml">
