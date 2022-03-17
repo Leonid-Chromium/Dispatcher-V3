@@ -4,7 +4,7 @@
 winexe
 C#
 .cs
-D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\
+D:\GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\
 Dispatcher
 none
 false
@@ -17,4 +17,3 @@ D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\App.xaml
 Style\CalendarStyle.xaml;UCs\CalendarUC.xaml;UCs\ConfigurationUC.xaml;UCs\ConfigurationUC2.xaml;UCs\EquipmentCard.xaml;UCs\EquipmentEdit.xaml;UCs\EquipmentEditAndInfo.xaml;UCs\EquipmentList.xaml;UCs\EquipmentUC.xaml;UCs\RoleSUC.xaml;UCs\SuperUserUC.xaml;UCs\UniversalDataGrid.xaml;UCs\WorkSpaceUC1.xaml;Windows\AuthorizationWindow.xaml;Windows\MainWindow.xaml;Windows\TestWindow.xaml;Windows\WorkWindow.xaml;
 
 False
-

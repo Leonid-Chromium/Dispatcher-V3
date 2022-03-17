@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="UCs\BathesUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UCs\CalendarUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -40,7 +43,7 @@
     <Compile Update="UCs\UniversalDataGrid.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UCs\WorkSpaceUC1.xaml.cs">
+    <Compile Update="UCs\WorkSpaceUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\AuthorizationWindow.xaml.cs">
@@ -55,6 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Style\CalendarStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\BathesUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\CalendarUC.xaml">
@@ -90,7 +96,7 @@
     <Page Update="UCs\UniversalDataGrid.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UCs\WorkSpaceUC1.xaml">
+    <Page Update="UCs\WorkSpaceUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\AuthorizationWindow.xaml">

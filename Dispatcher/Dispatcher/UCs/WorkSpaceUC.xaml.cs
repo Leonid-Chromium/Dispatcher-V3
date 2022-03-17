@@ -20,9 +20,9 @@ namespace Dispatcher.UCs
 	/// <summary>
 	/// Логика взаимодействия для WorkSpaceUC1.xaml
 	/// </summary>
-	public partial class WorkSpaceUC1 : UserControl
+	public partial class WorkSpaceUC : UserControl
 	{
-		public WorkSpaceUC1()
+		public WorkSpaceUC()
 		{
 			InitializeComponent();
 			AccessCheck();
@@ -55,7 +55,7 @@ App.configuration.SQLConnectionString, out string ex);
 				MessageBox.Show(ex);
 
 			Trace.WriteLine("MyTabControle.Items.Count-1 = " + (MyTabControle.Items.Count - 1));
-			for (int i = (MyTabControle.Items.Count-1); i>=0; i--)
+			for (int i = (MyTabControle.Items.Count - 1); i >= 0; i--)
 			{
 				Trace.WriteLine("i = " + i);
 				TabItem tabItem = (TabItem)MyTabControle.Items[i];
@@ -76,7 +76,7 @@ App.configuration.SQLConnectionString, out string ex);
 					}
 				}
 
-				if(needDeleteItem)
+				if (needDeleteItem)
 					MyTabControle.Items.Remove(tabItem);
 
 			}
