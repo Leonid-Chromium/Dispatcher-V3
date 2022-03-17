@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9+4R8nsXKdvZ7ML+vIrPabFn3r4s8uzaWPQrofMeSt/Bv+5aTijVsKyBLpF3fXIMmtn8yJZnr4y0Fk+lnR6xKw==",
+  "dgSpecHash": "Giefj/8plfzVp/o7YAGN83Zb9QR5bkm2U9A26S41uTW/d1I79IiVN6THoWfp5Mva65ALqfZP+CRsDzccdBcD5Q==",
   "success": true,
-  "projectFilePath": "D:\\#GitHub_Projects\\Dispatcher-V3\\Dispatcher\\Dispatcher\\Dispatcher.csproj",
+  "projectFilePath": "D:\\GitHub_Projects\\Dispatcher-V3\\Dispatcher\\Dispatcher\\Dispatcher.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\thedi\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\thedi\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

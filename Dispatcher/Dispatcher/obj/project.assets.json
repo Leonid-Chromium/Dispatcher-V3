@@ -455,19 +455,19 @@
   },
   "packageFolders": {
     "C:\\Users\\thedi\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\#GitHub_Projects\\Dispatcher-V3\\Dispatcher\\Dispatcher\\Dispatcher.csproj",
+      "projectUniqueName": "D:\\GitHub_Projects\\Dispatcher-V3\\Dispatcher\\Dispatcher\\Dispatcher.csproj",
       "projectName": "Dispatcher",
-      "projectPath": "D:\\#GitHub_Projects\\Dispatcher-V3\\Dispatcher\\Dispatcher\\Dispatcher.csproj",
+      "projectPath": "D:\\GitHub_Projects\\Dispatcher-V3\\Dispatcher\\Dispatcher\\Dispatcher.csproj",
       "packagesPath": "C:\\Users\\thedi\\.nuget\\packages\\",
-      "outputPath": "D:\\#GitHub_Projects\\Dispatcher-V3\\Dispatcher\\Dispatcher\\obj\\",
+      "outputPath": "D:\\GitHub_Projects\\Dispatcher-V3\\Dispatcher\\Dispatcher\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
         "C:\\Users\\thedi\\AppData\\Roaming\\NuGet\\NuGet.Config",
