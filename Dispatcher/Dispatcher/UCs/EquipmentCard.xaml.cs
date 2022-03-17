@@ -20,12 +20,13 @@ namespace Dispatcher.UCs
 	/// </summary>
 	public partial class EquipmentCard : UserControl
 	{
+		public EquipmentList parent { get; set; }
 
-		public int ID { get; set; }
-		public string name { get; set; }
-		public string district { get; set; }
-		public int statusId { get; set; }
-		public string status { get; set; }
+		public int ID { get; set; } = 0;
+		public string name { get; set; } = "";
+		public string district { get; set; } = "";
+		public int statusId { get; set; } = 0;
+		public string status { get; set; } = "";
 
 		public EquipmentCard()
 		{
@@ -41,9 +42,6 @@ namespace Dispatcher.UCs
 				StatusL.Content = status;
 				switch(statusId)
 				{
-					case 1:
-						break;
-
 					default:
 						break;
 				}
@@ -62,7 +60,7 @@ namespace Dispatcher.UCs
 
 		private void EditButton_Click(object sender, RoutedEventArgs e)
 		{
-
+			parent.parent.ChrngeVisibilityEAI(ID);
 		}
 
 		private void UserControl_Loaded(object sender, RoutedEventArgs e)
