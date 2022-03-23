@@ -1,10 +1,12 @@
 ﻿
 
+FD:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\UCs\BatchesUC.xaml;;
 FD:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\UCs\CalendarUC.xaml;;
 FD:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\UCs\ConfigurationUC.xaml;;
 FD:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\UCs\ConfigurationUC2.xaml;;
 FD:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\UCs\EquipmentCard.xaml;;
 FD:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\UCs\EquipmentEdit.xaml;;
+FD:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\UCs\EquipmentEditAndInfo.xaml;;
 FD:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\UCs\EquipmentList.xaml;;
 FD:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\UCs\EquipmentUC.xaml;;
 FD:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\UCs\RoleSUC.xaml;;
@@ -15,5 +17,4 @@ FD:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\Windows\AuthorizationWindow.
 FD:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\Windows\MainWindow.xaml;;
 FD:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\Windows\TestWindow.xaml;;
 FD:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\Windows\WorkWindow.xaml;;
-FD:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\UCs\EquipmentEditAndInfo.xaml;;
 

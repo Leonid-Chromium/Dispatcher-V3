@@ -42,6 +42,9 @@
 			<TabItem x:Name="EquipmentTab" Header="Оборудование">
 				<local:EquipmentUC/>
 			</TabItem>
+			<TabItem x:Name="BatchesTab" Header="Партии">
+				<local:BatchesUC/>
+			</TabItem>
 		</TabControl>
 	</Grid>
 </UserControl>
