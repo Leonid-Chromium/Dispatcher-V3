@@ -10,6 +10,6 @@
 		MinHeight="600" MinWidth="1000">
 	<Grid>
 		<localUC:WorkSpaceUC1 x:Name="Workspace"/>
-		<localUC:ConfigurationUC2 x:Name="Settings" Visibility="Collapsed"/>
+		<localUC:SettingsUC1 x:Name="Settings" Visibility="Collapsed"/>
 	</Grid>
 </Window>

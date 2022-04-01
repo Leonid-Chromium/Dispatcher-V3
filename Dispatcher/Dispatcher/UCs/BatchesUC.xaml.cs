@@ -26,8 +26,6 @@ namespace Dispatcher.UCs
         public BatchesUC()
         {
             InitializeComponent();
-
-
         }
 
         private void btn_Search_Click(object sender, RoutedEventArgs e)
