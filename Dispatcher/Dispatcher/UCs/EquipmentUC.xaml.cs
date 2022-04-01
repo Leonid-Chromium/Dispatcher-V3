@@ -23,6 +23,8 @@ namespace Dispatcher.UCs
 		public EquipmentUC()
 		{
 			InitializeComponent();
+			EquipList.parent = this;
+			EquipEAI.parent = this;
 		}
 
 		public void ChrngeVisibilityEAI(int id)

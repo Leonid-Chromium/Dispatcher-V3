@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,6 +61,10 @@ namespace Dispatcher.UCs
 
 		private void EditButton_Click(object sender, RoutedEventArgs e)
 		{
+			Trace.WriteLine(ID);
+			
+			//TODO Название функции страдает
+
 			parent.parent.ChrngeVisibilityEAI(ID);
 		}
 
