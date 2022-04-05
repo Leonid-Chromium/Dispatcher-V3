@@ -40,6 +40,9 @@
     <Compile Update="UCs\SettingsUC1.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UCs\SimpleScannerUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UCs\SuperUserUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -94,6 +97,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\SettingsUC1.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\SimpleScannerUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\SuperUserUC.xaml">

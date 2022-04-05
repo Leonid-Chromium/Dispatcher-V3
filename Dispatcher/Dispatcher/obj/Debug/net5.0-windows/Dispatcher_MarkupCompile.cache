@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\
+D:\#LEARN\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\
 Dispatcher
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\App.xaml
-191024018373
+D:\#LEARN\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\App.xaml
+20259778117
 
-32-176984639
-197-593929305
-Style\CalendarStyle.xaml;UCs\BatchesUC.xaml;UCs\CalendarUC.xaml;UCs\ConfigurationUC.xaml;UCs\ConfigurationUC2.xaml;UCs\EquipmentCard.xaml;UCs\EquipmentEdit.xaml;UCs\EquipmentEditAndInfo.xaml;UCs\EquipmentList.xaml;UCs\EquipmentUC.xaml;UCs\RoleSUC.xaml;UCs\SettingsUC1.xaml;UCs\SuperUserUC.xaml;UCs\UniversalDataGrid.xaml;UCs\WorkSpaceUC1.xaml;Windows\AuthorizationWindow.xaml;Windows\MainWindow.xaml;Windows\TestWindow.xaml;Windows\WorkWindow.xaml;
+331580712694
+196353215821
+Style\CalendarStyle.xaml;UCs\BatchesUC.xaml;UCs\CalendarUC.xaml;UCs\ConfigurationUC.xaml;UCs\ConfigurationUC2.xaml;UCs\EquipmentCard.xaml;UCs\EquipmentEdit.xaml;UCs\EquipmentEditAndInfo.xaml;UCs\EquipmentList.xaml;UCs\EquipmentUC.xaml;UCs\RoleSUC.xaml;UCs\SettingsUC1.xaml;UCs\SimpleScannerUC.xaml;UCs\SuperUserUC.xaml;UCs\UniversalDataGrid.xaml;UCs\WorkSpaceUC1.xaml;Windows\AuthorizationWindow.xaml;Windows\MainWindow.xaml;Windows\TestWindow.xaml;Windows\WorkWindow.xaml;
 
 False
 

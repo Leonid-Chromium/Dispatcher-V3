@@ -45,6 +45,9 @@
 			<TabItem x:Name="BatchesTab" Header="Партии">
 				<local:BatchesUC/>
 			</TabItem>
-		</TabControl>
+            <TabItem x:Name="SimpleScannerTab" Header="Сканнер">
+                <local:SimpleScannerUC/>
+            </TabItem>
+        </TabControl>
 	</Grid>
 </UserControl>
