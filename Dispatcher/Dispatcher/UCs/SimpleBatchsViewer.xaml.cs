@@ -33,13 +33,13 @@ namespace Dispatcher.UCs
 			DataTable batchsDataTable = new DataTable();
 			batchsDataTable = SQLLib.SQL.ReturnDT(@"
 SELECT
-Batchs.IdBatch
-,Devices.KeyDevice
-,Devices.Name
-,Batchs.Name
-,LastOperationHistory.LastCount
-,LastOperations.Number
-,LastOperations.Name
+Batchs.IdBatch AS 'Идентификатор партии'
+,TRIM(Devices.KeyDevice) AS 'Код устройства'
+,TRIM(Devices.Name) AS 'Название устройства'
+,TRIM(Batchs.Name) AS 'Название партии'
+,LastOperationHistory.LastCount AS 'Кол-во пластин'
+,LastOperations.Number AS 'Номер последней операции'
+,TRIM(LastOperations.Name) AS 'Название последней операции'
 
 --,Batchs.IdMSL
 
@@ -47,11 +47,13 @@ Batchs.IdBatch
 ------------------------
 --,DoOperations.OperCount
 --,TotalOperation.OperationCount
-,(Cast(DoOperations.OperCount AS float)/CAST(TotalOperation.OperationCount AS float) * 100) AS MyPercent
+,(Cast(DoOperations.OperCount AS float)/CAST(TotalOperation.OperationCount AS float) * 100) AS 'Процент выполнения'
 
 --,LastRecording.LastRecordingID
 --,LastOperationHistory.IdOperation
 --,LastOperations.IdOperation AS LastOperationID
+
+,TRIM(LastOperationHistory.Note) AS 'Примечание к последней партии'
 
 FROM Batchs
 --Добавим МСЛы
@@ -107,6 +109,7 @@ LEFT JOIN (
 	) as tb
 	GROUP BY tb.IdBatch
 ) AS DoOperations ON Batchs.IdBatch = DoOperations.IdBatch
+
 ", App.configuration.SQLConnectionString, out string ex);
 			BatchsDG.ItemsSource = batchsDataTable.DefaultView;
 		}
@@ -128,6 +131,41 @@ LEFT JOIN (
 				DataGridRow dgr = sender as DataGridRow;
 				TextBlock tbl = BatchsDG.Columns[0].GetCellContent(dgr) as TextBlock;
 				Trace.WriteLine(tbl.Text);
+				DataTable dataTable = SQLLib.SQL.ReturnDT(@"
+SELECT
+TRIM(Batchs.Name) AS 'Партия'
+,Operations.ScanIn AS 'Вход'
+,Operations.ScanOut AS 'Выход'
+,TRIM(Operations.Name) AS 'Название операции'
+,OperationHistory.LastCount AS 'Кол-во'
+,TRIM(TechnologicalMaps.NameTM)
+,TRIM(TechnologicalMaps.Lars)
+,Routing.Mode AS 'Режим'
+,Operations.InteroperativeTime AS 'Межоперационное время'
+,Operations.TypeOfProcessing AS 'Тип постобработки'
+,OperationHistory.StartDateTime AS 'Время входа'
+,OperationHistory.EndDateTime AS 'Время выхода'
+--,Employees.FirstName AS 'Имя сотрудника'
+--,Employees.MiddleName AS 'Отчество сотрудника'
+--,Employees.LastName AS 'Фамилия сотрудника'
+,CONCAT(TRIM(Employees.FirstName), ' ', TRIM(Employees.MiddleName), ' ', TRIM(Employees.LastName)) AS 'ФИО сотрудника'
+,TRIM(Equipments.Name) AS 'Название оборудования'
+,TRIM(Rooms.Number) AS 'Комната'
+,TRIM(Districts.Name) AS 'Участок'
+,TRIM(Routing.Note) AS 'Примечание по МСЛ'
+,TRIM(OperationHistory.Note) AS 'Коментарий к записи'
+FROM Batchs
+LEFT JOIN OperationHistory ON Batchs.IdBatch = OperationHistory.IdBatch
+LEFT JOIN Operations ON OperationHistory.IdOperation = Operations.IdOperation
+LEFT JOIN Employees ON OperationHistory.IdEmployee = Employees.IdEmployee
+LEFT JOIN Equipments ON OperationHistory.IdEquipment = Equipments.IdEquipment
+LEFT JOIN Rooms ON Equipments.Room = Rooms.IdRoom
+LEFT JOIN Districts ON Rooms.IdDistrict = Districts.IdDistrict
+LEFT JOIN Routing ON Operations.IdRouting = Routing.IdRouting
+LEFT JOIN TechnologicalMaps ON Routing.IdTM = TechnologicalMaps.IdTM
+WHERE Batchs.IdBatch = " + tbl.Text
+, App.configuration.SQLConnectionString, out string ex);
+				BatchsDG.ItemsSource = dataTable.DefaultView;
 			}
 		}
 	}
