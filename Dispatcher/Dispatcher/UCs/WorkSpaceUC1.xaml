@@ -48,6 +48,9 @@
 			<TabItem x:Name="SimpleBatchesTab" Header="Простые партии">
 				<local:SimpleBatchsViewer/>
 			</TabItem>
+			<TabItem x:Name="SimpleScannerTab" Header="Простой сканер">
+				<local:SimpleScanner/>
+			</TabItem>
 		</TabControl>
 	</Grid>
 </UserControl>
