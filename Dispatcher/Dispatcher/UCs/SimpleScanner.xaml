@@ -18,9 +18,9 @@
 				<ColumnDefinition/>
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
-			<RadioButton x:Name="ScanInButton" Content="Вход" GroupName="ScanRadio" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" Grid.Column="0"/>
-			<RadioButton x:Name="ScanOutButton" Content="Выход" GroupName="ScanRadio" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Grid.Column="1"/>
-			<Button x:Name="CancelButton" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"/>
+			<RadioButton x:Name="ScanInButton" Content="Вход" GroupName="ScanRadio" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" Grid.Column="0" Checked="ScanInButton_Checked"/>
+			<RadioButton x:Name="ScanOutButton" Content="Выход" GroupName="ScanRadio" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Grid.Column="1" Checked="ScanOutButton_Checked"/>
+			<Button x:Name="CancelButton" Content="Отмена" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" Click="CancelButton_Click"/>
 		</Grid>
 		<!--Штрих-код партии-->
 		<Grid x:Name="BatchGrid"
@@ -36,7 +36,7 @@
 			<TextBox x:Name="BatchBarcodeTB" Grid.Row="1"
 					 HorizontalAlignment="Center" VerticalAlignment="Center"
 					 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-					 Width="250"/>
+					 Width="250" TextChanged="BatchBarcodeTB_TextChanged"/>
 		</Grid>
 		<!--Информация для чтения и заполнения-->
 		<Grid x:Name="InfoGrid"
@@ -59,65 +59,73 @@
 				<RowDefinition/>
 				<RowDefinition/>
 				<RowDefinition/>
+				<RowDefinition/>
 			</Grid.RowDefinitions>
-			<Label Content="Название партии"
+			<Label Content="Тип прибора"
 				   Grid.Column="0" Grid.Row="0"/>
-			<TextBox x:Name="BatchNameTB"
+			<TextBox x:Name="DeviceTypeTB"
 					 Grid.Column="1" Grid.Row="0"
 					 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
 					 IsReadOnly="True"
 					 Margin="4"/>
-			<Label Content="Приоритет партии"
+			<Label Content="Номер партии"
 				   Grid.Column="0" Grid.Row="1"/>
-			<TextBox x:Name="BatchPriorityTB"
+			<TextBox x:Name="BatchNameTB"
 					 Grid.Column="1" Grid.Row="1"
 					 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
 					 IsReadOnly="True"
 					 Margin="4"/>
-			<Label Content="Примечание партии"
+			<Label Content="Приоритет партии"
 				   Grid.Column="0" Grid.Row="2"/>
-			<TextBox x:Name="BatchNoteTB"
+			<TextBox x:Name="BatchPriorityTB"
 					 Grid.Column="1" Grid.Row="2"
 					 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
 					 IsReadOnly="True"
 					 Margin="4"/>
-			<Label Content="Последнее кол-во пластин"
+			<Label Content="Примечание партии"
 				   Grid.Column="0" Grid.Row="3"/>
-			<TextBox x:Name="LastCountTB"
+			<TextBox x:Name="BatchNoteTB"
 					 Grid.Column="1" Grid.Row="3"
 					 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
 					 IsReadOnly="True"
 					 Margin="4"/>
-			<Label Content="Причина изменения"
+			<Label Content="Последнее кол-во пластин"
 				   Grid.Column="0" Grid.Row="4"/>
-			<TextBox x:Name="HistoryNoteTB"
+			<TextBox x:Name="LastCountTB"
 					 Grid.Column="1" Grid.Row="4"
 					 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
-					 IsReadOnly="True"
 					 Margin="4"/>
-			<Label Content="Штрих-код сотрудника"
-				   Grid.Column="0" Grid.Row="6"/>
-			<TextBox x:Name="EmployeeBarcodeTB"
-					 Grid.Column="1" Grid.Row="6"
+			<Label x:Name="HistoryNoteLabel" Content="Причина изменения"
+				   Grid.Column="0" Grid.Row="5"/>
+			<TextBox x:Name="HistoryNoteTB"
+					 Grid.Column="1" Grid.Row="5"
 					 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
 					 Margin="4"/>
-			<Label Content="ФИО сотрудника"
+			<Label Content="Штрих-код сотрудника"
 				   Grid.Column="0" Grid.Row="7"/>
-			<TextBox x:Name="EmployeeFIOTB"
+			<TextBox x:Name="EmployeeBarcodeTB"
 					 Grid.Column="1" Grid.Row="7"
+					 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+					 Margin="4"
+					 TextChanged="EmployeeBarcodeTB_TextChanged"/>
+			<Label Content="ФИО сотрудника"
+				   Grid.Column="0" Grid.Row="8"/>
+			<TextBox x:Name="EmployeeFIOTB"
+					 Grid.Column="1" Grid.Row="8"
 					 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
 					 IsReadOnly="True"
 					 Margin="4"/>
 			<Label Content="Штрих-код оборудования"
-				   Grid.Column="0" Grid.Row="9"/>
-			<TextBox x:Name="EquipmentBarcodeTB"
-					 Grid.Column="1" Grid.Row="9"
-					 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
-					 Margin="4"/>
-			<Label Content="Название оборудования"
 				   Grid.Column="0" Grid.Row="10"/>
-			<TextBox x:Name="EquipmentNameTB"
+			<TextBox x:Name="EquipmentBarcodeTB"
 					 Grid.Column="1" Grid.Row="10"
+					 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+					 Margin="4"
+					 TextChanged="EquipmentBarcodeTB_TextChanged"/>
+			<Label Content="Название оборудования"
+				   Grid.Column="0" Grid.Row="11"/>
+			<TextBox x:Name="EquipmentNameTB"
+					 Grid.Column="1" Grid.Row="11"
 					 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
 					 IsReadOnly="True"
 					 Margin="4"/>
@@ -158,32 +166,26 @@
 					 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
 					 IsReadOnly="True"
 					 Margin="4"/>
-			<Label Content="Название тех.карты"
+			<Label Content="Т.К./К.К."
 				   Grid.Column="2" Grid.Row="5"/>
 			<TextBox x:Name="TMNameTB"
 					 Grid.Column="3" Grid.Row="5"
 					 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
 					 IsReadOnly="True"
 					 Margin="4"/>
-			<Label Content="ЛАРС тех.карты"
-				   Grid.Column="2" Grid.Row="6"/>
-			<TextBox x:Name="TMLarsTB"
-					 Grid.Column="3" Grid.Row="6"
-					 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
-					 IsReadOnly="True"
-					 Margin="4"/>
 			<Label Content="Режим"
-				   Grid.Column="2" Grid.Row="7"/>
+				   Grid.Column="2" Grid.Row="6"/>
 			<TextBox x:Name="ModeTB"
-					 Grid.Column="3" Grid.Row="7"
+					 Grid.Column="3" Grid.Row="6"
 					 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
 					 IsReadOnly="True"
 					 Margin="4"/>
 
 			<Button x:Name="ConfirmationButton" Content="Подтвердить"
-					Grid.Column="2" Grid.Row="9"
+					Grid.Column="2" Grid.Row="10"
 					Grid.ColumnSpan="2" Grid.RowSpan="2"
-					Margin="5"/>
+					Margin="5"
+					Click="ConfirmationButton_Click"/>
 		</Grid>
 	</Grid>
 </UserControl>
