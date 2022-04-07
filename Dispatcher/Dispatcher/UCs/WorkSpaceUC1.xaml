@@ -45,6 +45,9 @@
 			<TabItem x:Name="BatchesTab" Header="Партии">
 				<local:BatchesUC/>
 			</TabItem>
+			<TabItem x:Name="SimpleBatchesTab" Header="Простые партии">
+				<local:SimpleBatchsViewer/>
+			</TabItem>
 		</TabControl>
 	</Grid>
 </UserControl>
