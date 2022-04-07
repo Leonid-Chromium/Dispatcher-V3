@@ -16,5 +16,5 @@ D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\App.xaml
 197-593929305
 Style\CalendarStyle.xaml;UCs\BatchesUC.xaml;UCs\CalendarUC.xaml;UCs\ConfigurationUC.xaml;UCs\ConfigurationUC2.xaml;UCs\EquipmentCard.xaml;UCs\EquipmentEdit.xaml;UCs\EquipmentEditAndInfo.xaml;UCs\EquipmentList.xaml;UCs\EquipmentUC.xaml;UCs\RoleSUC.xaml;UCs\SettingsUC1.xaml;UCs\SimpleBatchsViewer.xaml;UCs\SimpleBranchViewer.xaml;UCs\SuperUserUC.xaml;UCs\UniversalDataGrid.xaml;UCs\WorkSpaceUC1.xaml;Windows\AuthorizationWindow.xaml;Windows\MainWindow.xaml;Windows\TestWindow.xaml;Windows\WorkWindow.xaml;
 
-True
+False
 
