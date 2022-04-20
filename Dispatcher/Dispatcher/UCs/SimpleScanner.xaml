@@ -94,7 +94,8 @@
 			<TextBox x:Name="LastCountTB"
 					 Grid.Column="1" Grid.Row="4"
 					 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
-					 Margin="4"/>
+					 Margin="4"
+					 TextChanged="LastCountTB_TextChanged"/>
 			<Label x:Name="HistoryNoteLabel" Content="Причина изменения"
 				   Grid.Column="0" Grid.Row="5"/>
 			<TextBox x:Name="HistoryNoteTB"
