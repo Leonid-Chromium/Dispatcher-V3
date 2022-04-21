@@ -123,3 +123,5 @@ D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\SimpleBranchViewer.g.cs
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\SimpleBatchsViewer.baml
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\SimpleBranchViewer.baml
+D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\SimpleScanner.g.cs
+D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\SimpleScanner.baml

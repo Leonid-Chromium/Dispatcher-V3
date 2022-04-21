@@ -43,6 +43,9 @@
     <Compile Update="UCs\SimpleBatchsViewer.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UCs\SimpleScanner.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UCs\SuperUserUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -100,6 +103,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\SimpleBatchsViewer.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\SimpleScanner.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\SuperUserUC.xaml">
