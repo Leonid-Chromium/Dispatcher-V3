@@ -17,12 +17,16 @@ namespace Dispatcher
 
     public partial class App : Application
     {
-        public static string version = "0.5";
+        public static string version = "3.6";
         public static string user { get; set; } = "Unknown";
 
         public static int role;
 
         public static Class.Configuration configuration { get; set; }
+
+        //Настройка позволяющая делать запись сканером без определения человека
+        public static bool UnknownUserMode = true;
+        public static bool UnknownDistrictMode = true;
 
         public static int OpenMainWindow()
         {

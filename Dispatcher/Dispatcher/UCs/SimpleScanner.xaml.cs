@@ -73,8 +73,8 @@ namespace Dispatcher.UCs
 			TMNameTB.Text = null;
 			ModeTB.Text = null;
 
-			HistoryNoteLabel.Visibility = Visibility.Collapsed;
-			HistoryNoteTB.Visibility = Visibility.Collapsed;
+			//HistoryNoteLabel.Visibility = Visibility.Collapsed;
+			//HistoryNoteTB.Visibility = Visibility.Collapsed;
 
 			InfoGrid.Visibility = Visibility.Collapsed;
 		}
@@ -140,10 +140,23 @@ FirstMain.BatchId
 --,OperationsScanOut = Operation.ScanOut
 ,NextScanIsOut = 
 	CASE
-		WHEN FirstMain.LastOperationID = Operation.IdOperation AND Operation.ScanIn = 1 AND Operation.ScanOut = 1 AND FirstMain.LastOperationStart IS NOT NULL
+		--Вход и выход и вход пустой
+		WHEN FirstMain.LastOperationID = Operation.IdOperation AND Operation.ScanIn = 1 AND Operation.ScanOut = 1 AND FirstMain.LastOperationStart IS NULL
 		THEN 1
-		ELSE 0
+		--Вход и выход и вход не пустой
+		WHEN FirstMain.LastOperationID = Operation.IdOperation AND Operation.ScanIn = 1 AND Operation.ScanOut = 1 AND FirstMain.LastOperationStart IS NOT NULL
+		THEN 2
+		--Случаи для
+		ELSE
+			CASE
+				WHEN Operation.ScanIn = 1
+				THEN 1
+				WHEN Operation.ScanOut = 1
+				THEN 2
+				ELSE 0
+			END
 	END
+,TechnologicalMaps.District
 FROM (
 		SELECT
 		*
@@ -154,7 +167,17 @@ FROM (
 --Скрипт для получения 'главной' информации
 LEFT JOIN(
 	SELECT
-	BatchId = Batch.IdBatch
+	LastOperationHistory.IdOperation AS 'LastOperationID'
+	,LastOperationHistory.IdRecording AS 'LastRecordingID'
+	,LastOperationHistory.StartDateTime AS 'LastOperationStart'
+	,LastOperationHistory.EndDateTime AS 'LastOperationEnd'
+	--,LastOperations.ScanIn AS 'LastOperationScanIn'
+	--,LastOperations.ScanOut AS 'LastOperationScanOut'
+
+	,NextOperations.ScanIn AS 'NextOperationsScanIn'
+	,NextOperations.ScanOut AS 'NextOperationsScanOut'
+	
+	,BatchId = Batch.IdBatch
 	, BatchName = TRIM(Batch.Name)
 	, BatchsPriority = Batch.Priority
 	, BatchsNote = TRIM(Batch.Note)
@@ -265,45 +288,36 @@ LEFT JOIN Operations AS Operation ON FirstMain.NowOperationID = Operation.IdOper
 --Подключаем роутиги(да что это такое?)
 LEFT JOIN Routing ON Operation.IdRouting = Routing.IdRouting
 --Подключаем Т.К./ К.К.
-LEFT JOIN TechnologicalMaps ON Routing.IdTM = TechnologicalMaps.IdTM
+LEFT JOIN TechnologicalMaps ON Routing.IdTM = TechnologicalMaps.IdTM";
 
-WHERE Operation." + ((ScanInButton.IsChecked == true) ? "ScanIn" : "ScanOut") + " = 1";
+//WHERE Operation." + ((ScanInButton.IsChecked == true) ? "ScanIn" : "ScanOut") + " = 1";
 			Trace.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 			Trace.WriteLine(query);
 			Trace.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 			infoDT = SQLLib.SQL.ReturnDT(query, App.configuration.SQLConnectionString, out string ex);
 			DataLib.DataClass.DTtoTrace(infoDT);
-			//if (infoDT.Rows.Count > 0)
-			//{
-				
-			//}
-			//else
-			//	MessageBox.Show("Ничего нет");
 			try
 			{
-				if((infoDT.Rows.Count > 0))
+				if(infoDT.Rows.Count > 0)
 				{
-					if()
-					if (Convert.ToInt32(infoDT.Rows[0].ItemArray[15]) != 0)
+					if (Convert.ToInt32(infoDT.Rows[0].ItemArray[16]) != 0)
 					{
-						batchId = Convert.ToInt32(infoDT.Rows[0].ItemArray[0]);
-						operationId = Convert.ToInt32(infoDT.Rows[0].ItemArray[6]);
-						DeviceTypeTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[5]);
-						BatchNameTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[1]);
-						BatchPriorityTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[2]);
-						BatchNoteTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[3]);
-						LastCountTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[4]);
-						OperationKeyTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[7]);
-						OperationNameTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[8]);
-						OperationNoteTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[9]);
-						InteroperativeTimeTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[10]);
-						TypeOfProcessingTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[11]);
-						TMNameTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[12]);
-						ModeTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[14]);
+						switch(Convert.ToInt32(infoDT.Rows[0].ItemArray[16]))
+						{
+							case 1:
+								if (ScanInButton.IsChecked == true)
+									FillData();
+								else
+									MessageBox.Show("Партия должна сканироваться на вход");
+								break;
 
-						InfoGrid.Visibility = Visibility.Visible;
-
-						EmployeeBarcodeTB.Focus();
+							case 2:
+								if (ScanOutButton.IsChecked == true)
+									FillData();
+								else
+									MessageBox.Show("Партия должна сканироваться на выход");
+								break;
+						}
 					}
 					else
 					{
@@ -321,6 +335,30 @@ WHERE Operation." + ((ScanInButton.IsChecked == true) ? "ScanIn" : "ScanOut") + 
 				MessageBox.Show("Выборка пуста. Возможно вы ошиблись с выбором входа/выхода");
 				Reset();
 			}
+		}
+		private void FillData()
+		{
+			batchId = Convert.ToInt32(infoDT.Rows[0].ItemArray[0]);
+			operationId = Convert.ToInt32(infoDT.Rows[0].ItemArray[6]);
+			DeviceTypeTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[5]);
+			BatchNameTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[1]);
+			BatchPriorityTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[2]);
+			BatchNoteTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[3]);
+			LastCountTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[4]);
+			OperationKeyTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[7]);
+			OperationNameTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[8]);
+			OperationNoteTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[9]);
+			InteroperativeTimeTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[10]);
+			TypeOfProcessingTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[11]);
+			TMNameTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[12]);
+			ModeTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[14]);
+
+			InfoGrid.Visibility = Visibility.Visible;
+
+			if (!App.UnknownUserMode)
+				EmployeeBarcodeTB.Focus();
+			else
+				ConfirmationButton.Focus();
 		}
 
 		private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -392,44 +430,54 @@ WHERE Equipments.Barcode = " + equipmentBarcode,
 			}
 			else
 			{
-				if (!String.IsNullOrEmpty(EmployeeBarcodeTB.Text.Trim()))
+				//Проверка на участок
+				if (App.UnknownDistrictMode || (Convert.ToInt32(App.configuration.district) == Convert.ToInt32(infoDT.Rows[0].ItemArray[17])))
 				{
-					string query = @"
-INSERT INTO OperationHistory
-(IdOperation
-,IdBatch
-,StartDateTime
-,EndDateTime
-,Satellite
-,IdEmployee"
-+ ((equipmentId != 0) ? ",IdEquipment" : "") + @"
-,Note
-,LastCount)
-VALUES
-(" + operationId +
-"," + batchId +
-"," + ((ScanInButton.IsChecked == true) ? "CAST('" + DateTime.Now.ToString() + "' as datetime)" : "NULL") +
-"," + ((ScanOutButton.IsChecked == true) ? "CAST('" + DateTime.Now.ToString() + "' as datetime)" : "NULL") +
-"," + "NULL" +
-"," + employeeId +
-((equipmentId != 0) ? ("," + equipmentId) : "") +
-", '" + HistoryNoteTB.Text.Trim() + "'" +
-"," + LastCountTB.Text + ")";
-					Trace.WriteLine(query);
-					SQLLib.SQL.NoReturn(query, App.configuration.SQLConnectionString, out string ex);
-					if (!String.IsNullOrEmpty(ex))
-						MessageBox.Show(ex);
+					//Проверка на оператора
+					if (!String.IsNullOrEmpty(EmployeeBarcodeTB.Text.Trim()) || App.UnknownUserMode)
+					{
+						string query = @"
+						INSERT INTO OperationHistory
+						(IdOperation
+						,IdBatch
+						,StartDateTime
+						,EndDateTime
+						,Satellite"
+						+ ((employeeId != 0) ? ",IdEmployee" : "")
+						+ ((equipmentId != 0) ? ",IdEquipment" : "") + @"
+						,Note
+						,LastCount)
+						VALUES
+						(" + operationId +
+						"," + batchId +
+						"," + ((ScanInButton.IsChecked == true) ? "CAST('" + DateTime.Now.ToString() + "' as datetime)" : "NULL") +
+						"," + ((ScanOutButton.IsChecked == true) ? "CAST('" + DateTime.Now.ToString() + "' as datetime)" : "NULL") +
+						"," + "NULL" +
+						((employeeId != 0) ? ("," + employeeId) : "") +
+						((equipmentId != 0) ? ("," + equipmentId) : "") +
+						", '" + HistoryNoteTB.Text.Trim() + "'" +
+						"," + LastCountTB.Text + ")";
+
+						Trace.WriteLine(query);
+						SQLLib.SQL.NoReturn(query, App.configuration.SQLConnectionString, out string ex);
+						if (!String.IsNullOrEmpty(ex))
+							MessageBox.Show(ex);
+						else
+						{
+							MessageBox.Show("Успех!");
+							Reset();
+						}
+					}
 					else
 					{
-						MessageBox.Show("Успех!");
-						Reset();
+						MessageBox.Show("Введите свой штрих-код");
 					}
 				}
 				else
 				{
-					MessageBox.Show("Введите свой штрих-код");
+					MessageBox.Show("Не подходит участок");
+					Reset();
 				}
-				
 			}
 		}
 
@@ -449,13 +497,13 @@ VALUES
 			{
 				Trace.WriteLine("LastCountTB.Text = " + LastCountTB.Text.Trim());
 				Trace.WriteLine("infoDT.Rows[0].ItemArray[5] = " + Convert.ToString(infoDT.Rows[0].ItemArray[4]).Trim());
-				HistoryNoteLabel.Visibility = Visibility.Visible;
-				HistoryNoteTB.Visibility = Visibility.Visible;
+				//HistoryNoteLabel.Visibility = Visibility.Visible;
+				//HistoryNoteTB.Visibility = Visibility.Visible;
 			}
 			else
 			{
-				HistoryNoteTB.Visibility = Visibility.Collapsed;
-				HistoryNoteLabel.Visibility = Visibility.Collapsed;
+				//HistoryNoteTB.Visibility = Visibility.Collapsed;
+				//HistoryNoteLabel.Visibility = Visibility.Collapsed;
 			}
 		}
 	}

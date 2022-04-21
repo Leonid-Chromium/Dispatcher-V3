@@ -96,7 +96,7 @@
 					 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
 					 Margin="4"
 					 TextChanged="LastCountTB_TextChanged"/>
-			<Label x:Name="HistoryNoteLabel" Content="Причина изменения"
+			<Label x:Name="HistoryNoteLabel" Content="Коментарий к операции"
 				   Grid.Column="0" Grid.Row="5"/>
 			<TextBox x:Name="HistoryNoteTB"
 					 Grid.Column="1" Grid.Row="5"
