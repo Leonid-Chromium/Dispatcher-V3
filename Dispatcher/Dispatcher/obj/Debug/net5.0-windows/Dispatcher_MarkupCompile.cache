@@ -4,17 +4,26 @@
 winexe
 C#
 .cs
-D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\
+D:\#LEARN\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\
 Dispatcher
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
+<<<<<<< HEAD
+D:\#LEARN\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\App.xaml
+231200491002
+
+36807855429
+196353215821
+Style\CalendarStyle.xaml;UCs\BatchesUC.xaml;UCs\CalendarUC.xaml;UCs\ConfigurationUC.xaml;UCs\ConfigurationUC2.xaml;UCs\EquipmentCard.xaml;UCs\EquipmentEdit.xaml;UCs\EquipmentEditAndInfo.xaml;UCs\EquipmentList.xaml;UCs\EquipmentUC.xaml;UCs\RoleSUC.xaml;UCs\SettingsUC1.xaml;UCs\SimpleBatchsViewer.xaml;UCs\SimpleBatchsViewer2.xaml;UCs\SimpleBranchViewer.xaml;UCs\SimpleScanner.xaml;UCs\SuperUserUC.xaml;UCs\UniversalDataGrid.xaml;UCs\WorkSpaceUC1.xaml;Windows\AuthorizationWindow.xaml;Windows\MainWindow.xaml;Windows\TestWindow.xaml;Windows\WorkWindow.xaml;
+=======
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\App.xaml
 23909419187
 
 36979878948
 197-593929305
 Style\CalendarStyle.xaml;UCs\AddTKKK.xaml;UCs\BatchesUC.xaml;UCs\CalendarUC.xaml;UCs\ConfigurationUC.xaml;UCs\ConfigurationUC2.xaml;UCs\EquipmentCard.xaml;UCs\EquipmentEdit.xaml;UCs\EquipmentEditAndInfo.xaml;UCs\EquipmentList.xaml;UCs\EquipmentUC.xaml;UCs\RoleSUC.xaml;UCs\SettingsUC1.xaml;UCs\SimpleBatchsViewer.xaml;UCs\SimpleBranchViewer.xaml;UCs\SimpleScanner.xaml;UCs\SuperUserUC.xaml;UCs\UniversalDataGrid.xaml;UCs\WorkSpaceUC1.xaml;Windows\AuthorizationWindow.xaml;Windows\MainWindow.xaml;Windows\TestWindow.xaml;Windows\WorkWindow.xaml;
+>>>>>>> newProd
 
 False
 
