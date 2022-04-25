@@ -125,6 +125,7 @@ D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\SimpleBranchViewer.baml
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\SimpleScanner.g.cs
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\SimpleScanner.baml
+<<<<<<< HEAD
 D:\#LEARN\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\Dispatcher.csproj.AssemblyReference.cache
 D:\#LEARN\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\Style\CalendarStyle.baml
 D:\#LEARN\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\BatchesUC.g.cs
@@ -199,3 +200,7 @@ D:\#LEARN\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-
 D:\#LEARN\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\Dispatcher.csproj.CopyComplete
 D:\#LEARN\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\Dispatcher.genruntimeconfig.cache
 D:\#LEARN\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\ref\Dispatcher.dll
+=======
+D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\AddTKKK.g.cs
+D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\AddTKKK.baml
+>>>>>>> newProd

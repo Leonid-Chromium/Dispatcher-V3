@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="UCs\AddTKKK.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UCs\BatchesUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -67,6 +70,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Style\CalendarStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\AddTKKK.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\BatchesUC.xaml">
