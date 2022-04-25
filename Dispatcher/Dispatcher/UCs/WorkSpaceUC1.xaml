@@ -51,6 +51,9 @@
 			<TabItem x:Name="SimpleScannerTab" Header="Простой сканер">
 				<local:SimpleScanner/>
 			</TabItem>
+			<TabItem x:Name="SimpleAddTechMap" Header="Добавление тех.карты">
+				<local:AddTKKK/>
+			</TabItem>
 		</TabControl>
 	</Grid>
 </UserControl>
