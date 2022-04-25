@@ -35,7 +35,6 @@ D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\Wind
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\ConfigurationUC.g.cs
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\ConfigurationUC.baml
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\ConvertExpressionLib.dll
-D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\SQLLib.dll
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\ConvertExpressionLib.pdb
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\SQLLib.pdb
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\ConfigurationUC2.g.cs
@@ -204,3 +203,5 @@ D:\#LEARN\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\AddTKKK.g.cs
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\AddTKKK.baml
 >>>>>>> newProd
+D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\SimpleBatchsViewer2.g.cs
+D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\SimpleBatchsViewer2.baml
