@@ -44,6 +44,7 @@ namespace Dispatcher.Windows
                             string str = ((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString();
                             SetRole(Convert.ToInt32(str));
                             //MessageBox.Show("Приветствуем");
+                            App.roleStr = Convert.ToString(((ComboBoxItem)RoleComboBox.SelectedItem).Content.ToString());
                             App.role = Convert.ToInt32(((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString());
                             App.OpenMainWindow();
                             this.Close();
