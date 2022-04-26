@@ -81,5 +81,10 @@ App.configuration.SQLConnectionString, out string ex);
 
 			}
 		}
-	}
+
+        private void BtnNewAuth_Click(object sender, RoutedEventArgs e)
+        {
+			App.OpenAuthorizationWindow();
+        }
+    }
 }
