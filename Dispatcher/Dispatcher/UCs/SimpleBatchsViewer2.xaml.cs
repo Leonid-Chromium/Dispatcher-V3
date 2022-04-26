@@ -64,7 +64,7 @@ namespace Dispatcher.UCs
 
 		private void BtnUpdate_Click(object sender, RoutedEventArgs e)
 		{
-			if (GDBatchs.ItemsSource == historyBatchTable.DefaultView)
+			if (historyBatchTable != null && GDBatchs.ItemsSource == historyBatchTable.DefaultView)
 				HistoryBatch();
 			else
 				UpdateData();
