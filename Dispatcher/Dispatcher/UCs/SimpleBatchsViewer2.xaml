@@ -37,11 +37,17 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label Grid.Column="0" Grid.Row="0"
+            <Button Grid.Column="0" Grid.Row="0" Margin="25 5" 
+                    x:Name="BtnBack" Click="BtnBack_Click"
+                    Content="Назад" Visibility="Hidden"/>
+            <Button Grid.Column="0" Grid.Row="1" Margin="25 5" 
+                    x:Name="BtnUpdate" Click="BtnUpdate_Click"
+                    Content="Обновить"/>
+            <Label Grid.Column="2" Grid.Row="0"
                    VerticalAlignment="Center" 
                    FontWeight="Bold" FontSize="14" 
                    Content="Фильтровать по:"/>
-            <ComboBox Grid.Column="0" Grid.Row="1" x:Name="CmbFilter"
+            <ComboBox Grid.Column="2" Grid.Row="1" x:Name="CmbFilter"
                       DropDownClosed="CmbFilter_DropDownClosed"
                       VerticalAlignment="Center"  Margin="5 0"/>
             <Label Grid.Column="3" Grid.Row="0"
@@ -51,15 +57,15 @@
             <TextBox Grid.Column="3" Grid.Row="1" Margin="5"
                      x:Name="TbSearch"
                      TextChanged="TextBox_TextChanged"/>
-        </Grid> 
+        </Grid>
         <DataGrid Grid.Row="1" Margin="5" x:Name="GDBatchs" MinColumnWidth="90"
-                  CanUserAddRows="False"
+                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
                   ColumnHeaderStyle="{StaticResource WrappedColumnHeaderStyle}">
-            <DataGrid.RowDetailsTemplate>
-                <DataTemplate>                    
-                        <TextBlock TextWrapping="Wrap"/>                    
-                </DataTemplate>
-            </DataGrid.RowDetailsTemplate>
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
+                </Style>
+            </DataGrid.RowStyle>
         </DataGrid>
         </Grid>
 </UserControl>
