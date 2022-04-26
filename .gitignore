@@ -1,2 +1,10 @@
 
 *.cache
+*.v2
+*.v2
+Dispatcher/.vs/Dispatcher/v17/.suo
+Dispatcher/Dispatcher/bin/Debug/net5.0-windows/Dispatcher.dll
+Dispatcher/Dispatcher/bin/Debug/net5.0-windows/Dispatcher.pdb
+Dispatcher/Dispatcher/obj/Debug/net5.0-windows/Dispatcher.g.resources
+Dispatcher/Dispatcher/obj/Debug/net5.0-windows/Dispatcher.pdb
+*.BuildWithSkipAnalyzers
