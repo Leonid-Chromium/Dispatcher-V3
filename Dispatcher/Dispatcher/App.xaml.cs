@@ -20,6 +20,8 @@ namespace Dispatcher
         public static string version = "3.6";
         public static string user { get; set; } = "Unknown";
 
+        public static string roleStr = "";
+
         public static int role;
 
         public static Class.Configuration configuration { get; set; }
@@ -34,6 +36,7 @@ namespace Dispatcher
             {
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Workspace.AccessCheck();
+                mainWindow.Title = roleStr;
 				mainWindow.Show();
 
                 return 0;
