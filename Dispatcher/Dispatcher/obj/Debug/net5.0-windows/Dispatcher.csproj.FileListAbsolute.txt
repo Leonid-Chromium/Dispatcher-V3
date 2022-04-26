@@ -205,3 +205,8 @@ D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\
 >>>>>>> newProd
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\SimpleBatchsViewer2.g.cs
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\SimpleBatchsViewer2.baml
+D:\#LEARN\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\AddTKKK.g.cs
+D:\#LEARN\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\Dispatcher_Content.g.cs
+D:\#LEARN\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\AddTKKK.baml
+D:\#LEARN\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\Dispatcher.Properties.Resources.resources
+D:\#LEARN\#GitHub_Projects\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\Dispatcher.csproj.GenerateResource.cache
