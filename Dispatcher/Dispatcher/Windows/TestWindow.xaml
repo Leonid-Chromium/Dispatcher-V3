@@ -7,7 +7,7 @@
         xmlns:localUC="clr-namespace:Dispatcher.UCs"
         mc:Ignorable="d"
         Title="TestWindow" Height="450" Width="800"
-        Loaded="Window_Loaded">
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
