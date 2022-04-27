@@ -40,28 +40,27 @@
 		<TabControl x:Name="MyTabControle"
 					Grid.Column="1"
 					TabStripPlacement="Top">
+            
 			<TabItem x:Name="SuperTab" Header="Вкладка супер-пользователя" TabIndex="0">
-				<TabItem.Content>
-					<local:SuperUserUC/>
-				</TabItem.Content>
-			</TabItem>
+                <local:SuperUserUC HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            </TabItem>
 			<TabItem x:Name="EquipmentTab" Header="Оборудование">
-				<local:EquipmentUC/>
+				<local:EquipmentUC HorizontalAlignment="Center" VerticalAlignment="Center"/>
 			</TabItem>
 			<TabItem x:Name="BatchesTab" Header="Партии">
-				<local:BatchesUC/>
+                <local:BatchesUC HorizontalAlignment="Center" VerticalAlignment="Center"/>
 			</TabItem>
 			<TabItem x:Name="SimpleBatchesTab" Header="Простые партии">
-				<local:SimpleBatchsViewer/>
+                <local:SimpleBatchsViewer HorizontalAlignment="Center" VerticalAlignment="Center"/>
 			</TabItem>
             <TabItem x:Name="SimpleBatchesTab2" Header="Вывод партий">
-                <local:SimpleBatchsViewer2/>
+                <local:SimpleBatchsViewer2 HorizontalAlignment="Center" VerticalAlignment="Top"/>
             </TabItem>
             <TabItem x:Name="SimpleScannerTab" Header="Простой сканер">
-				<local:SimpleScanner/>
+                <local:SimpleScanner HorizontalAlignment="Center" VerticalAlignment="Center"/>
 			</TabItem>
 			<TabItem x:Name="SimpleAddTechMap" Header="Добавление тех.карты">
-				<local:AddTKKK/>
+                <local:AddTKKK HorizontalAlignment="Center" VerticalAlignment="Center"/>
 			</TabItem>
 		</TabControl>
 	</Grid>
