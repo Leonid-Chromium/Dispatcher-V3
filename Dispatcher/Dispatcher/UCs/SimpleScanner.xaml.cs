@@ -364,6 +364,16 @@ LEFT JOIN TechnologicalMaps ON Routing.IdTM = TechnologicalMaps.IdTM";
 			else
 				ConfirmationButton.Focus();
 
+			Trace.WriteLine(App.UnknownDistrictMode);
+			Trace.WriteLine((infoDT.Rows[0].ItemArray[17].ToString() != String.Empty));
+			Trace.WriteLine(((infoDT.Rows[0].ItemArray[17].ToString() != String.Empty) && (Convert.ToInt32(App.configuration.district) == Convert.ToInt32(infoDT.Rows[0].ItemArray[17]))));
+			Trace.WriteLine(App.UnknownDistrictMode || ((infoDT.Rows[0].ItemArray[17].ToString() != String.Empty) && (Convert.ToInt32(App.configuration.district) == Convert.ToInt32(infoDT.Rows[0].ItemArray[17]))));
+
+			Trace.WriteLine(App.UnknownDistrictMode);
+			Trace.WriteLine(infoDT.Rows[0].ItemArray[17].ToString() != String.Empty);
+			Trace.WriteLine(Convert.ToInt32(App.configuration.district));
+			Trace.WriteLine(Convert.ToInt32(infoDT.Rows[0].ItemArray[17]));
+
 			//Проверка на участок при получении данных
 			if (App.UnknownDistrictMode || ((infoDT.Rows[0].ItemArray[17].ToString() != String.Empty) && (Convert.ToInt32(App.configuration.district) == Convert.ToInt32(infoDT.Rows[0].ItemArray[17]))))
 			{
