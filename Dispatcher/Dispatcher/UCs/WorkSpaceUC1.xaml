@@ -40,7 +40,6 @@
 		<TabControl x:Name="MyTabControle"
 					Grid.Column="1"
 					TabStripPlacement="Top">
-            
 			<TabItem x:Name="SuperTab" Header="Вкладка супер-пользователя" TabIndex="0">
                 <local:SuperUserUC HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             </TabItem>
@@ -48,7 +47,7 @@
 				<local:EquipmentUC HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
 			</TabItem>
 			<TabItem x:Name="BatchesTab" Header="Партии">
-                <local:BatchesUC HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <local:BatchesUC HorizontalAlignment="Center" VerticalAlignment="Top"/>
 			</TabItem>
 			<TabItem x:Name="SimpleBatchesTab" Header="Простые партии">
                 <local:SimpleBatchsViewer HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
