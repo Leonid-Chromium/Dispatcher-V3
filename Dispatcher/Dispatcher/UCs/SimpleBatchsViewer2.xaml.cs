@@ -211,8 +211,8 @@ LEFT JOIN (
 		}
 
 		private void HistoryBatch()
-			{
-				historyBatchTable = SQLLib.SQL.ReturnDT(@"
+		{
+			historyBatchTable = SQLLib.SQL.ReturnDT(@"
 SELECT
 TRIM(Batchs.Name) AS 'Партия'
 ,Operations.ScanIn AS 'Вход'
@@ -245,12 +245,12 @@ LEFT JOIN Districts ON Rooms.IdDistrict = Districts.IdDistrict
 LEFT JOIN Routing ON Operations.IdRouting = Routing.IdRouting
 LEFT JOIN TechnologicalMaps ON Routing.IdTM = TechnologicalMaps.IdTM
 WHERE Batchs.IdBatch = " + idBatch
-	, App.configuration.SQLConnectionString, out string ex);
+, App.configuration.SQLConnectionString, out string ex);
 
-				if (historyBatchTable.Rows.Count > 0)
-				{
-					GDBatchs.ItemsSource = historyBatchTable.DefaultView;
-				}
+			if (historyBatchTable.Rows.Count > 0)
+			{
+				GDBatchs.ItemsSource = historyBatchTable.DefaultView;
 			}
 		}
-    }
+	}
+}
