@@ -157,6 +157,8 @@ FirstMain.BatchId
 			END
 	END
 ,TechnologicalMaps.District
+,Districts.Name
+
 FROM (
 		SELECT
 		*
@@ -288,7 +290,9 @@ LEFT JOIN Operations AS Operation ON FirstMain.NowOperationID = Operation.IdOper
 --Подключаем роутиги(да что это такое?)
 LEFT JOIN Routing ON Operation.IdRouting = Routing.IdRouting
 --Подключаем Т.К./ К.К.
-LEFT JOIN TechnologicalMaps ON Routing.IdTM = TechnologicalMaps.IdTM";
+LEFT JOIN TechnologicalMaps ON Routing.IdTM = TechnologicalMaps.IdTM
+--Подключаем участки
+LEFT JOIN Districts ON TechnologicalMaps.District = Districts.IdDistrict";
 
 //WHERE Operation." + ((ScanInButton.IsChecked == true) ? "ScanIn" : "ScanOut") + " = 1";
 			Trace.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
@@ -385,7 +389,7 @@ LEFT JOIN TechnologicalMaps ON Routing.IdTM = TechnologicalMaps.IdTM";
 				if (infoDT.Rows[0].ItemArray[17].ToString() == String.Empty)
 					message = "В МСЛ не указан участок. Обратитесь к администратору";
 				else
-					message = "Участок не подошёл.\nНужен участок " + Convert.ToInt32(infoDT.Rows[0].ItemArray[17]);
+					message = "Участок не подошёл.\nНужен участок " + Convert.ToString(infoDT.Rows[0].ItemArray[18]);
 				MessageBox.Show(message);
 			}
 		}
