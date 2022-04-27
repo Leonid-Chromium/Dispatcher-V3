@@ -295,6 +295,9 @@ LEFT JOIN TechnologicalMaps ON Routing.IdTM = TechnologicalMaps.IdTM";
 			Trace.WriteLine(query);
 			Trace.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 			infoDT = SQLLib.SQL.ReturnDT(query, App.configuration.SQLConnectionString, out string ex);
+			Trace.WriteLine("Ошибки запроса\n" + ex);
+			if (!String.IsNullOrEmpty(ex))
+				Trace.WriteLine(ex);
 			DataLib.DataClass.DTtoTrace(infoDT);
 			try
 			{
@@ -338,6 +341,7 @@ LEFT JOIN TechnologicalMaps ON Routing.IdTM = TechnologicalMaps.IdTM";
 		}
 		private void FillData()
 		{
+			
 			batchId = Convert.ToInt32(infoDT.Rows[0].ItemArray[0]);
 			operationId = Convert.ToInt32(infoDT.Rows[0].ItemArray[6]);
 			DeviceTypeTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[5]);
@@ -359,6 +363,31 @@ LEFT JOIN TechnologicalMaps ON Routing.IdTM = TechnologicalMaps.IdTM";
 				EmployeeBarcodeTB.Focus();
 			else
 				ConfirmationButton.Focus();
+
+			Trace.WriteLine(App.UnknownDistrictMode);
+			Trace.WriteLine((infoDT.Rows[0].ItemArray[17].ToString() != String.Empty));
+			Trace.WriteLine(((infoDT.Rows[0].ItemArray[17].ToString() != String.Empty) && (Convert.ToInt32(App.configuration.district) == Convert.ToInt32(infoDT.Rows[0].ItemArray[17]))));
+			Trace.WriteLine(App.UnknownDistrictMode || ((infoDT.Rows[0].ItemArray[17].ToString() != String.Empty) && (Convert.ToInt32(App.configuration.district) == Convert.ToInt32(infoDT.Rows[0].ItemArray[17]))));
+
+			Trace.WriteLine(App.UnknownDistrictMode);
+			Trace.WriteLine(infoDT.Rows[0].ItemArray[17].ToString() != String.Empty);
+			Trace.WriteLine(Convert.ToInt32(App.configuration.district));
+			Trace.WriteLine(Convert.ToInt32(infoDT.Rows[0].ItemArray[17]));
+
+			//Проверка на участок при получении данных
+			if (App.UnknownDistrictMode || ((infoDT.Rows[0].ItemArray[17].ToString() != String.Empty) && (Convert.ToInt32(App.configuration.district) == Convert.ToInt32(infoDT.Rows[0].ItemArray[17]))))
+			{
+
+			}
+			else
+			{
+				string message = "";
+				if (infoDT.Rows[0].ItemArray[17].ToString() == String.Empty)
+					message = "В МСЛ не указан участок. Обратитесь к администратору";
+				else
+					message = "Участок не подошёл.\nНужен участок " + Convert.ToInt32(infoDT.Rows[0].ItemArray[17]);
+				MessageBox.Show(message);
+			}
 		}
 
 		private void CancelButton_Click(object sender, RoutedEventArgs e)
