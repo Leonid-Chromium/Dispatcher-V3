@@ -28,7 +28,7 @@ namespace Dispatcher
 
         //Настройка позволяющая делать запись сканером без определения человека
         public static bool UnknownUserMode = true;
-        public static bool UnknownDistrictMode = true;
+        public static bool UnknownDistrictMode = false;
 
         public static int OpenMainWindow()
         {

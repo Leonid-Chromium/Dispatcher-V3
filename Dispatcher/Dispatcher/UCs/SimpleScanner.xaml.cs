@@ -365,13 +365,17 @@ LEFT JOIN TechnologicalMaps ON Routing.IdTM = TechnologicalMaps.IdTM";
 				ConfirmationButton.Focus();
 
 			//Проверка на участок при получении данных
-			if (App.UnknownDistrictMode || (Convert.ToInt32(App.configuration.district) == Convert.ToInt32(infoDT.Rows[0].ItemArray[17])))
+			if (App.UnknownDistrictMode || ((infoDT.Rows[0].ItemArray[17].ToString() != String.Empty) && (Convert.ToInt32(App.configuration.district) == Convert.ToInt32(infoDT.Rows[0].ItemArray[17]))))
 			{
 
 			}
 			else
 			{
-				string message = "Участок не подошёл.\nНужен участок " + Convert.ToInt32(infoDT.Rows[0].ItemArray[17]);
+				string message = "";
+				if (infoDT.Rows[0].ItemArray[17].ToString() == String.Empty)
+					message = "В МСЛ не указан участок. Обратитесь к администратору";
+				else
+					message = "Участок не подошёл.\nНужен участок " + Convert.ToInt32(infoDT.Rows[0].ItemArray[17]);
 				MessageBox.Show(message);
 			}
 		}
