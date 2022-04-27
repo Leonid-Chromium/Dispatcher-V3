@@ -42,25 +42,25 @@
 					TabStripPlacement="Top">
             
 			<TabItem x:Name="SuperTab" Header="Вкладка супер-пользователя" TabIndex="0">
-                <local:SuperUserUC HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <local:SuperUserUC HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             </TabItem>
 			<TabItem x:Name="EquipmentTab" Header="Оборудование">
-				<local:EquipmentUC HorizontalAlignment="Center" VerticalAlignment="Center"/>
+				<local:EquipmentUC HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
 			</TabItem>
 			<TabItem x:Name="BatchesTab" Header="Партии">
                 <local:BatchesUC HorizontalAlignment="Center" VerticalAlignment="Center"/>
 			</TabItem>
 			<TabItem x:Name="SimpleBatchesTab" Header="Простые партии">
-                <local:SimpleBatchsViewer HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <local:SimpleBatchsViewer HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
 			</TabItem>
             <TabItem x:Name="SimpleBatchesTab2" Header="Вывод партий">
-                <local:SimpleBatchsViewer2 HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <local:SimpleBatchsViewer2 HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
             </TabItem>
             <TabItem x:Name="SimpleScannerTab" Header="Простой сканер">
-                <local:SimpleScanner HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <local:SimpleScanner HorizontalAlignment="Center" VerticalAlignment="Top"/>
 			</TabItem>
 			<TabItem x:Name="SimpleAddTechMap" Header="Добавление тех.карты">
-                <local:AddTKKK HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <local:AddTKKK HorizontalAlignment="Center" VerticalAlignment="Top"/>
 			</TabItem>
 		</TabControl>
 	</Grid>
