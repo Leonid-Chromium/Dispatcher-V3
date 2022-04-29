@@ -130,8 +130,18 @@ FirstMain.BatchId
 ,OperationKey = TRIM(Operation.OperationKey)
 ,OperationName = TRIM(Operation.Name)
 ,OperationNote = TRIM(Operation.OperationNote)
-,InteroperativeTime = Operation.InteroperativeTime
-,TypeOfProcessing = Operation.TypeOfProcessing
+,InteroperativeTime =
+	CASE
+		WHEN Operation.InteroperativeTime IS NOT NULL
+			THEN Operation.InteroperativeTime
+		ELSE LastITAndTOP.InteroperativeTime
+	END
+,TypeOfProcessing =
+	CASE
+		WHEN Operation.TypeOfProcessing IS NOT NULL
+			THEN Operation.TypeOfProcessing
+		ELSE LastITAndTOP.TypeOfProcessing
+	END
 ,TKKKName = TRIM(TechnologicalMaps.NameTM)
 ,TKKKLARS = TRIM(TechnologicalMaps.Lars)
 ,TKKKMode = Routing.Mode
@@ -292,7 +302,35 @@ LEFT JOIN Routing ON Operation.IdRouting = Routing.IdRouting
 --Подключаем Т.К./ К.К.
 LEFT JOIN TechnologicalMaps ON Routing.IdTM = TechnologicalMaps.IdTM
 --Подключаем участки
-LEFT JOIN Districts ON TechnologicalMaps.District = Districts.IdDistrict";
+LEFT JOIN Districts ON TechnologicalMaps.District = Districts.IdDistrict
+--Получение МОВ и ТО вопреки всему
+LEFT JOIN (
+	SELECT TOP 1
+	LastOperation.IdBatch
+	,Operations.IdOperation
+	,Operations.IdMSL
+	,Operations.Number
+	,Operations.InteroperativeTime
+	,Operations.TypeOfProcessing
+	FROM (
+		SELECT * FROM Operations WHERE Operations.IdMSL = @THISBATCHMSL
+	) AS Operations
+	LEFT JOIN (
+		SELECT TOP 1
+		Batchs.IdBatch
+		,OperationHistory.IdRecording
+		,OperationHistory.IdOperation
+		,Operations.IdMSL
+		,Operations.Number
+		FROM Batchs
+		LEFT JOIN OperationHistory ON Batchs.IdBatch = OperationHistory.IdBatch
+		LEFT JOIN Operations On OperationHistory.IdOperation = Operations.IdOperation
+		WHERE Batchs.IdBatch = @THISBATCHID
+		ORDER By OperationHistory.IdRecording DESC
+	) AS LastOperation ON Operations.IdMSL <= LastOperation.IdMSL
+	WHERE Operations.Number <= LastOperation.Number AND Operations.InteroperativeTime IS NOT NULL
+	ORDER BY Operations.Number DESC
+) AS LastITAndTOP ON Batchs.IdBatch = LastITAndTOP.IdBatch";
 
 //WHERE Operation." + ((ScanInButton.IsChecked == true) ? "ScanIn" : "ScanOut") + " = 1";
 			Trace.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
