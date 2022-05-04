@@ -37,6 +37,9 @@
     <Compile Update="UCs\EquipmentUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UCs\MonitorNextOperationOnDistrictUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UCs\RoleSUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -100,6 +103,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\EquipmentUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\MonitorNextOperationOnDistrictUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\RoleSUC.xaml">
