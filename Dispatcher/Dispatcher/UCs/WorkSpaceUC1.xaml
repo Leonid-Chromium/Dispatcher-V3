@@ -61,6 +61,9 @@
 			<TabItem x:Name="SimpleAddTechMap" Header="Добавление тех.карты">
                 <local:AddTKKK HorizontalAlignment="Center" VerticalAlignment="Top"/>
 			</TabItem>
+			<TabItem x:Name="MonitorNextOperationOnDistrict" Header="Близлежащие партии">
+				<local:MonitorNextOperationOnDistrictUC/>
+			</TabItem>
 		</TabControl>
 	</Grid>
 </UserControl>
