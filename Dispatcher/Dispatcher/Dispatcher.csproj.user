@@ -13,6 +13,9 @@
     <Compile Update="UCs\BatchesUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UCs\BatchsMonitor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UCs\CalendarUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -79,6 +82,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\BatchesUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\BatchsMonitor.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UCs\CalendarUC.xaml">
