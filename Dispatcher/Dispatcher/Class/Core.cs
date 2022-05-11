@@ -77,7 +77,7 @@ namespace Dispatcher.Class
                 newConfiguration.logPath = "test logPath";
                 newConfiguration.theme = "test theme";
                 newConfiguration.SQLConnectionString = "test sql";
-                newConfiguration.district = "test district";
+                newConfiguration.district = "0";
                 config.SetConfigV2(newConfiguration);
 
                 return 0;

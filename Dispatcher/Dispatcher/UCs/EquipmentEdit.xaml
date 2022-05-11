@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="Dispatcher.UCs.EquipmentEdit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Dispatcher.UCs"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+	<UserControl.Resources>
+		<Style TargetType="GroupBox">
+			<Setter Property="Margin" Value="10, 0"/>
+			<Setter Property="FontSize" Value="20"/>
+		</Style>
+	</UserControl.Resources>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<GroupBox Header="Название оборудования" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0">
+			<TextBox x:Name="EquipName" Margin="5"/>
+		</GroupBox>
+
+		<GroupBox Header="ID оборудования" Grid.Column="0" Grid.Row="1">
+			<TextBox x:Name="EquipID" Margin="5"/>
+		</GroupBox>
+
+		<GroupBox Header="Инвентарный номер" Grid.Column="1" Grid.Row="1">
+			<TextBox x:Name="EquipInvent" Margin="5"/>
+		</GroupBox>
+
+		<GroupBox Header="Участок" Grid.Column="0" Grid.Row="2">
+			<TextBox x:Name="EquipDistrict" Margin="5"/>
+		</GroupBox>
+
+		<GroupBox Header="Комната" Grid.Column="1" Grid.Row="2">
+			<TextBox x:Name="EquipRoom" Margin="5"/>
+		</GroupBox>
+
+		<GroupBox Header="Вместимость" Grid.Column="0" Grid.Row="3">
+			<TextBox x:Name="EquipCapacity" Margin="5"/>
+		</GroupBox>
+		
+		<GroupBox Header="Вес" Grid.Column="1" Grid.Row="3">
+			<TextBox x:Name="EquipWeight" Margin="5"/>
+		</GroupBox>
+
+		<Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<GroupBox Header="Длина" Grid.Column="0">
+				<TextBox x:Name="EquipLenght" Margin="5"/>
+			</GroupBox>
+			<GroupBox Header="Ширина" Grid.Column="1">
+				<TextBox x:Name="EquipWidth" Margin="5"/>
+			</GroupBox>
+			<GroupBox Header="Высота" Grid.Column="2">
+				<TextBox x:Name="EquipHeight" Margin="5"/>
+			</GroupBox>
+		</Grid>
+
+		<GroupBox Header="Статус" Grid.Column="0" Grid.Row="5">
+			<ComboBox x:Name="EquipStatus"/>
+		</GroupBox>
+
+		<Grid Grid.Column="1" Grid.Row="5">
+			<Button x:Name="SaveStatus" Content="Сохранить статус" Margin="10" Click="SaveStatus_Click"/>
+		</Grid>
+	</Grid>
+</UserControl>

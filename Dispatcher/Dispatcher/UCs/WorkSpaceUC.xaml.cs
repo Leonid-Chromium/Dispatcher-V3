@@ -41,21 +41,18 @@ namespace Dispatcher.UCs
 
 		public void AccessCheck()
 		{
-			DataTable Access = SQLLib.SQL.ReturnDT(@"SELECT
+			DataTable Access = SQLLib.SQL.ReturnDT(@"
+SELECT
 RoleUCNode.IdRole
 , Roles.RoleName
 , UCs.Name
 FROM RoleUCNode
 LEFT JOIN Roles on Roles.IdRole = RoleUCNode.IdRole
 LEFT JOIN UCs on UCs.IdUC = RoleUCNode.IdUC
-WHERE RoleUCNode.IdRole = " + App.role, App.configuration.SQLConnectionString, out string ex);
+WHERE RoleUCNode.IdRole = " + App.role,
+App.configuration.SQLConnectionString, out string ex);
 			if (ex != string.Empty)
 				MessageBox.Show(ex);
-
-
-			//TabControl myTabControle = this.MyTabControle;
-			//myTabControle.Items.Remove(SuperTab);
-			//myTabControle.Items.Add(SuperTab);
 
 			Trace.WriteLine("MyTabControle.Items.Count-1 = " + (MyTabControle.Items.Count - 1));
 			for (int i = (MyTabControle.Items.Count - 1); i >= 0; i--)
@@ -83,6 +80,23 @@ WHERE RoleUCNode.IdRole = " + App.role, App.configuration.SQLConnectionString, o
 					MyTabControle.Items.Remove(tabItem);
 
 			}
+		}
+
+        private void BtnNewAuth_Click(object sender, RoutedEventArgs e)
+        {
+			App.OpenAuthorizationWindow();
+        }
+
+		private void HideSidebarButton_Click(object sender, RoutedEventArgs e)
+		{
+			ShowSidebarButton.Visibility = Visibility.Visible;
+			Sidebar.Visibility = Visibility.Collapsed;
+		}
+
+		private void ShowSidebarButton_Click(object sender, RoutedEventArgs e)
+		{
+			Sidebar.Visibility = Visibility.Visible;
+			ShowSidebarButton.Visibility = Visibility.Collapsed;
 		}
 	}
 }

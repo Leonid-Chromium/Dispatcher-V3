@@ -30,22 +30,38 @@ namespace Dispatcher.Windows
         }
 
         private void EnterButton_Click(object sender, RoutedEventArgs e)
-        {            
-            string hash = Hashing.GetMD5Hash(PasswordBox.Password);
-            //Trace.WriteLine("Хэш: " + hash);
-            DataTable dataTable = SQL.ReturnDT("SELECT RolePassword FROM Roles WHERE IdRole = '" + ((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString() + "'", App.configuration.SQLConnectionString, out string ex);
-            for (int i = 0; i < dataTable.Rows.Count; i++)
-                if (dataTable.Rows[i].ItemArray[0].ToString() == hash)
-                {
-                    string str = ((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString();
-                    SetRole(Convert.ToInt32(str));
-                    MessageBox.Show("Salam");
-                    App.role = Convert.ToInt32(((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString());
-                    App.OpenMainWindow();
-                    this.Close();
+        {
+			try
+			{
+                if((ComboBoxItem)RoleComboBox.SelectedItem != null)
+				{
+                    string hash = Hashing.GetMD5Hash(PasswordBox.Password);
+                    //Trace.WriteLine("Хэш: " + hash);
+                    DataTable dataTable = SQL.ReturnDT("SELECT RolePassword FROM Roles WHERE IdRole = '" + ((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString() + "'", App.configuration.SQLConnectionString, out string ex);
+                    DataLib.DataClass.DTtoTrace(dataTable);
+                    for (int i = 0; i < dataTable.Rows.Count; i++)
+                        if (dataTable.Rows[i].ItemArray[0].ToString() == hash)
+                        {
+                            string str = ((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString();
+                            SetRole(Convert.ToInt32(str));
+                            //MessageBox.Show("Приветствуем");
+                            App.roleStr = Convert.ToString(((ComboBoxItem)RoleComboBox.SelectedItem).Content.ToString());
+                            App.role = Convert.ToInt32(((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString());
+                            App.OpenMainWindow();
+                            this.Close();
+                        }
+                        else
+                            MessageBox.Show("Неверный пароль"); //Тут обработка в случае неправильного ввода пароля
                 }
-                else
-                    MessageBox.Show("Неверный пароль"); //Тут обработка в случае неправильного ввода пароля
+				else
+				{
+                    MessageBox.Show("Выберите роль");
+				}
+			}
+            catch(Exception ex)
+			{
+                MessageBox.Show(ex.Message);
+			}
         }
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)

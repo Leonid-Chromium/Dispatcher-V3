@@ -9,7 +9,8 @@
 	<Grid>
 		<TabControl>
 			<TabItem Header="Роли и права доступа" IsSelected="True">
-				<local:RoleSUC/>
+				<local:RoleSUC HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                               MaxHeight="300" MaxWidth="750"/>
 			</TabItem>
 		</TabControl>
     </Grid>
