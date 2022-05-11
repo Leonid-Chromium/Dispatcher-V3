@@ -9,18 +9,24 @@
 			 Loaded="UserControl_Loaded">
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition MaxWidth="300" MinWidth="150"/>
+			<ColumnDefinition Width="auto"/>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
 		<Grid x:Name="Sidebar"
+			  MaxWidth="300" MinWidth="150"
 			  Grid.Column="0">
 			<Grid.RowDefinitions>
+				<RowDefinition Height="50"/>
 				<RowDefinition MinHeight="200"/>
 				<RowDefinition/>
 				<RowDefinition Height="100"/>
 			</Grid.RowDefinitions>
-			<local:CalendarUC x:Name="MyCalendarUC" Grid.Row="0"/>
-			<Grid Background="Aqua" Grid.Row="2">
+			<Button x:Name="HideSidebarButton" Content="Скрыть панель"
+					Grid.Row="0"
+					Margin="10"
+					Click="HideSidebarButton_Click"/>
+			<local:CalendarUC x:Name="MyCalendarUC" Grid.Row="1"/>
+			<Grid Background="Aqua" Grid.Row="3">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition/>
                     <ColumnDefinition/>
@@ -37,6 +43,12 @@
 				</Button>
 			</Grid>
 		</Grid>
+		<Button x:Name="ShowSidebarButton" Content=">>"
+				Grid.ColumnSpan="2"
+				Panel.ZIndex="2"
+				VerticalAlignment="Center" HorizontalAlignment="Left"
+				Visibility="Collapsed"
+				Click="ShowSidebarButton_Click"/>
 		<TabControl x:Name="MyTabControle"
 					Grid.Column="1"
 					TabStripPlacement="Top">
