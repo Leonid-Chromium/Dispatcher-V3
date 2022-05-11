@@ -86,5 +86,17 @@ App.configuration.SQLConnectionString, out string ex);
         {
 			App.OpenAuthorizationWindow();
         }
-    }
+
+		private void HideSidebarButton_Click(object sender, RoutedEventArgs e)
+		{
+			ShowSidebarButton.Visibility = Visibility.Visible;
+			Sidebar.Visibility = Visibility.Collapsed;
+		}
+
+		private void ShowSidebarButton_Click(object sender, RoutedEventArgs e)
+		{
+			Sidebar.Visibility = Visibility.Visible;
+			ShowSidebarButton.Visibility = Visibility.Collapsed;
+		}
+	}
 }
