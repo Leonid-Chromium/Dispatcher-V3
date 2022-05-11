@@ -54,7 +54,7 @@ namespace Dispatcher.Windows
                 }
 				else
 				{
-                    MessageBox.Show("ComboBox пуст");
+                    MessageBox.Show("Выберите роль");
 				}
 			}
             catch(Exception ex)
