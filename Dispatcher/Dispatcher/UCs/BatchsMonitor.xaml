@@ -36,11 +36,6 @@
 				<RowDefinition/>
 				<RowDefinition/>
 			</Grid.RowDefinitions>
-			<Button x:Name="BackButton" Content="Назад"
-					Grid.Column="0" Grid.Row="0"
-					Margin="25 5"
-					Visibility="Hidden"
-					Click="BackButton_Click"/>
 			<Button x:Name="BatchUpdateButton" Content="Обновить"
 					Grid.Column="0" Grid.Row="1"
 					Margin="25 5"
@@ -58,10 +53,39 @@
 				   Grid.Column="3" Grid.Row="0"
 				   VerticalAlignment="Center"
 				   FontWeight="Bold" FontSize="14"/>
-			<TextBox x:Name="SearchTB"
+			<TextBox x:Name="BatchSearchTB"
 					 Grid.Column="3" Grid.Row="1"
 					 Margin="5"
-					 TextChanged="SearchTB_TextChanged"/>
+					 TextChanged="BatchSearchTB_TextChanged"/>
+		</Grid>
+		<Grid x:Name="HistoryHeader" Grid.Row="0"
+			  Visibility="Collapsed">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<Button x:Name="BackButton" Content="Назад"
+					Grid.Column="0" Grid.Row="0"
+					Margin="25 5"
+					Click="BackButton_Click"/>
+			<Button x:Name="HistoryUpdateButton" Content="Обновить"
+					Grid.Column="0" Grid.Row="1"
+					Margin="25 5"
+					Click="HistoryUpdateButton_Click"/>
+			<Label Content="Глобальный поиск:"
+				   Grid.Column="3" Grid.Row="0"
+				   VerticalAlignment="Center"
+				   FontWeight="Bold" FontSize="14"/>
+			<TextBox x:Name="HistorySearchTB"
+					 Grid.Column="3" Grid.Row="1"
+					 Margin="5"
+					 TextChanged="HistorySearchTB_TextChanged"/>
 		</Grid>
 
 		<DataGrid x:Name="BatchsDG"

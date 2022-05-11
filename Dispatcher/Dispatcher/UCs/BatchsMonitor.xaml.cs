@@ -31,7 +31,7 @@ namespace Dispatcher.UCs
 		//Фильтрация кривая
 		private void BatchRowFilter()
 		{
-			batchDT.DefaultView.RowFilter = string.Format("([Ключ устройства] LIKE '%{0}%' OR [Название устройства] LIKE '%{0}%' OR [Название партии] LIKE '%{0}%' OR [Примечание к последней партии] LIKE '%{0}%' OR [Название последней операции] LIKE '%{0}%') AND [Ключ устройства] LIKE '%{1}%'", (string)SearchTB.Text, ((ComboBoxItem)FilterCB.SelectedItem).Tag);
+			batchDT.DefaultView.RowFilter = string.Format("([Ключ устройства] LIKE '%{0}%' OR [Название устройства] LIKE '%{0}%' OR [Название партии] LIKE '%{0}%' OR [Примечание к последней партии] LIKE '%{0}%' OR [Название последней операции] LIKE '%{0}%') AND [Ключ устройства] LIKE '%{1}%'", (string)BatchSearchTB.Text, ((ComboBoxItem)FilterCB.SelectedItem).Tag);
 		}
 
 		private void UpdateHeader()
@@ -174,7 +174,8 @@ LEFT JOIN (
 				BatchsDG.ItemsSource = batchDT.DefaultView;
 			}
 
-			BackButton.Visibility = Visibility.Collapsed;
+			BatchsHeader.Visibility = Visibility.Visible;
+			HistoryHeader.Visibility = Visibility.Collapsed;
 		}
 
 		private void UpdateHistoryData()
@@ -217,7 +218,8 @@ WHERE Batchs.IdBatch = " + idBatch
 			if (historyDT.Rows.Count > 0)
 			{
 				HistoryDG.ItemsSource = historyDT.DefaultView;
-				BackButton.Visibility = Visibility.Visible;
+				HistoryHeader.Visibility = Visibility.Visible;
+				BatchsHeader.Visibility = Visibility.Collapsed;
 				BatchsDG.Visibility = Visibility.Collapsed;
 				HistoryDG.Visibility = Visibility.Visible;
 			}
@@ -240,9 +242,9 @@ WHERE Batchs.IdBatch = " + idBatch
 
 		private void BackButton_Click(object sender, RoutedEventArgs e)
 		{
+			UpdateBatchData();
 			BatchsDG.Visibility = Visibility.Visible;
 			HistoryDG.Visibility = Visibility.Collapsed;
-			UpdateBatchData();
 		}
 
 		private void BatchUpdateButton_Click(object sender, RoutedEventArgs e)
@@ -251,12 +253,12 @@ WHERE Batchs.IdBatch = " + idBatch
 			BatchRowFilter();
 		}
 
-		private void FilterCB_DropDownClosed(object sender, EventArgs e)
+		private void BatchSearchTB_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			BatchRowFilter();
 		}
 
-		private void SearchTB_TextChanged(object sender, TextChangedEventArgs e)
+		private void FilterCB_DropDownClosed(object sender, EventArgs e)
 		{
 			BatchRowFilter();
 		}
@@ -271,6 +273,16 @@ WHERE Batchs.IdBatch = " + idBatch
 		{
 			UpdateHeader();
 			UpdateBatchData();
+		}
+
+		private void HistoryUpdateButton_Click(object sender, RoutedEventArgs e)
+		{
+			UpdateHistoryData();
+		}
+
+		private void HistorySearchTB_TextChanged(object sender, TextChangedEventArgs e)
+		{
+
 		}
 	}
 }
