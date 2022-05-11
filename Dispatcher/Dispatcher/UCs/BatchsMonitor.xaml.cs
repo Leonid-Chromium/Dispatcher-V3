@@ -174,6 +174,8 @@ LEFT JOIN (
 				BatchsDG.ItemsSource = batchDT.DefaultView;
 			}
 
+			DataLib.DataClass.DTtoTrace(batchDT);
+
 			BatchsHeader.Visibility = Visibility.Visible;
 			HistoryHeader.Visibility = Visibility.Collapsed;
 		}

@@ -38,6 +38,7 @@ namespace Dispatcher.Windows
                     string hash = Hashing.GetMD5Hash(PasswordBox.Password);
                     //Trace.WriteLine("Хэш: " + hash);
                     DataTable dataTable = SQL.ReturnDT("SELECT RolePassword FROM Roles WHERE IdRole = '" + ((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString() + "'", App.configuration.SQLConnectionString, out string ex);
+                    DataLib.DataClass.DTtoTrace(dataTable);
                     for (int i = 0; i < dataTable.Rows.Count; i++)
                         if (dataTable.Rows[i].ItemArray[0].ToString() == hash)
                         {

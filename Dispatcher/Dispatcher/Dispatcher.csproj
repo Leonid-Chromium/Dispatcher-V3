@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <Reference Include="DataLib">
-      <HintPath>bin\Debug\net5.0-windows\DataLib.dll</HintPath>
+      <HintPath>..\..\..\DataLib\DataLib\bin\Debug\net5.0\DataLib.dll</HintPath>
     </Reference>
     <Reference Include="SQLLib">
       <HintPath>bin\Debug\net5.0-windows\SQLLib.dll</HintPath>
