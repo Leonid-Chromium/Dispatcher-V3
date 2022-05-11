@@ -64,6 +64,9 @@
 			<TabItem x:Name="MonitorNextOperationOnDistrict" Header="Близлежащие партии">
 				<local:MonitorNextOperationOnDistrictUC/>
 			</TabItem>
+			<TabItem x:Name="BatchsMonitor" Header="Монитор партий">
+				<local:BatchsMonitor/>
+			</TabItem>
 		</TabControl>
 	</Grid>
 </UserControl>
