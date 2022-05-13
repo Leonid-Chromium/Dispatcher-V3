@@ -20,8 +20,6 @@ namespace Dispatcher.Windows
     /// </summary>
     public partial class TestWindow : Window
     {
-        public object parent { get; set; }
-
         public TestWindow()
         {
             InitializeComponent();
@@ -29,7 +27,7 @@ namespace Dispatcher.Windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            configurationUC.parent = this;
+
         }
     }
 }

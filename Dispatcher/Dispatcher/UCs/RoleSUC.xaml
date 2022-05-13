@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="Dispatcher.UCs.RoleSUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Dispatcher.UCs"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+			 Loaded="UserControl_Loaded">
+    <Grid>
+		<ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+			<StackPanel>
+				<GroupBox MaxHeight="300" Header="Роли" Margin="10">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="200"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+
+						<Label Content="Выбор среди существующих"
+						   Grid.Row="0" Grid.Column="0"
+						   HorizontalAlignment="Left" VerticalAlignment="Center"/>
+						<ComboBox x:Name="RoleCB"
+							  Grid.Row="0" Grid.Column="1"
+							  HorizontalAlignment="Stretch" VerticalAlignment="Center"
+							  HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+							  Margin="5"
+							  DropDownClosed="RoleCB_DropDownClosed"/>
+
+						<Label Content="Идентификатор роли"
+						   Grid.Row="1" Grid.Column="0"
+						   HorizontalAlignment="Left" VerticalAlignment="Center"/>
+						<TextBox x:Name="RoleIdTB"
+							 Grid.Row="1" Grid.Column="1"
+							 HorizontalAlignment="Stretch" VerticalAlignment="Center"
+							 HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+							 Margin="5" IsReadOnly="True"/>
+
+						<Label Content="Имя роли"
+						   Grid.Row="2" Grid.Column="0"
+						   HorizontalAlignment="Left" VerticalAlignment="Center"/>
+						<TextBox x:Name="RoleNameTB"
+							Grid.Row="2" Grid.Column="1"
+							HorizontalAlignment="Stretch" VerticalAlignment="Center"
+							HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+							Margin="5"/>
+
+						<Label Content="Пароль роли"
+						   Grid.Row="3" Grid.Column="0"
+						   HorizontalAlignment="Left" VerticalAlignment="Center"/>
+						<TextBox x:Name="RolePasswordTB"
+							Grid.Row="3" Grid.Column="1"
+							HorizontalAlignment="Stretch" VerticalAlignment="Center"
+							HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+							Margin="5"
+							 TextChanged="RolePasswordTB_TextChanged"/>
+
+						<Label Content="Хэш роли"
+						   Grid.Row="4" Grid.Column="0"
+						   HorizontalAlignment="Left" VerticalAlignment="Center"/>
+						<TextBox x:Name="RoleHashTB"
+							Grid.Row="4" Grid.Column="1"
+							HorizontalAlignment="Stretch" VerticalAlignment="Center"
+							HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+							Margin="5"/>
+
+						<Grid Grid.Row="5" Grid.ColumnSpan="2">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+
+							<Button x:Name="AddButton" Content="Добавить новую"
+								Grid.Column="0"
+								Margin="5"
+								Click="AddButton_Click"/>
+
+							<Button x:Name="EditButton" Content="Изменить Выбраную"
+								Grid.Column="1"
+								Margin="5"
+								Click="EditButton_Click"/>
+
+							<Button x:Name="DeleteButton" Content="Удалить выбраную"
+								Grid.Column="2"
+								Margin="5"
+								Click="DeleteButton_Click"/>
+						</Grid>
+					</Grid>
+				</GroupBox>
+			</StackPanel>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

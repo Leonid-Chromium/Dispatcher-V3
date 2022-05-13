@@ -7,10 +7,64 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="UCs\AddTKKK.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\BatchesUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\BatchsMonitor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\CalendarUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UCs\ConfigurationUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UCs\ConfigurationUC2.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\EquipmentCard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\EquipmentEdit.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\EquipmentEditAndInfo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\EquipmentList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\EquipmentUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\MonitorNextOperationOnDistrictUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\RoleSUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\SettingsUC1.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\SimpleBatchsViewer.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\SimpleScanner.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\SuperUserUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UCs\UniversalDataGrid.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UCs\WorkSpaceUC1.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\AuthorizationWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\TestWindow.xaml.cs">
@@ -21,10 +75,67 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Style\CalendarStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\AddTKKK.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\BatchesUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\BatchsMonitor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\CalendarUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UCs\ConfigurationUC.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="UCs\ConfigurationUC2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\EquipmentCard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\EquipmentEdit.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\EquipmentEditAndInfo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\EquipmentList.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\EquipmentUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\MonitorNextOperationOnDistrictUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\RoleSUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\SettingsUC1.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\SimpleBatchsViewer.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\SimpleScanner.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\SuperUserUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UCs\UniversalDataGrid.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UCs\WorkSpaceUC1.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\AuthorizationWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\MainWindow.xaml">

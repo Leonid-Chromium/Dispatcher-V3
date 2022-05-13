@@ -17,19 +17,27 @@ namespace Dispatcher
 
     public partial class App : Application
     {
-        
+        public static string version = "3.6";
+        public static string user { get; set; } = "Unknown";
 
-        public static string version = "0.5";
-        public static string user { get; set; }
+        public static string roleStr = "";
+
+        public static int role;
 
         public static Class.Configuration configuration { get; set; }
 
-        public int OpenMainWindow()
+        //Настройка позволяющая делать запись сканером без определения человека
+        public static bool UnknownUserMode = true;
+        public static bool UnknownDistrictMode = false;
+
+        public static int OpenMainWindow()
         {
             try
             {
                 MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
+                mainWindow.Workspace.AccessCheck();
+                mainWindow.Title = roleStr;
+				mainWindow.Show();
 
                 return 0;
             }
@@ -39,12 +47,11 @@ namespace Dispatcher
             }
         }
 
-        public int OpenTestWindow()
+        public static int OpenTestWindow()
         {
             try
             {
                 Windows.TestWindow testWindow = new Windows.TestWindow();
-                testWindow.parent = this;
                 testWindow.Show();
 
                 return 0;
@@ -55,14 +62,38 @@ namespace Dispatcher
             }
         }
 
+        public static int OpenAuthorizationWindow()
+        {
+            try
+            {
+                Windows.AuthorizationWindow authorizationWindow = new Windows.AuthorizationWindow();
+                authorizationWindow.Show();
+                return 0;
+            }
+            catch
+            {
+                return 1;
+            }
+        }
+
         public App()
         {
+
+            Trace.WriteLine(typeof(UCs.CalendarUC));
             //Выполняется при запуске
-            //TODO Придумай откуда брать пользователя
-            user = "TestUser";
-            configuration = Class.ConfigManage.GetConfiguration("Manual");
+            //TODO Продумай случай если нет файла конфигураций
+            try
+            {
+                configuration = Class.ConfigManage.GetConfiguration(ConfigManage.GetSavedConfiguration());
+            }
+            catch
+            {
+                List<string> configurationsName = ConfigManage.GetAllConfigurationName();
+                configuration = Class.ConfigManage.GetConfiguration(configurationsName.First());
+            }
+            //TODO Нужен лог
             configuration.TraceConfiguration();
-            OpenTestWindow();
+            OpenAuthorizationWindow();
         }
 
     }

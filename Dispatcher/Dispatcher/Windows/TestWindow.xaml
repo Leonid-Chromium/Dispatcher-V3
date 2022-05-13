@@ -7,16 +7,16 @@
         xmlns:localUC="clr-namespace:Dispatcher.UCs"
         mc:Ignorable="d"
         Title="TestWindow" Height="450" Width="800"
-        Loaded="Window_Loaded">
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <localUC:UniversalDataGrid Grid.Column="0"/>
-        <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3"
+        <localUC:UniversalDataGrid Grid.Column="0"  selectStr="SELECT * FROM EmployeeStatus" valuesNameStr="IdStatus, Name"/>
+        <GridSplitter Grid.Column="1" ShowsPreview="False" Width="10"
         HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-        <localUC:ConfigurationUC x:Name="configurationUC" Grid.Column="2"/>
+        <localUC:ConfigurationUC2 x:Name="configurationUC" Grid.Column="2"/>
     </Grid>
 </Window>
