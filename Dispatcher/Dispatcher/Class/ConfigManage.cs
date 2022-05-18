@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Diagnostics;
+using System.IO;
 
 namespace Dispatcher.Class
 {
@@ -598,6 +599,34 @@ namespace Dispatcher.Class
         public static int SetSavedConfiguration(string configurationName)
         {
             return SetSavedConfiguration(configurationName, standartConfigurationAddres);
+        }
+
+        public static int CheckLogPath(string LogPath)
+        {
+            try
+            {
+                if (Directory.Exists(LogPath))
+                    return 0;
+                else
+                {
+                    Directory.CreateDirectory(LogPath);
+                    return 1;
+                }
+            }
+            catch
+            {
+                return 2;
+            }
+
+        }
+
+        public static int MakeLogFile(string LogPath)
+        {
+            DateTime dateTime = DateTime.Now;
+            string newLogFile = String.Concat(dateTime.Date.ToShortDateString(), ".", dateTime.Hour, ".", dateTime.Minute, ".", dateTime.Second, ".json");
+            File.Create(String.Concat(LogPath, newLogFile));
+            App.logFile = newLogFile;
+            return 0;
         }
     }
 }

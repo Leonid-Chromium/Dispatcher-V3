@@ -19,6 +19,9 @@
     <Reference Include="DataLib">
       <HintPath>..\..\..\DataLib\DataLib\bin\Debug\net5.0\DataLib.dll</HintPath>
     </Reference>
+    <Reference Include="LogLib">
+      <HintPath>..\..\..\LogLib\LogLib\bin\Debug\net5.0\LogLib.dll</HintPath>
+    </Reference>
     <Reference Include="SQLLib">
       <HintPath>bin\Debug\net5.0-windows\SQLLib.dll</HintPath>
     </Reference>

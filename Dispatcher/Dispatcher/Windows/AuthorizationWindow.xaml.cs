@@ -72,6 +72,8 @@ namespace Dispatcher.Windows
             {
                 App.configuration = ConfigManage.GetConfiguration(ConfigComboBox.SelectedItem.ToString());
                 ConfigManage.SetSavedConfiguration(ConfigComboBox.SelectedItem.ToString());
+                ConfigManage.CheckLogPath(App.configuration.logPath);
+                ConfigManage.MakeLogFile(App.configuration.logPath);
             }
             
             RoleLoaded();

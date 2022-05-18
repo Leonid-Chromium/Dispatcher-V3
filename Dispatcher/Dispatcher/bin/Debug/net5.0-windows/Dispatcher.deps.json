@@ -10,6 +10,7 @@
         "dependencies": {
           "System.Data.SqlClient": "4.8.3",
           "DataLib": "1.0.0.0",
+          "LogLib": "1.0.0.0",
           "SQLLib": "1.0.0.0"
         },
         "runtime": {
@@ -99,6 +100,14 @@
           }
         }
       },
+      "LogLib/1.0.0.0": {
+        "runtime": {
+          "LogLib.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "SQLLib/1.0.0.0": {
         "runtime": {
           "SQLLib.dll": {
@@ -179,6 +188,11 @@
       "hashPath": "system.security.principal.windows.4.7.0.nupkg.sha512"
     },
     "DataLib/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LogLib/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
