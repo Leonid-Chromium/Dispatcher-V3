@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <configurations>
-  <SavedConfiguration>Leonid-Laptop</SavedConfiguration>
+  <SavedConfiguration>Leonid-Laptop6</SavedConfiguration>
   <configuration name="Manual">
     <themePath>Themes\\</themePath>
     <theme>Light</theme>
@@ -66,6 +66,66 @@
     <theme>Light</theme>
     <assetsPath>Assets\\</assetsPath>
     <logPath>D:\File\TestDir\Test\Log2.json</logPath>
+    <SQLConnectionString>Data Source=192.168.1.116,1433;Initial Catalog=DispatcherV3;Persist Security Info=True;User ID=Admin;Password=Admin</SQLConnectionString>
+    <serverIp>192.168.1.51</serverIp>
+    <serverPort>8880</serverPort>
+    <netPath>file://192.168.1.160/Crystal_monitoring/NewDispatcher/</netPath>
+    <district>3</district>
+    <room>0</room>
+  </configuration>
+  <configuration name="Leonid-Laptop2">
+    <themePath>Themes\\</themePath>
+    <theme>Light</theme>
+    <assetsPath>Assets\\</assetsPath>
+    <logPath>D:\File\TestDir\Test\</logPath>
+    <SQLConnectionString>Data Source=192.168.1.116,1433;Initial Catalog=DispatcherV3;Persist Security Info=True;User ID=Admin;Password=Admin</SQLConnectionString>
+    <serverIp>192.168.1.51</serverIp>
+    <serverPort>8880</serverPort>
+    <netPath>file://192.168.1.160/Crystal_monitoring/NewDispatcher/</netPath>
+    <district>3</district>
+    <room>0</room>
+  </configuration>
+  <configuration name="Leonid-Laptop3">
+    <themePath>Themes\\</themePath>
+    <theme>Light</theme>
+    <assetsPath>Assets\\</assetsPath>
+    <logPath>D:\File\TestDir\Test2\</logPath>
+    <SQLConnectionString>Data Source=192.168.1.116,1433;Initial Catalog=DispatcherV3;Persist Security Info=True;User ID=Admin;Password=Admin</SQLConnectionString>
+    <serverIp>192.168.1.51</serverIp>
+    <serverPort>8880</serverPort>
+    <netPath>file://192.168.1.160/Crystal_monitoring/NewDispatcher/</netPath>
+    <district>3</district>
+    <room>0</room>
+  </configuration>
+  <configuration name="Leonid-Laptop4">
+    <themePath>Themes\\</themePath>
+    <theme>Light</theme>
+    <assetsPath>Assets\\</assetsPath>
+    <logPath>D:\File\TestDir\Test3\</logPath>
+    <SQLConnectionString>Data Source=192.168.1.116,1433;Initial Catalog=DispatcherV3;Persist Security Info=True;User ID=Admin;Password=Admin</SQLConnectionString>
+    <serverIp>192.168.1.51</serverIp>
+    <serverPort>8880</serverPort>
+    <netPath>file://192.168.1.160/Crystal_monitoring/NewDispatcher/</netPath>
+    <district>3</district>
+    <room>0</room>
+  </configuration>
+  <configuration name="Leonid-Laptop5">
+    <themePath>Themes\\</themePath>
+    <theme>Light</theme>
+    <assetsPath>Assets\\</assetsPath>
+    <logPath>D:\File\TestDir\Test4\</logPath>
+    <SQLConnectionString>Data Source=192.168.1.116,1433;Initial Catalog=DispatcherV3;Persist Security Info=True;User ID=Admin;Password=Admin</SQLConnectionString>
+    <serverIp>192.168.1.51</serverIp>
+    <serverPort>8880</serverPort>
+    <netPath>file://192.168.1.160/Crystal_monitoring/NewDispatcher/</netPath>
+    <district>3</district>
+    <room>0</room>
+  </configuration>
+  <configuration name="Leonid-Laptop6">
+    <themePath>Themes\\</themePath>
+    <theme>Light</theme>
+    <assetsPath>Assets\\</assetsPath>
+    <logPath>D:\File\TestDir\Test6\</logPath>
     <SQLConnectionString>Data Source=192.168.1.116,1433;Initial Catalog=DispatcherV3;Persist Security Info=True;User ID=Admin;Password=Admin</SQLConnectionString>
     <serverIp>192.168.1.51</serverIp>
     <serverPort>8880</serverPort>
