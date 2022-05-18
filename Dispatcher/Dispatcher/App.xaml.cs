@@ -9,6 +9,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
+using LogLib;
+using System.IO;
+
 namespace Dispatcher
 {
     /// <summary>
@@ -25,6 +28,7 @@ namespace Dispatcher
         public static int role;
 
         public static Class.Configuration configuration { get; set; }
+        public static string logFile { get; set; } = "UnknownLog";
 
         //Настройка позволяющая делать запись сканером без определения человека
         public static bool UnknownUserMode = true;
@@ -76,9 +80,10 @@ namespace Dispatcher
             }
         }
 
+        
+
         public App()
         {
-
             Trace.WriteLine(typeof(UCs.CalendarUC));
             //Выполняется при запуске
             //TODO Продумай случай если нет файла конфигураций
@@ -93,6 +98,10 @@ namespace Dispatcher
             }
             //TODO Нужен лог
             configuration.TraceConfiguration();
+            ConfigManage.CheckLogPath(App.configuration.logPath);
+            ConfigManage.MakeLogFile(App.configuration.logPath);
+            Logger logger = new Logger(version, user, String.Concat(App.configuration.logPath, logFile));
+            logger.NewLog(100, "Загрузили конфигурацию");
             OpenAuthorizationWindow();
         }
 
