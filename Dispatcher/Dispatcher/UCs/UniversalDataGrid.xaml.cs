@@ -108,7 +108,7 @@ namespace Dispatcher.UCs
             }
             catch(Exception ex)
             {
-                Log.NewLog(300, "Ошибка в UniDG при парсинге " + ex.Message);
+                App.logger.NewLog(400, "Ошибка в UniDG при парсинге " + ex.Message);
                 MessageBox.Show(ex.Message);
                 return 1;
             }
@@ -162,7 +162,7 @@ namespace Dispatcher.UCs
                 dataTable = SQL.ReturnDT(selectStr, App.configuration.SQLConnectionString, out string ex);
                 if(ex == String.Empty)
                 {
-                    Log.NewLog(300, "Ошибка в UniDG при select " + ex);
+                    App.logger.NewLog(401, "Ошибка в UniDG при select " + ex);
                 }
                 MyDataGrid.ItemsSource = dataTable.DefaultView;
 
@@ -171,7 +171,7 @@ namespace Dispatcher.UCs
             catch (Exception ex)
             {
                 //TODO Добавь логи
-                Log.NewLog(300, "Ошибка в UniDG при select " + ex.Message);
+                App.logger.NewLog(402, "Ошибка в UniDG при select " + ex.Message);
                 MessageBox.Show(ex.Message);
 
                 return 1;
@@ -185,13 +185,13 @@ namespace Dispatcher.UCs
                 int ResultNoRuturn = SQL.NoReturn(insertStr.Trim().Replace("*", " "), App.configuration.SQLConnectionString, out string ex);
                 if (ex == String.Empty)
                 {
-                    Log.NewLog(300, "Ошибка в UniDG при select " + ex);
+                    App.logger.NewLog(403, "Ошибка в UniDG при select " + ex);
                 }
                 return ResultNoRuturn;
             }
             catch (Exception ex)
             {
-                Log.NewLog(300, "Ошибка в UniDG при insert" + ex.Message);
+                App.logger.NewLog(404, "Ошибка в UniDG при insert" + ex.Message);
                 MessageBox.Show(ex.Message);
 
                 return 1;
