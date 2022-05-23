@@ -135,7 +135,7 @@ namespace Dispatcher.UCs
                 if (result == MessageBoxResult.Yes)
                 {
                     Trace.WriteLine("Конфигурация удалена");
-                    Log.NewLog(001, "Конфигурацию " + ConfigurationCB.SelectedItem.ToString() + " удалили");
+                    App.logger.NewLog(200, "Конфигурацию " + ConfigurationCB.SelectedItem.ToString() + " удалили");
                 }
                 else
                 {
@@ -167,7 +167,7 @@ namespace Dispatcher.UCs
                     ConfigManage.DeleteConfiguration(App.configuration.name);
                     App.configuration = ConfigManage.GetConfiguration(ConfigManage.GetAllConfigurationName().First());
                     Trace.WriteLine("Конфигурация удалена");
-                    Log.NewLog(101, "Конфигурацию " + ConfigurationCB.SelectedItem.ToString() + " удалили");
+                    App.logger.NewLog(201, "Конфигурацию " + ConfigurationCB.SelectedItem.ToString() + " удалили");
                 }
                 else
                 {
@@ -218,7 +218,7 @@ namespace Dispatcher.UCs
 
                     ConfigManage.ChangeConfiguration(App.configuration.name, newConfiguration); //Изменяем конфигурацию в файле конфигурации
                     App.configuration = ConfigManage.GetConfiguration(newConfiguration.name); //Выбираем её для использования
-                    Log.NewLog(001, "Конфигурацию " + App.configuration.name + " изменили" + ((newConfiguration.name != App.configuration.name) ? (" на " + newConfiguration.name) : "")); // Это тернарный оператор. Я не хочу об этом говорить
+                    App.logger.NewLog(202, "Конфигурацию " + App.configuration.name + " изменили" + ((newConfiguration.name != App.configuration.name) ? (" на " + newConfiguration.name) : "")); // Это тернарный оператор. Я не хочу об этом говорить
 
                     updateInfoAboutConfig();
                 }
@@ -263,7 +263,7 @@ namespace Dispatcher.UCs
                     newConfiguration.TraceConfiguration();
                     ConfigManage.ChangeConfiguration(App.configuration.name, newConfiguration); //Изменяем конфигурацию в файле конфигурации
                     App.configuration = ConfigManage.GetConfiguration(newConfiguration.name); //Выбираем её для использования
-                    Log.NewLog(001, "Конфигурацию " + App.configuration.name + " изменили" + ((newConfiguration.name != App.configuration.name) ? (" на " + newConfiguration.name) : "")); // Это тернарный оператор. Я не хочу об этом говорить
+                    App.logger.NewLog(203, "Конфигурацию " + App.configuration.name + " изменили" + ((newConfiguration.name != App.configuration.name) ? (" на " + newConfiguration.name) : "")); // Это тернарный оператор. Я не хочу об этом говорить
                 }
                 updateInfoAboutConfig();
 
@@ -308,14 +308,14 @@ namespace Dispatcher.UCs
                     newConfiguration.TraceConfiguration();
                     ConfigManage.ChangeConfiguration(App.configuration.name, newConfiguration); //Изменяем конфигурацию в файле конфигурации
                     App.configuration = ConfigManage.GetConfiguration(newConfiguration.name); //Выбираем её для использования
-                    Log.NewLog(001, "Конфигурацию " + App.configuration.name + " изменили" + ((newConfiguration.name != App.configuration.name) ? (" на " + newConfiguration.name) : "")); // Это тернарный оператор. Я не хочу об этом говорить
+                    App.logger.NewLog(204, "Конфигурацию " + App.configuration.name + " изменили" + ((newConfiguration.name != App.configuration.name) ? (" на " + newConfiguration.name) : "")); // Это тернарный оператор. Я не хочу об этом говорить
                 }
                 updateInfoAboutConfig();
             }
             catch(Exception ex)
             {
                 Trace.WriteLine(ex.Message);
-                Log.NewLog(301, ex.Message);
+                App.logger.NewLog(401, ex.Message);
             }
         }
 
@@ -341,7 +341,7 @@ namespace Dispatcher.UCs
 
                     ConfigManage.SetConfiguration(newConfiguration); //добавляем новую конфигурацию
                     App.configuration = ConfigManage.GetConfiguration(newConfiguration.name); //Выбираем её для использования
-                    Log.NewLog(001, "Добавили новую конфигурацию " + App.configuration.name);
+                    App.logger.NewLog(403, "Добавили новую конфигурацию " + App.configuration.name);
                 }
                 updateInfoAboutConfig();
 
@@ -376,13 +376,13 @@ namespace Dispatcher.UCs
 
                     ConfigManage.SetConfiguration(newConfiguration); //добавляем новую конфигурацию
                     App.configuration = ConfigManage.GetConfiguration(newConfiguration.name); //Выбираем её для использования
-                    Log.NewLog(101, "Добавили новую конфигурацию " + App.configuration.name);
+                    App.logger.NewLog(205, "Добавили новую конфигурацию " + App.configuration.name);
                 }
                 updateInfoAboutConfig();
             }
             catch(Exception ex)
             {
-                Log.NewLog(301, "Ошибка при добавлении конфигурации " + ex.Message);
+                App.logger.NewLog(405, "Ошибка при добавлении конфигурации " + ex.Message);
             }
         }
     }

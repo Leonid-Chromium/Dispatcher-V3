@@ -62,33 +62,6 @@ namespace Dispatcher.Class
 
         }
 
-        public int TestConfig()
-        {
-            try
-            {
-                Config config = new Config();
-                Configuration actualConfiguration = config.GetConfigV1("Standart");
-                Trace.WriteLine("\n\n\n");
-                actualConfiguration.TraceConfiguration();
-                Configuration newConfiguration = new Configuration();
-                newConfiguration.name = "Test2.4";
-                newConfiguration.themePath = "test themePath";
-                newConfiguration.assetsPath = "test assetsPath";
-                newConfiguration.logPath = "test logPath";
-                newConfiguration.theme = "test theme";
-                newConfiguration.SQLConnectionString = "test sql";
-                newConfiguration.district = "0";
-                config.SetConfigV2(newConfiguration);
-
-                return 0;
-            }
-            catch
-            {
-                return 1;
-            }
-            
-        }
-
         public int TestNet()
         {
             try
