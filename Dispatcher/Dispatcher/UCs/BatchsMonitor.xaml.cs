@@ -28,19 +28,26 @@ namespace Dispatcher.UCs
 
 		public static int idBatch;
 
-		//Фильтрация кривая
+		//TODO Фильтрация кривая
+		/// <summary>
+		/// Фильтрациия по партиям
+		/// </summary>
 		private void BatchRowFilter()
 		{
 			batchDT.DefaultView.RowFilter = string.Format("([Ключ устройства] LIKE '%{0}%' OR [Название устройства] LIKE '%{0}%' OR [Название партии] LIKE '%{0}%' OR [Примечание к последней партии] LIKE '%{0}%' OR [Название последней операции] LIKE '%{0}%') AND [Ключ устройства] LIKE '%{1}%'", (string)BatchSearchTB.Text, ((ComboBoxItem)FilterCB.SelectedItem).Tag);
 		}
 
+		/// <summary>
+		/// Обновление шапки
+		/// </summary>
 		private void UpdateHeader()
 		{
 			//Заполняем комбо-бокс для фильтрации по прибору
-			DeviceDT = SQLLib.SQL.ReturnDT("SELECT TRIM(Devices.KeyDevice), Devices.IdDevice FROM Devices", App.configuration.SQLConnectionString, out string ex1);
-			if(!String.IsNullOrWhiteSpace(ex1))
+			DeviceDT = SQLLib.SQL.ReturnDT("SELECT TRIM(Devices.KeyDevice), Devices.IdDevice FROM Devices", App.configuration.SQLConnectionString, out string ex);
+			if(!String.IsNullOrWhiteSpace(ex))
 			{
-				MessageBox.Show(ex1);
+				App.logger.NewLog(400, "Ощибка в BatchsMonitor.UpdateHeader SQL-запроса " + ex);
+				MessageBox.Show(ex);
 			}
 
 			FilterCB.Items.Clear();
@@ -62,6 +69,9 @@ namespace Dispatcher.UCs
 			}
 		}
 
+		/// <summary>
+		/// Обновление данных партий
+		/// </summary>
 		private void UpdateBatchData()
 		{
 			batchDT = SQLLib.SQL.ReturnDT(@"
@@ -166,6 +176,7 @@ LEFT JOIN (
 ", App.configuration.SQLConnectionString, out string ex);
 			if (!String.IsNullOrWhiteSpace(ex))
 			{
+				App.logger.NewLog(401, "Ощибка в BatchsMonitor.UpdateBatchData SQL-запроса " + ex);
 				MessageBox.Show(ex);
 			}
 			//Проверка на пустой DataTable
@@ -180,6 +191,9 @@ LEFT JOIN (
 			HistoryHeader.Visibility = Visibility.Collapsed;
 		}
 
+		/// <summary>
+		/// Обновление данных истории партии
+		/// </summary>
 		private void UpdateHistoryData()
 		{
 			historyDT = SQLLib.SQL.ReturnDT(@"
@@ -216,6 +230,11 @@ LEFT JOIN Routing ON Operations.IdRouting = Routing.IdRouting
 LEFT JOIN TechnologicalMaps ON Routing.IdTM = TechnologicalMaps.IdTM
 WHERE Batchs.IdBatch = " + idBatch
 , App.configuration.SQLConnectionString, out string ex);
+			if (!String.IsNullOrWhiteSpace(ex))
+			{
+				App.logger.NewLog(402, "Ощибка в BatchsMonitor.UpdateHistoryData SQL-запроса " + ex);
+				MessageBox.Show(ex);
+			}
 
 			if (historyDT.Rows.Count > 0)
 			{
@@ -227,6 +246,10 @@ WHERE Batchs.IdBatch = " + idBatch
 			}
 		}
 
+		/// <summary>
+		/// Обработка нажатия на партию
+		/// </summary>
+		/// <param name="sender"></param>
 		private void HistoryBatchSender(object sender)
 		{
 			if (sender != null)
@@ -242,6 +265,11 @@ WHERE Batchs.IdBatch = " + idBatch
 			InitializeComponent();
 		}
 
+		/// <summary>
+		/// Обработчик кнопки назад
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void BackButton_Click(object sender, RoutedEventArgs e)
 		{
 			UpdateBatchData();

@@ -35,50 +35,63 @@ namespace Dispatcher.UCs
 			Reset();
 		}
 
+		/// <summary>
+		/// Приведение сканера в "нулевое" состояние
+		/// </summary>
 		private void Reset()
 		{
-			batchId = 0;
-			operationId = 0;
-			equipmentId = 0;
-			employeeId = 0;
+			try
+			{
+				batchId = 0;
+				operationId = 0;
+				equipmentId = 0;
+				employeeId = 0;
 
-			CancelButton.Visibility = Visibility.Collapsed;
+				CancelButton.Visibility = Visibility.Collapsed;
 
-			ScanInButton.IsEnabled = true;
-			ScanOutButton.IsEnabled = true;
-			ScanInButton.Opacity = 1;
-			ScanOutButton.Opacity = 1;
-			ScanInButton.IsChecked = false;
-			ScanOutButton.IsChecked = false;
+				ScanInButton.IsEnabled = true;
+				ScanOutButton.IsEnabled = true;
+				ScanInButton.Opacity = 1;
+				ScanOutButton.Opacity = 1;
+				ScanInButton.IsChecked = false;
+				ScanOutButton.IsChecked = false;
 
-			BatchBarcodeTB.Text = null;
-			BatchGrid.Visibility = Visibility.Collapsed;
+				BatchBarcodeTB.Text = null;
+				BatchGrid.Visibility = Visibility.Collapsed;
 
-			DeviceTypeTB.Text = null;
-			BatchNameTB.Text = null;
-			BatchPriorityTB.Text = null;
-			BatchPriorityTB.Text = null;
-			BatchNoteTB.Text = null;
-			LastCountTB.Text = null;
-			HistoryNoteTB.Text = null;
-			EmployeeBarcodeTB.Text = null;
-			EmployeeFIOTB.Text = null;
-			EquipmentBarcodeTB.Text = null;
-			EquipmentNameTB.Text = null;
-			OperationKeyTB.Text = null;
-			OperationNameTB.Text = null;
-			OperationNoteTB.Text = null;
-			InteroperativeTimeTB.Text = null;
-			TypeOfProcessingTB.Text = null;
-			TMNameTB.Text = null;
-			ModeTB.Text = null;
+				DeviceTypeTB.Text = null;
+				BatchNameTB.Text = null;
+				BatchPriorityTB.Text = null;
+				BatchPriorityTB.Text = null;
+				BatchNoteTB.Text = null;
+				LastCountTB.Text = null;
+				HistoryNoteTB.Text = null;
+				EmployeeBarcodeTB.Text = null;
+				EmployeeFIOTB.Text = null;
+				EquipmentBarcodeTB.Text = null;
+				EquipmentNameTB.Text = null;
+				OperationKeyTB.Text = null;
+				OperationNameTB.Text = null;
+				OperationNoteTB.Text = null;
+				InteroperativeTimeTB.Text = null;
+				TypeOfProcessingTB.Text = null;
+				TMNameTB.Text = null;
+				ModeTB.Text = null;
 
-			//HistoryNoteLabel.Visibility = Visibility.Collapsed;
-			//HistoryNoteTB.Visibility = Visibility.Collapsed;
+				//HistoryNoteLabel.Visibility = Visibility.Collapsed;
+				//HistoryNoteTB.Visibility = Visibility.Collapsed;
 
-			InfoGrid.Visibility = Visibility.Collapsed;
+				InfoGrid.Visibility = Visibility.Collapsed;
+			}
+			catch (Exception ex)
+			{
+				App.logger.NewLog(400, "Ошибка в SimpleScanner.Reset " + ex.Message);
+			}
 		}
 
+		/// <summary>
+		/// Обработка нажатий на кнопки вход/выход
+		/// </summary>
 		private void CheckScanRadioButton()
 		{
 			ScanInButton.IsEnabled = false;
@@ -95,9 +108,14 @@ namespace Dispatcher.UCs
 			BatchBarcodeTB.Focus();
 		}
 
-		private void UploadInfo()
+		/// <summary>
+		/// Получение информации из БД
+		/// </summary>
+		private void DownloadInfo()
 		{
-			string query = @"
+			try
+			{
+				string query = @"
 DECLARE @BARCODE NUMERIC (13, 0) = " + BatchBarcodeTB.Text.Trim() +
 @"
 DECLARE @THISBATCHID INT
@@ -331,104 +349,135 @@ LEFT JOIN (
 	WHERE Operations.Number <= LastOperation.Number AND Operations.InteroperativeTime IS NOT NULL
 	ORDER BY Operations.Number DESC
 ) AS LastITAndTOP ON Batchs.IdBatch = LastITAndTOP.IdBatch";
-
-//WHERE Operation." + ((ScanInButton.IsChecked == true) ? "ScanIn" : "ScanOut") + " = 1";
-			Trace.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-			Trace.WriteLine(query);
-			Trace.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-			infoDT = SQLLib.SQL.ReturnDT(query, App.configuration.SQLConnectionString, out string ex);
-			Trace.WriteLine("Ошибки запроса\n" + ex);
-			if (!String.IsNullOrEmpty(ex))
-				Trace.WriteLine(ex);
-			DataLib.DataClass.DTtoTrace(infoDT);
-			try
-			{
-				if(infoDT.Rows.Count > 0)
+				Trace.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+				Trace.WriteLine(query);
+				Trace.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+				App.logger.NewLog(200, "Сканируется партия " + BatchBarcodeTB.Text.Trim());
+				infoDT = SQLLib.SQL.ReturnDT(query, App.configuration.SQLConnectionString, out string ex);
+				//обработка ошибок возникших при обращении к запросу
+				if (!String.IsNullOrWhiteSpace(ex))
 				{
-					if (Convert.ToInt32(infoDT.Rows[0].ItemArray[16]) != 0)
-					{
-						switch(Convert.ToInt32(infoDT.Rows[0].ItemArray[16]))
-						{
-							case 1:
-								if (ScanInButton.IsChecked == true)
-									FillData();
-								else
-									MessageBox.Show("Партия должна сканироваться на вход");
-								break;
+					App.logger.NewLog(401, "Ошибка В SimpleScanner.DownloadInfo при обращенни к БД" + ex);
+					Trace.WriteLine("Ошибки запроса\n" + ex);
+					Trace.WriteLine(ex);
+				}
 
-							case 2:
-								if (ScanOutButton.IsChecked == true)
-									FillData();
-								else
-									MessageBox.Show("Партия должна сканироваться на выход");
-								break;
+				DataLib.DataClass.DTtoTrace(infoDT);
+
+				try
+				{
+					if (infoDT.Rows.Count > 0)
+					{
+						if (Convert.ToInt32(infoDT.Rows[0].ItemArray[16]) != 0)
+						{
+							switch (Convert.ToInt32(infoDT.Rows[0].ItemArray[16]))
+							{
+								case 1:
+									if (ScanInButton.IsChecked == true)
+										FillData();
+									else
+										MessageBox.Show("Партия должна сканироваться на вход");
+									break;
+
+								case 2:
+									if (ScanOutButton.IsChecked == true)
+										FillData();
+									else
+										MessageBox.Show("Партия должна сканироваться на выход");
+									break;
+							}
+						}
+						else
+						{
+							MessageBox.Show("Партия закрыта");
+							Reset();
 						}
 					}
 					else
 					{
-						MessageBox.Show("Партия закрыта");
-						Reset();
+						App.logger.NewLog(402, "Нет строк в выборке по запросу сканера для партии " + BatchBarcodeTB.Text.Trim());
+						MessageBox.Show("Строк нет");
 					}
+				}
+				catch (System.InvalidCastException)
+				{
+					App.logger.NewLog(403, "Нет строк в выборке по запросу сканера для партии " + BatchBarcodeTB.Text.Trim());
+					MessageBox.Show("Выборка пуста. Возможно вы ошиблись с выбором входа/выхода");
+					Reset();
+				}
+			}
+			catch (Exception ex)
+			{
+				App.logger.NewLog(404, "Ошибка В SimpleScanner.DownloadInfo " + ex.Message);
+			}
+		}
+
+		/// <summary>
+		/// Заполнение полей UC используя ранее получинными данными
+		/// </summary>
+		private void FillData()
+		{
+			try
+			{
+				batchId = Convert.ToInt32(infoDT.Rows[0].ItemArray[0]);
+				operationId = Convert.ToInt32(infoDT.Rows[0].ItemArray[6]);
+				DeviceTypeTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[5]);
+				BatchNameTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[1]);
+				BatchPriorityTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[2]);
+				BatchNoteTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[3]);
+				LastCountTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[4]);
+				OperationKeyTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[7]);
+				OperationNameTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[8]);
+				OperationNoteTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[9]);
+				InteroperativeTimeTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[10]);
+				TypeOfProcessingTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[11]);
+				TMNameTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[12]);
+				ModeTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[14]);
+
+				App.logger.NewLog(100, "Заполнили сканер данными");
+
+				InfoGrid.Visibility = Visibility.Visible;
+
+				if (!App.UnknownUserMode)
+					EmployeeBarcodeTB.Focus();
+				else
+				{
+					App.logger.NewLog(300, "В сканере используется режим игнорирования проверки на подпись");
+					ConfirmationButton.Focus();
+				}
+
+				//Используется для дебагинга
+				/*
+				Trace.WriteLine(App.UnknownDistrictMode);
+				Trace.WriteLine(infoDT.Rows[0].ItemArray[17].ToString() != String.Empty);
+				Trace.WriteLine((infoDT.Rows[0].ItemArray[17].ToString() != String.Empty) && (Convert.ToInt32(App.configuration.district) == Convert.ToInt32(infoDT.Rows[0].ItemArray[17])));
+				Trace.WriteLine(App.UnknownDistrictMode || ((infoDT.Rows[0].ItemArray[17].ToString() != String.Empty) && (Convert.ToInt32(App.configuration.district) == Convert.ToInt32(infoDT.Rows[0].ItemArray[17]))));
+
+				Trace.WriteLine(App.UnknownDistrictMode);
+				Trace.WriteLine(infoDT.Rows[0].ItemArray[17].ToString() != String.Empty);
+				Trace.WriteLine(Convert.ToInt32(App.configuration.district));
+				Trace.WriteLine(Convert.ToInt32(infoDT.Rows[0].ItemArray[17]));
+				*/
+
+				//Проверка на участок при получении данных
+				//TODO Сделай это по человечески
+				if (App.UnknownDistrictMode || ((infoDT.Rows[0].ItemArray[17].ToString() != String.Empty) && (Convert.ToInt32(App.configuration.district) == Convert.ToInt32(infoDT.Rows[0].ItemArray[17]))))
+				{
+
 				}
 				else
 				{
-					MessageBox.Show("Строк нет");
+					string message = "";
+					if (infoDT.Rows[0].ItemArray[17].ToString() == String.Empty)
+						message = "В МСЛ не указан участок. Обратитесь к администратору";
+					else
+						message = "Участок не подошёл.\nНужен участок " + Convert.ToString(infoDT.Rows[0].ItemArray[18]);
+					MessageBox.Show(message);
 				}
 			}
-			catch (System.InvalidCastException)
+			catch (Exception ex)
 			{
-				MessageBox.Show("Выборка пуста. Возможно вы ошиблись с выбором входа/выхода");
-				Reset();
-			}
-		}
-		private void FillData()
-		{
-			
-			batchId = Convert.ToInt32(infoDT.Rows[0].ItemArray[0]);
-			operationId = Convert.ToInt32(infoDT.Rows[0].ItemArray[6]);
-			DeviceTypeTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[5]);
-			BatchNameTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[1]);
-			BatchPriorityTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[2]);
-			BatchNoteTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[3]);
-			LastCountTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[4]);
-			OperationKeyTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[7]);
-			OperationNameTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[8]);
-			OperationNoteTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[9]);
-			InteroperativeTimeTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[10]);
-			TypeOfProcessingTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[11]);
-			TMNameTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[12]);
-			ModeTB.Text = Convert.ToString(infoDT.Rows[0].ItemArray[14]);
-
-			InfoGrid.Visibility = Visibility.Visible;
-
-			if (!App.UnknownUserMode)
-				EmployeeBarcodeTB.Focus();
-			else
-				ConfirmationButton.Focus();
-
-			Trace.WriteLine(App.UnknownDistrictMode);
-			Trace.WriteLine((infoDT.Rows[0].ItemArray[17].ToString() != String.Empty));
-			Trace.WriteLine(((infoDT.Rows[0].ItemArray[17].ToString() != String.Empty) && (Convert.ToInt32(App.configuration.district) == Convert.ToInt32(infoDT.Rows[0].ItemArray[17]))));
-			Trace.WriteLine(App.UnknownDistrictMode || ((infoDT.Rows[0].ItemArray[17].ToString() != String.Empty) && (Convert.ToInt32(App.configuration.district) == Convert.ToInt32(infoDT.Rows[0].ItemArray[17]))));
-
-			Trace.WriteLine(App.UnknownDistrictMode);
-			Trace.WriteLine(infoDT.Rows[0].ItemArray[17].ToString() != String.Empty);
-			Trace.WriteLine(Convert.ToInt32(App.configuration.district));
-			Trace.WriteLine(Convert.ToInt32(infoDT.Rows[0].ItemArray[17]));
-
-			//Проверка на участок при получении данных
-			if (App.UnknownDistrictMode || ((infoDT.Rows[0].ItemArray[17].ToString() != String.Empty) && (Convert.ToInt32(App.configuration.district) == Convert.ToInt32(infoDT.Rows[0].ItemArray[17]))))
-			{
-
-			}
-			else
-			{
-				string message = "";
-				if (infoDT.Rows[0].ItemArray[17].ToString() == String.Empty)
-					message = "В МСЛ не указан участок. Обратитесь к администратору";
-				else
-					message = "Участок не подошёл.\nНужен участок " + Convert.ToString(infoDT.Rows[0].ItemArray[18]);
-				MessageBox.Show(message);
+				App.logger.NewLog(405, "SimpleScanner.FillData " + ex.Message);
 			}
 		}
 
@@ -437,65 +486,113 @@ LEFT JOIN (
 			Reset();
 		}
 
+		/// <summary>
+		/// Автоматическая загрузка данных при записи баркода партии
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void BatchBarcodeTB_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			string batchBarcode = BatchBarcodeTB.Text;
 			batchBarcode =  batchBarcode.Trim();
 			if (batchBarcode.Length == 13)
 			{
-				UploadInfo();
+				DownloadInfo();
 			}
 
 		}
 
+		/// <summary>
+		/// Автоматическая загрузка данных о сотруднике
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void EmployeeBarcodeTB_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			string employeeBarcode = EmployeeBarcodeTB.Text;
-			employeeBarcode = employeeBarcode.Trim();
-			if (employeeBarcode.Length == 13)
+			try
 			{
-				DataTable employeeDT = SQLLib.SQL.ReturnDT(@"
+				string employeeBarcode = EmployeeBarcodeTB.Text;
+				employeeBarcode = employeeBarcode.Trim();
+				if (employeeBarcode.Length == 13)
+				{
+					DataTable employeeDT = SQLLib.SQL.ReturnDT(@"
 SELECT
 Employees.IdEmployee
 ,CONCAT(TRIM(Employees.LastName), ' ', TRIM(Employees.FirstName), ' ', TRIM(Employees.MiddleName))
 FROM Employees
 WHERE Employees.Barcode = " + employeeBarcode,
-				App.configuration.SQLConnectionString, out string ex);
-				if (employeeDT.Rows.Count > 0)
-				{
-					employeeId = Convert.ToInt32(employeeDT.Rows[0].ItemArray[0]);
-					EmployeeFIOTB.Text = Convert.ToString(employeeDT.Rows[0].ItemArray[1]);
+					App.configuration.SQLConnectionString, out string ex);
+					if (employeeDT.Rows.Count > 0)
+					{
+						employeeId = Convert.ToInt32(employeeDT.Rows[0].ItemArray[0]);
+						EmployeeFIOTB.Text = Convert.ToString(employeeDT.Rows[0].ItemArray[1]);
 
-					ConfirmationButton.Focus();
+						App.logger.NewLog(101, "Нашли сотрудника по баркоду " + EmployeeBarcodeTB.Text.Trim());
+
+						ConfirmationButton.Focus();
+					}
+					else
+					{
+						App.logger.NewLog(301, "Сканер не нашёл сотрудника по баркоду " + EmployeeBarcodeTB.Text.Trim());
+					}
 				}
 			}
+			catch (Exception ex)
+			{
+				App.logger.NewLog(406, "SimpleScanner.EmployeeBarcodeTB_TextChanged " + ex.Message);
+			}
+			
 		}
 
+		/// <summary>
+		/// Автоматическая загрузка данных об оборудовании
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void EquipmentBarcodeTB_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			string equipmentBarcode = EquipmentBarcodeTB.Text;
-			equipmentBarcode = equipmentBarcode.Trim();
-			if (equipmentBarcode.Length == 13)
+			try
 			{
-				DataTable equipmentDT = SQLLib.SQL.ReturnDT(@"
+				string equipmentBarcode = EquipmentBarcodeTB.Text;
+				equipmentBarcode = equipmentBarcode.Trim();
+				if (equipmentBarcode.Length == 13)
+				{
+					DataTable equipmentDT = SQLLib.SQL.ReturnDT(@"
 SELECT
 Equipments.IdEquipment
 ,Equipments.Name
 FROM Equipments
 WHERE Equipments.Barcode = " + equipmentBarcode,
-				App.configuration.SQLConnectionString, out string ex);
-				if(equipmentDT.Rows.Count > 0)
-				{
-					equipmentId = Convert.ToInt32(equipmentDT.Rows[0].ItemArray[0]);
-					EquipmentNameTB.Text = Convert.ToString(equipmentDT.Rows[0].ItemArray[1]);
+					App.configuration.SQLConnectionString, out string ex);
+					if (equipmentDT.Rows.Count > 0)
+					{
+						equipmentId = Convert.ToInt32(equipmentDT.Rows[0].ItemArray[0]);
+						EquipmentNameTB.Text = Convert.ToString(equipmentDT.Rows[0].ItemArray[1]);
+
+						App.logger.NewLog(102, "Нашли оборудование по баркоду " + EquipmentBarcodeTB.Text.Trim());
+					}
+					else
+					{
+						App.logger.NewLog(302, "Сканер не нашёл оборудование по баркоду " + EquipmentBarcodeTB.Text.Trim());
+					}
 				}
+			}
+			catch (Exception ex)
+			{
+				App.logger.NewLog(407, "SimpleScanner.EquipmentBarcodeTB_TextChanged " + ex.Message);
 			}
 		}
 
+		/// <summary>
+		/// Нажатие на кнопку подтверждения
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
 		{
 			if (LastCountTB.Text.Trim() != Convert.ToString(infoDT.Rows[0].ItemArray[4]) && String.IsNullOrEmpty(HistoryNoteTB.Text.Trim()))
 			{
+				App.logger.NewLog(303, "Попытка сканирования партии без пояснения к измению кол-ва пластин в партии " + BatchNameTB.Text.Trim());
 				MessageBox.Show("Введите пояснение к изменению кол-ва пластин");
 				HistoryNoteTB.Focus();
 			}
@@ -532,9 +629,12 @@ WHERE Equipments.Barcode = " + equipmentBarcode,
 						Trace.WriteLine(query);
 						SQLLib.SQL.NoReturn(query, App.configuration.SQLConnectionString, out string ex);
 						if (!String.IsNullOrEmpty(ex))
-							MessageBox.Show(ex);
+						{
+							App.logger.NewLog(408, "Ошибка при отправке операции над " + BatchNameTB.Text.Trim() + ". Запрос: " + query + ". Ошибка: " + ex);
+						}
 						else
 						{
+							App.logger.NewLog(201, "Операция для партии " + BatchNameTB.Text.Trim() + " отправленна в БД");
 							MessageBox.Show("Успех!");
 							Reset();
 						}
@@ -546,6 +646,7 @@ WHERE Equipments.Barcode = " + equipmentBarcode,
 				}
 				else
 				{
+					App.logger.NewLog(304, "Попытка сканирования партии " + BatchNameTB.Text.Trim() + "на неподходящем участке");
 					MessageBox.Show("Не подходит участок");
 					Reset();
 				}
@@ -562,6 +663,11 @@ WHERE Equipments.Barcode = " + equipmentBarcode,
 			CheckScanRadioButton();
 		}
 
+		/// <summary>
+		/// Обработка Изменения колличества пластин
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void LastCountTB_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			if (LastCountTB.Text.Trim() != Convert.ToString(infoDT.Rows[0].ItemArray[4]).Trim())

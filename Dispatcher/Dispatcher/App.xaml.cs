@@ -23,7 +23,20 @@ namespace Dispatcher
         public static string version = "3.6";
         public static string user { get; set; } = "Unknown";
 
-        public static string roleStr = "";
+        public static string _roleStr = "";
+        public static string roleStr
+        {
+            get
+			{
+                return _roleStr;
+			}
+            set
+			{
+                _roleStr = value;
+                logger.user = _roleStr;
+                logger.NewLog(200, "Выбрана другая роль");
+			}
+        }
 
         public static int role;
 
@@ -34,6 +47,12 @@ namespace Dispatcher
         public static bool UnknownUserMode = true;
         public static bool UnknownDistrictMode = false;
 
+        public static Logger logger = new Logger();
+
+        /// <summary>
+        /// Открываем главное окно
+        /// </summary>
+        /// <returns></returns>
         public static int OpenMainWindow()
         {
             try
@@ -43,6 +62,8 @@ namespace Dispatcher
                 mainWindow.Title = roleStr;
 				mainWindow.Show();
 
+                logger.NewLog(200, "Открываем главное окно");
+
                 return 0;
             }
             catch
@@ -51,6 +72,10 @@ namespace Dispatcher
             }
         }
 
+        /// <summary>
+        /// Открываем тестовое окно
+        /// </summary>
+        /// <returns></returns>
         public static int OpenTestWindow()
         {
             try
@@ -58,6 +83,8 @@ namespace Dispatcher
                 Windows.TestWindow testWindow = new Windows.TestWindow();
                 testWindow.Show();
 
+                logger.NewLog(200, "Открываем тестовое окно");
+
                 return 0;
             }
             catch
@@ -66,12 +93,19 @@ namespace Dispatcher
             }
         }
 
+        /// <summary>
+        /// Открываем окно авторизации
+        /// </summary>
+        /// <returns></returns>
         public static int OpenAuthorizationWindow()
         {
             try
             {
                 Windows.AuthorizationWindow authorizationWindow = new Windows.AuthorizationWindow();
                 authorizationWindow.Show();
+
+                logger.NewLog(200, "Открываем окно авторизации");
+
                 return 0;
             }
             catch
@@ -84,9 +118,11 @@ namespace Dispatcher
 
         public App()
         {
-            Trace.WriteLine(typeof(UCs.CalendarUC));
             //Выполняется при запуске
             //TODO Продумай случай если нет файла конфигураций
+            logger.version = version;
+            logger.user = user;
+            logger.NewLog(200, "Конфигурация ещё не загруженна");
             try
             {
                 configuration = Class.ConfigManage.GetConfiguration(ConfigManage.GetSavedConfiguration());
@@ -95,13 +131,19 @@ namespace Dispatcher
             {
                 List<string> configurationsName = ConfigManage.GetAllConfigurationName();
                 configuration = Class.ConfigManage.GetConfiguration(configurationsName.First());
+                logger.NewLog(300, "Не найдена сохранённая конфигурация");
             }
-            //TODO Нужен лог
             configuration.TraceConfiguration();
             ConfigManage.CheckLogPath(App.configuration.logPath);
             ConfigManage.MakeLogFile(App.configuration.logPath);
-            Logger logger = new Logger(version, user, String.Concat(App.configuration.logPath, logFile));
-            logger.NewLog(100, "Загрузили конфигурацию");
+
+            logger.NewLog(200, "Загрузили конфигурацию");
+
+            logger.logPath = String.Concat(App.configuration.logPath, logFile);
+            logger.flag = true;
+            logger.TryStart();
+            logger.NewLog(200, "Инициализированли логер");
+            
             OpenAuthorizationWindow();
         }
 

@@ -33,8 +33,12 @@ namespace Dispatcher.UCs
 			InitializeComponent();
 		}
 
+		/// <summary>
+		/// Обновляет информацию оборудовании
+		/// </summary>
 		public void UpdateInfo()
 		{
+			//Таблица для информации о всём оборудовании
 			DataTable dataTable = SQL.ReturnDT(@"
 /*
 Скрипт для вывода последнего состяния станков в окно изменения статуса
@@ -83,21 +87,28 @@ WHERE Equipments.IdEquipment = " + equipmentID
 , App.configuration.SQLConnectionString, out string ex1);
 			if (String.IsNullOrWhiteSpace(ex1))
 			{
-				Trace.WriteLine("Ошибка в библиотеке SQL: " + ex1);
-				Log.NewLog(200, "Ошибка в библиотеке SQL: " + ex1);
+				App.logger.NewLog(400, "Ошибка в EquipmentEdit.UpdateInfo при обращении к БД: " + ex1);
+				Trace.WriteLine("Ошибка в EquipmentEdit.UpdateInfo при обращении к БД: " + ex1);
 			}
 			else
+			{
+				App.logger.NewLog(100, "Успешно получили данные о оборудовании");
 				DataClass.DTtoTrace(dataTable);
+			}
+				
 
 			//Таблица статусов
 			DataTable statusDT = SQL.ReturnDT("", App.configuration.SQLConnectionString, out string ex2);
 			if (String.IsNullOrWhiteSpace(ex2))
 			{
-				Trace.WriteLine("Ошибка в библиотеке SQL: " + ex2);
-				Log.NewLog(200, "Ошибка в библиотеке SQL: " + ex2);
+				App.logger.NewLog(401, "Ошибка в EquipmentEdit.UpdateInfo при обращении к БД: " + ex2);
+				Trace.WriteLine("Ошибка в EquipmentEdit.UpdateInfo при обращении к БД: " + ex2);
 			}
 			else
+			{
+				App.logger.NewLog(101, "Успешно получили данные о состоянии оборудовании");
 				DataClass.DTtoTrace(statusDT);
+			}
 
 			//Заполнение комбо бокса статусов
 			EquipStatus.Items.Clear();
@@ -107,7 +118,6 @@ WHERE Equipments.IdEquipment = " + equipmentID
 				item.Content = dataRow.ItemArray[0].ToString();
 				EquipStatus.Items.Add(item);
 			}
-
 
 			EquipID.Text = dataTable.Rows[0].ItemArray[0].ToString().Trim();
 			EquipInvent.Text = dataTable.Rows[0].ItemArray[1].ToString().Trim();
@@ -121,12 +131,20 @@ WHERE Equipments.IdEquipment = " + equipmentID
 			EquipWeight.Text = dataTable.Rows[0].ItemArray[9].ToString().Trim();
 		}
 
+		/// <summary>
+		/// Обновляет информацию оборудовании
+		/// </summary>
 		public void UpdateInfo(int id)
 		{
 			equipmentID = id;
 			UpdateInfo();
 		}
 
+		/// <summary>
+		/// Сохранение изменённого статуса
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void SaveStatus_Click(object sender, RoutedEventArgs e)
 		{
 			SQL.ReturnDT(@"
@@ -134,8 +152,8 @@ Insert INTO EquipmentStatusHistory (IdEquipment, IdStatus, ChangeDateTime, IdEmp
 VALUES (" + EquipID.Text.Trim() + ", " + EquipStatus.Text.Trim() + ", CAST('" + DateTime.Now.ToString() + "' AS datetime), " + 1 + ", null)", App.configuration.SQLConnectionString, out string ex1);
 			if (String.IsNullOrWhiteSpace(ex1))
 			{
-				Trace.WriteLine("Ошибка в библиотеке SQL: " + ex1);
-				Log.NewLog(200, "Ошибка в библиотеке SQL: " + ex1);
+				App.logger.NewLog(402, "Ошибка в EquipmentEdit.UpdateInfo при обращении к БД: " + ex1);
+				Trace.WriteLine("Ошибка в EquipmentEdit.UpdateInfo при обращении к БД: " + ex1);
 			}
 		}
 	}
