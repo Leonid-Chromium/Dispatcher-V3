@@ -19,7 +19,6 @@ D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\runt
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\runtimes\win-x86\native\sni.dll
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\SQLLib.pdb
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\Style\CalendarStyle.baml
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\AddTKKK.g.cs
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\BatchesUC.g.cs
@@ -75,7 +74,6 @@ D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\Disp
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\Dispatcher.dll
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\ref\Dispatcher.dll
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\Dispatcher.genruntimeconfig.cache
-D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\Dispatcher.csproj.AssemblyReference.cache
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\MonitorNextOperationOnDistrictUC.g.cs
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\MonitorNextOperationOnDistrictUC.baml
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\BatchsMonitor.g.cs
@@ -84,3 +82,4 @@ D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\Data
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\DataLib.pdb
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\LogLib.dll
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\LogLib.pdb
+D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\Dispatcher.csproj.CopyComplete
