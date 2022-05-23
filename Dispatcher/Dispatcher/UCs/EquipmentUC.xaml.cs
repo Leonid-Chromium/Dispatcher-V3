@@ -27,6 +27,10 @@ namespace Dispatcher.UCs
 			EquipEAI.parent = this;
 		}
 
+		/// <summary>
+		/// Меняет используемый UC
+		/// </summary>
+		/// <param name="id"></param>
 		public void ChrngeVisibilityEAI(int id)
 		{
 			if (EquipList.Visibility == Visibility.Visible && EquipEAI.Visibility == Visibility.Collapsed)

@@ -27,31 +27,46 @@ namespace Dispatcher.Windows
         public AuthorizationWindow()
         {
             InitializeComponent();
+            App.logger.NewLog(200, "Открыто окно авторизации");
         }
 
+        /// <summary>
+        /// Обработка нажатия кнопки входа
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EnterButton_Click(object sender, RoutedEventArgs e)
         {
 			try
 			{
+                //Проверка что выбрана какая-нибудь роль
                 if((ComboBoxItem)RoleComboBox.SelectedItem != null)
 				{
+                    //Хэширование пароля для сравнения с БД
                     string hash = Hashing.GetMD5Hash(PasswordBox.Password);
-                    //Trace.WriteLine("Хэш: " + hash);
+                    //получения хэш пароля для выбранной роли
                     DataTable dataTable = SQL.ReturnDT("SELECT RolePassword FROM Roles WHERE IdRole = '" + ((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString() + "'", App.configuration.SQLConnectionString, out string ex);
                     DataLib.DataClass.DTtoTrace(dataTable);
+                    //перебор полученных из БД хэшей
                     for (int i = 0; i < dataTable.Rows.Count; i++)
                         if (dataTable.Rows[i].ItemArray[0].ToString() == hash)
                         {
                             string str = ((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString();
                             SetRole(Convert.ToInt32(str));
-                            //MessageBox.Show("Приветствуем");
+
                             App.roleStr = Convert.ToString(((ComboBoxItem)RoleComboBox.SelectedItem).Content.ToString());
                             App.role = Convert.ToInt32(((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString());
+                            App.logger.NewLog(200, "Выбранна роль " + App.roleStr);
+
                             App.OpenMainWindow();
+                            App.logger.NewLog(200, "Закрываем окно авторизации");
                             this.Close();
                         }
                         else
+						{
+                            App.logger.NewLog(300, "Неудачная попытка входа для роли " + ((ComboBoxItem)RoleComboBox.SelectedItem).Tag.ToString());
                             MessageBox.Show("Неверный пароль"); //Тут обработка в случае неправильного ввода пароля
+                        }
                 }
 				else
 				{
@@ -60,10 +75,16 @@ namespace Dispatcher.Windows
 			}
             catch(Exception ex)
 			{
+                App.logger.NewLog(400, "Ошибка в AuthorizationWindow.EnterButton_Click " + ex.Message);
                 MessageBox.Show(ex.Message);
 			}
         }
 
+        /// <summary>
+        /// Подтверждение изменения используемой конфигурации
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Хотите ли вы выбрать эту конфигурацию", "Выберите один из вариантов", MessageBoxButton.YesNo, MessageBoxImage.Information, MessageBoxResult.Yes, MessageBoxOptions.DefaultDesktopOnly);
@@ -84,6 +105,9 @@ namespace Dispatcher.Windows
             ConfigLoaded();
         }
 
+        /// <summary>
+        /// Обновляет список ролей из БД
+        /// </summary>
         private void RoleLoaded()
         {
             try
@@ -98,7 +122,6 @@ namespace Dispatcher.Windows
                     comboBoxItem.Content = RoleDT.Rows[i - 1].ItemArray[1];
                     RoleComboBox.Items.Add(comboBoxItem);
                 }
-                
             }
 
             catch (Exception exc)
@@ -108,6 +131,9 @@ namespace Dispatcher.Windows
             
         }
 
+        /// <summary>
+        /// Выводит список доступнрых конфигураций и выбирает нынешнюю
+        /// </summary>
         private void ConfigLoaded()
         {
             try
@@ -122,7 +148,13 @@ namespace Dispatcher.Windows
            
             RoleLoaded();
         }
-
+        
+        /// <summary>
+        /// Вносит ID роли из БД в переменную окна 
+        /// </summary>
+        /// <param name="newRole"></param>
+        //Я не знаю зачем это нужно
+        //TODO Убери этот рудимент
         public void SetRole(int newRole)
         {
             role = newRole;

@@ -67,7 +67,7 @@
             <TabItem x:Name="SimpleBatchesTab2" Header="Вывод партий">
                 <local:SimpleBatchsViewer2 HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
             </TabItem>
-            <TabItem x:Name="SimpleScannerTab" Header="Простой сканер">
+            <TabItem x:Name="SimpleScannerTab" Header="Сканер">
                 <local:SimpleScanner HorizontalAlignment="Center" VerticalAlignment="Top"/>
 			</TabItem>
 			<TabItem x:Name="SimpleAddTechMap" Header="Добавление тех.карты">

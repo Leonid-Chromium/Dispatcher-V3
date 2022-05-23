@@ -24,7 +24,12 @@ namespace Dispatcher.UCs
 	/// </summary>
 	public partial class ConfigurationUC2 : UserControl
 	{
-		public int updateInfoAboutConfig()
+		/// <summary>
+		/// Обновление информации о конфигурации
+		/// </summary>
+		/// <returns></returns>
+		// TODO Раздели на отдельные методы
+		public int UpdateInfoAboutConfig()
 		{
 			try
 			{
@@ -41,10 +46,14 @@ namespace Dispatcher.UCs
 				assetsPathTB.Text = App.configuration.assetsPath;
 				logPathTB.Text = App.configuration.logPath;
 
+
+				App.logger.NewLog(100, "Узналим информацию о конфигурации " + App.configuration.name);
+
 				return 0;
 			}
-			catch
+			catch (Exception ex)
 			{
+				App.logger.NewLog(400, "ConfigurationUC2.UpdateInfoAboutConfig " + ex.Message);
 				return 1;
 			}
 		}
@@ -56,7 +65,7 @@ namespace Dispatcher.UCs
 
 		private void ConfigurationCB_DropDownOpened(object sender, EventArgs e)
 		{
-			updateInfoAboutConfig();
+			UpdateInfoAboutConfig();
 		}
 
 		private void ConfigurationCB_DropDownClosed(object sender, EventArgs e)
@@ -64,10 +73,15 @@ namespace Dispatcher.UCs
 			//TODO Сделай защиту от пустого выбора
 			Trace.WriteLine(ConfigurationCB.SelectedItem.ToString());
 			App.configuration = ConfigManage.GetConfiguration(ConfigurationCB.SelectedItem.ToString());
+			App.logger.NewLog(200, "Используется конфигурация " + App.configuration.name);
 			ConfigManage.SetSavedConfiguration(ConfigurationCB.SelectedItem.ToString());
-			updateInfoAboutConfig();
+			UpdateInfoAboutConfig();
 		}
 
+		/// <summary>
+		/// Удаляет выбранную конфигурацию
+		/// </summary>
+		/// <returns></returns>
 		private int DeleteConfiguration2()
 		{
 			try
@@ -80,22 +94,22 @@ namespace Dispatcher.UCs
 
 				if (result == MessageBoxResult.Yes)
 				{
-					//DEBUG Сделать удаление конфигурации
 					ConfigManage.DeleteConfiguration(App.configuration.name);
 					App.configuration = ConfigManage.GetConfiguration(ConfigManage.GetAllConfigurationName().First());
 					Trace.WriteLine("Конфигурация удалена");
-					Log.NewLog(101, "Конфигурацию " + ConfigurationCB.SelectedItem.ToString() + " удалили");
+					App.logger.NewLog(201, "Конфигурацию " + ConfigurationCB.SelectedItem.ToString() + " удалили");
 				}
 				else
 				{
 					Trace.WriteLine("Отмена удаления");
 				}
-				updateInfoAboutConfig();
+				UpdateInfoAboutConfig();
 
 				return 0;
 			}
-			catch
+			catch (Exception ex)
 			{
+				App.logger.NewLog(401, "ConfigurationUC2.DeleteConfiguration2 " + ex.Message);
 				return 1;
 			}
 		}
@@ -105,6 +119,9 @@ namespace Dispatcher.UCs
 			DeleteConfiguration2();
 		}
 
+		/// <summary>
+		/// Сохраняет изменения конфигурации
+		/// </summary>
 		private void SaveConfiguration()
 		{
 			try
@@ -138,14 +155,14 @@ namespace Dispatcher.UCs
 					newConfiguration.TraceConfiguration();
 					ConfigManage.ChangeConfiguration(App.configuration.name, newConfiguration); //Изменяем конфигурацию в файле конфигурации
 					App.configuration = ConfigManage.GetConfiguration(newConfiguration.name); //Выбираем её для использования
-					Log.NewLog(001, "Конфигурацию " + App.configuration.name + " изменили" + ((newConfiguration.name != App.configuration.name) ? (" на " + newConfiguration.name) : "")); // Это тернарный оператор. Я не хочу об этом говорить
+					App.logger.NewLog(202, "Конфигурацию " + App.configuration.name + " изменили" + ((newConfiguration.name != App.configuration.name) ? (" на " + newConfiguration.name) : "")); // Это тернарный оператор. Я не хочу об этом говорить
 				}
-				updateInfoAboutConfig();
+				UpdateInfoAboutConfig();
 			}
 			catch (Exception ex)
 			{
+				App.logger.NewLog(402, ex.Message);
 				Trace.WriteLine(ex.Message);
-				Log.NewLog(301, ex.Message);
 			}
 		}
 
@@ -154,6 +171,9 @@ namespace Dispatcher.UCs
 			SaveConfiguration();
 		}
 
+		/// <summary>
+		/// Добавляет новую конфигурацию с указанным в ComboBox-е названием
+		/// </summary>
 		private void AddConfiguration()
 		{
 			try
@@ -176,13 +196,13 @@ namespace Dispatcher.UCs
 
 					ConfigManage.SetConfiguration(newConfiguration); //добавляем новую конфигурацию
 					App.configuration = ConfigManage.GetConfiguration(newConfiguration.name); //Выбираем её для использования
-					Log.NewLog(101, "Добавили новую конфигурацию " + App.configuration.name);
+					App.logger.NewLog(203, "Добавили новую конфигурацию " + App.configuration.name);
 				}
-				updateInfoAboutConfig();
+				UpdateInfoAboutConfig();
 			}
 			catch (Exception ex)
 			{
-				Log.NewLog(301, "Ошибка при добавлении конфигурации " + ex.Message);
+				App.logger.NewLog(403, "Ошибка при добавлении конфигурации " + ex.Message);
 			}
 		}
 
@@ -193,7 +213,7 @@ namespace Dispatcher.UCs
 
 		private void UserControl_Loaded(object sender, RoutedEventArgs e)
 		{
-			updateInfoAboutConfig();
+			UpdateInfoAboutConfig();
 		}
 	}
 }

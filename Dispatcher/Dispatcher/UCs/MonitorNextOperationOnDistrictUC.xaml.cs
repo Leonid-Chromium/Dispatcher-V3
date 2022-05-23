@@ -26,6 +26,10 @@ namespace Dispatcher.UCs
 			InitializeComponent();
 		}
 
+		/// <summary>
+		/// Обновление информации
+		/// </summary>
+		//TODO Переделай на возможность отслеживания любого участка
 		public void Update()
 		{
 			DataTable dataTable = new DataTable();
@@ -79,6 +83,7 @@ WHERE Districts.IdDistrict = @ThisDistrict AND NextOper.IdOperation IS NOT NULL
 			}
 			else
 			{
+				App.logger.NewLog(400, "Ошибка в MonitorNextOperationOnDistrictUC.Update при обращении к БД " + ex);
 				MessageBox.Show(ex);
 			}
 		}

@@ -37,6 +37,10 @@ namespace Dispatcher.UCs
 			InitializeComponent();
 		}
 
+		/// <summary>
+		/// Обновление данных
+		/// </summary>
+		/// <returns></returns>
 		public int UpdateDate()
 		{
 			try
@@ -79,52 +83,84 @@ LEFT JOIN
 JOIN EquipmentStatus ON EquipmentStatus.IdStatus = qwe.LastIdStatus
 JOIN Districts ON Equipments.District = Districts.IdDistrict
 ", App.configuration.SQLConnectionString, out string ex1);
+				if (!String.IsNullOrWhiteSpace(ex1))
+				{
+					App.logger.NewLog(400, "Ошибка в EquipmentList.UpdateDate при обращении в БД " + ex1);
+				}
 
 				DistrictDT = SQL.ReturnDT(@"
 SELECT Name FROM Districts
 ", App.configuration.SQLConnectionString, out string ex2);
+				if (!String.IsNullOrWhiteSpace(ex2))
+				{
+					App.logger.NewLog(401, "Ошибка в EquipmentList.UpdateDate при обращении в БД " + ex2);
+				}
 
 				StatusDT = SQL.ReturnDT(@"
 SELECT Name FROM EquipmentStatus
 ", App.configuration.SQLConnectionString, out string ex3);
+				if (!String.IsNullOrWhiteSpace(ex3))
+				{
+					App.logger.NewLog(402, "Ошибка в EquipmentList.UpdateDate при обращении в БД " + ex3);
+				}
+
+				if (String.IsNullOrWhiteSpace(ex1) && String.IsNullOrWhiteSpace(ex2) && String.IsNullOrWhiteSpace(ex3))
+				{
+					App.logger.NewLog(100, "Данные используемые в EquipmentList успешно загруженны");
+				}
 
 				return 0;
 			}
-			catch
+			catch (Exception ex)
 			{
+				App.logger.NewLog(403, "Ошибка в EquipmentList.UpdateDate " + ex.Message);
 				return 1;
 			}
 		}
 
+		/// <summary>
+		/// Обновление полей в шапке UC
+		/// </summary>
 		public void UpdateHeader()
 		{
-			FilterDistrict.Items.Clear();
-
-			ComboBoxItem item1 = new ComboBoxItem();
-			item1.Content = "Нет";
-			FilterDistrict.Items.Add(item1);
-
-			foreach (DataRow dataRow in DistrictDT.Rows)
+			try
 			{
-				ComboBoxItem item = new ComboBoxItem();
-				item.Content = dataRow.ItemArray[0].ToString();
-				FilterDistrict.Items.Add(item);
+				FilterDistrict.Items.Clear();
+
+				ComboBoxItem item1 = new ComboBoxItem();
+				item1.Content = "Нет";
+				FilterDistrict.Items.Add(item1);
+
+				foreach (DataRow dataRow in DistrictDT.Rows)
+				{
+					ComboBoxItem item = new ComboBoxItem();
+					item.Content = dataRow.ItemArray[0].ToString();
+					FilterDistrict.Items.Add(item);
+				}
+
+				FilterStatus.Items.Clear();
+
+				ComboBoxItem item2 = new ComboBoxItem();
+				item2.Content = "Нет";
+				FilterStatus.Items.Add(item2);
+
+				foreach (DataRow dataRow in StatusDT.Rows)
+				{
+					ComboBoxItem item = new ComboBoxItem();
+					item.Content = dataRow.ItemArray[0].ToString();
+					FilterStatus.Items.Add(item);
+				}
 			}
-
-			FilterStatus.Items.Clear();
-
-			ComboBoxItem item2 = new ComboBoxItem();
-			item2.Content = "Нет";
-			FilterStatus.Items.Add(item2);
-
-			foreach (DataRow dataRow in StatusDT.Rows)
+			catch (Exception ex)
 			{
-				ComboBoxItem item = new ComboBoxItem();
-				item.Content = dataRow.ItemArray[0].ToString();
-				FilterStatus.Items.Add(item);
+				App.logger.NewLog(404, "Ошибка в EquipmentList.UpdateHeader " + ex.Message);
 			}
 		}
 
+		/// <summary>
+		/// Наполнение UC карточками оборудования
+		/// </summary>
+		/// <returns></returns>
 		public int UpdateCards()
 		{
 			try
@@ -136,30 +172,30 @@ SELECT Name FROM EquipmentStatus
 					EquipmentCard card = new EquipmentCard();
 
 					if (row.ItemArray[0] == DBNull.Value)
-						Log.NewLog(200, "Нет ID оборудования ");
+						App.logger.NewLog(404, "Нет ID оборудования ");
 					else
 						card.ID = Convert.ToInt32(row.ItemArray[0]);
 
 					if (row.ItemArray[2] == DBNull.Value)
-						Log.NewLog(200, String.Format("Нет название оборудования " + Convert.ToInt32(row.ItemArray[0])));
+						App.logger.NewLog(405, String.Format("Нет название оборудования " + Convert.ToInt32(row.ItemArray[0])));
 					else
 						card.name = row.ItemArray[2].ToString();
 
 					if (row.ItemArray[3] == DBNull.Value)
-						Log.NewLog(200, String.Format("Нет участка оборудования " + Convert.ToInt32(row.ItemArray[0])));
+						App.logger.NewLog(406, String.Format("Нет участка оборудования " + Convert.ToInt32(row.ItemArray[0])));
 					else
 						card.district = row.ItemArray[3].ToString();
 
 					if (row.ItemArray[5] == DBNull.Value)
 					{
 						card.status = "Нет статуса";
-						Log.NewLog(200, String.Format("Нет статуса оборудования " + Convert.ToInt32(row.ItemArray[0])));
+						App.logger.NewLog(407, String.Format("Нет статуса оборудования " + Convert.ToInt32(row.ItemArray[0])));
 					}
 					else
 						card.status = row.ItemArray[5].ToString();
 
 					if (row.ItemArray[4] == DBNull.Value)
-						Log.NewLog(200, String.Format("Нет Id статуса оборудования " + Convert.ToInt32(row.ItemArray[0])));
+						App.logger.NewLog(408, String.Format("Нет Id статуса оборудования " + Convert.ToInt32(row.ItemArray[0])));
 					else
 						card.statusId = Convert.ToInt32(row.ItemArray[4]);
 
@@ -170,67 +206,84 @@ SELECT Name FROM EquipmentStatus
 					ListSP.Children.Add(card);
 					card.update();
 				}
+
+				App.logger.NewLog(101, "Заполнили список оборудования");
 				return 0;
 			}
-			catch
+			catch (Exception ex)
 			{
+				App.logger.NewLog(409, "Ошибка в EquipmentList.UpdateCards " + ex.Message);
 				return 1;
 			}
 		}
 
+		/// <summary>
+		/// Использование фильтрации оборудования
+		/// </summary>
+		/// <param name="dataTable"></param>
+		/// <returns></returns>
 		public DataTable FilterAndSort(DataTable dataTable)
 		{
-			Trace.WriteLine("--------------------");
-			dataTable.TableName = "Equipments data table";
-			DataView dataView = new DataView(dataTable);
-			dataView.Table = dataTable;
-
-			string filterByDistrict = "";
-			string filterByStatus = "";
-			string filterSearch = "";
-
-			string sortByName = ((ComboBoxItem)SortName.SelectedItem).Tag.ToString();
-			if (sortByName != "None")
+			try
 			{
-				dataView.Sort = "EquipmentsName " + sortByName;
-			}
+				Trace.WriteLine("--------------------");
+				dataTable.TableName = "Equipments data table";
+				DataView dataView = new DataView(dataTable);
+				dataView.Table = dataTable;
 
-			if (((ComboBoxItem)FilterDistrict.SelectedItem) != null)
-				if (((ComboBoxItem)FilterDistrict.SelectedItem).Content.ToString().Trim() != ((ComboBoxItem)FilterDistrict.Items[0]).Content.ToString().Trim())
+				string filterByDistrict = "";
+				string filterByStatus = "";
+				string filterSearch = "";
+
+				string sortByName = ((ComboBoxItem)SortName.SelectedItem).Tag.ToString();
+				if (sortByName != "None")
 				{
-					filterByDistrict = "DistrictsName = '" + ((ComboBoxItem)FilterDistrict.SelectedItem).Content.ToString().Trim() + "'";
-					Trace.WriteLine("filterByDistrict | " + filterByDistrict);
+					dataView.Sort = "EquipmentsName " + sortByName;
 				}
 
-			if (((ComboBoxItem)FilterStatus.SelectedItem) != null)
-				if (((ComboBoxItem)FilterStatus.SelectedItem).Content.ToString().Trim() != ((ComboBoxItem)FilterStatus.Items[0]).Content.ToString().Trim())
+				if (((ComboBoxItem)FilterDistrict.SelectedItem) != null)
+					if (((ComboBoxItem)FilterDistrict.SelectedItem).Content.ToString().Trim() != ((ComboBoxItem)FilterDistrict.Items[0]).Content.ToString().Trim())
+					{
+						filterByDistrict = "DistrictsName = '" + ((ComboBoxItem)FilterDistrict.SelectedItem).Content.ToString().Trim() + "'";
+						Trace.WriteLine("filterByDistrict | " + filterByDistrict);
+					}
+
+				if (((ComboBoxItem)FilterStatus.SelectedItem) != null)
+					if (((ComboBoxItem)FilterStatus.SelectedItem).Content.ToString().Trim() != ((ComboBoxItem)FilterStatus.Items[0]).Content.ToString().Trim())
+					{
+						filterByStatus = "StatusName = '" + ((ComboBoxItem)FilterStatus.SelectedItem).Content.ToString().Trim() + "'";
+						Trace.WriteLine("filterByStatus   | " + filterByStatus);
+					}
+
+				string search = SearchTB.Text.Trim();
+				if (search != String.Empty)
 				{
-					filterByStatus = "StatusName = '" + ((ComboBoxItem)FilterStatus.SelectedItem).Content.ToString().Trim() + "'";
-					Trace.WriteLine("filterByStatus   | " + filterByStatus);
+					filterSearch = "(InventoryNumber LIKE '%" + search + "%' OR EquipmentsName LIKE '%" + search + "%' OR DistrictsName LIKE '%" + search + "%' OR StatusName LIKE '%" + search + "%')";
+					Trace.WriteLine("FilterSearch     | " + filterSearch);
 				}
 
-			string search = SearchTB.Text.Trim();
-			if (search != String.Empty)
-			{
-				filterSearch = "(InventoryNumber LIKE '%" + search + "%' OR EquipmentsName LIKE '%" + search + "%' OR DistrictsName LIKE '%" + search + "%' OR StatusName LIKE '%" + search + "%')";
-				Trace.WriteLine("FilterSearch     | " + filterSearch);
+				//отдельное применение запросов DataView
+				string[] filterArr = { filterByDistrict, filterByStatus, filterSearch };
+				string resultFilter = "";
+				for (int i = 0; i < filterArr.Length; i++)
+				{
+					if (!resultFilter.EndsWith(" AND ") && filterArr[i] != "")
+						if (!String.IsNullOrWhiteSpace(resultFilter))
+							resultFilter = resultFilter + " AND ";
+					resultFilter = resultFilter + filterArr[i];
+				}
+
+				Trace.WriteLine("                 |\nResult           | " + resultFilter);
+				dataView.RowFilter = resultFilter;
+
+				return dataView.ToTable();
 			}
-
-			//отдельное применение запросов DataView
-			string[] filterArr = { filterByDistrict, filterByStatus, filterSearch };
-			string resultFilter = "";
-			for (int i = 0; i < filterArr.Length; i++)
+			catch (Exception ex)
 			{
-				if(!resultFilter.EndsWith(" AND ") && filterArr[i] != "")
-					if(!String.IsNullOrWhiteSpace(resultFilter))
-						resultFilter = resultFilter + " AND ";
-				resultFilter = resultFilter + filterArr[i];
+				App.logger.NewLog(410, "Ошибка в EquipmentList.FilterAndSort " + ex.Message);
+				Trace.WriteLine(ex.Message);
+				return dataTable;
 			}
-
-			Trace.WriteLine("                 |\nResult           | " + resultFilter);
-			dataView.RowFilter = resultFilter;
-
-			return dataView.ToTable();
 		}
 
 		private void SortName_DropDownClosed(object sender, EventArgs e)
@@ -253,6 +306,11 @@ SELECT Name FROM EquipmentStatus
 			UpdateCards();
 		}
 
+		/// <summary>
+		/// Нажатие на кнопку обновления
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void RefreshButton_Click(object sender, RoutedEventArgs e)
 		{
 			UpdateDate();
@@ -260,6 +318,11 @@ SELECT Name FROM EquipmentStatus
 			UpdateCards();
 		}
 
+		/// <summary>
+		/// Срабатывает при загрузке UC
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void UserControl_Loaded(object sender, RoutedEventArgs e)
 		{
 			UpdateDate();

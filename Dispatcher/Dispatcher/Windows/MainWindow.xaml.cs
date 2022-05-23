@@ -21,19 +21,24 @@ namespace Dispatcher
     /// </summary>
     public partial class MainWindow : Window
     {
+        UserControl ActualSpace;
+
         public MainWindow()
         {
             Trace.WriteLine("Выбрана роль: MainWindow\t" + App.role);
             InitializeComponent();
+            App.logger.NewLog(200, "Открыто главное окно");
         }
 
-        UserControl ActualSpace;
+        /// <summary>
+        /// Функция для смены отображаемого UC
+        /// </summary>
+        /// <param name="userControl"></param>
         public void MainWindowSpaceControle(UserControl userControl)
         {
             if (ActualSpace == null)
 			{
 				ActualSpace = (UserControl)Workspace;
-				//userControl.Visibility = Visibility.Visible;
 			}
             if (userControl == ActualSpace && ActualSpace.Visibility != Visibility.Collapsed)
             {

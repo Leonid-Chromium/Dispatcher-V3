@@ -14,7 +14,12 @@ namespace Dispatcher.Class
         public static string standartConfigurationAddres = "../../../Files/Configuration.xml";
 
         //Создание новой конфигурации
-        //TODO переделай на циклы
+        /// <summary>
+        /// Создаёт новую конфигурацию <paramref name="newConfiguration"/> в файле <paramref name="configurationPath"/>
+        /// </summary>
+        /// <param name="newConfiguration"></param>
+        /// <param name="configurationPath"></param>
+        /// <returns></returns>
         public static int SetConfiguration(Configuration newConfiguration, string configurationPath)
         {
             try
@@ -32,6 +37,8 @@ namespace Dispatcher.Class
                 XmlAttribute configurationNameAttr = xDoc.CreateAttribute("name");
                 //создаём значение для атрибута Name
                 XmlText configurationAttrValue = xDoc.CreateTextNode(newConfiguration.name);
+
+                //TODO переделай на циклы
 
                 //создаём элементы соответствующие по названию полям конфигурации
                 XmlElement themePath = xDoc.CreateElement("themePath");
@@ -86,17 +93,21 @@ namespace Dispatcher.Class
                 //сохраняем документ
                 xDoc.Save(configurationPath);
 
-                Log.NewLog(101, "Добавленна новая конфигурация " + newConfiguration.name);
+                App.logger.NewLog(201, "Добавленна новая конфигурация " + newConfiguration.name);
                 return 0;
             }
             catch(Exception ex)
             {
-                Log.NewLog(301, "Ошибка при создании конфигурации " + newConfiguration.name);
-                Log.NewLog(301, ex.Message);
+                App.logger.NewLog(400, "Ошибка при создании конфигурации " + newConfiguration.name + " " + ex.Message);
                 return 1;
             }
         }
 
+        /// <summary>
+        /// Создаёт новую конфигурацию <paramref name="newConfiguration"/> в стандартном файле
+        /// </summary>
+        /// <param name="newConfiguration"></param>
+        /// <returns></returns>
         public static int SetConfiguration(Configuration newConfiguration)
         {
             try
@@ -105,12 +116,18 @@ namespace Dispatcher.Class
             }
             catch(Exception ex)
             {
-                Log.NewLog(302, ex.Message);
+                App.logger.NewLog(401, "Ошибка при создании конфигурации " + newConfiguration.name + " " + ex.Message);
                 return 1;
             }
         }
 
         //выборка конфигурации по имени
+        /// <summary>
+        /// Возвращает конфигурацию с именем <paramref name="name"/> из файла <paramref name="configurationPath"/>
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="configurationPath"></param>
+        /// <returns></returns>
         public static Configuration GetConfiguration(string name, string configurationPath)
         {
             Trace.WriteLine("Поиск начат");
@@ -193,97 +210,36 @@ namespace Dispatcher.Class
                                     Trace.WriteLine(configurationChildNode.InnerXml);
                                     break;
                             }
-
-
-                            /*
-                            // если узел - theme
-                            if (configurationChildNode.Name == "theme")
-                            {
-                                configurationOut.theme = configurationChildNode.InnerText;
-                                Trace.WriteLine(configurationChildNode.InnerText);
-                            }
-
-                            // если узел - themePath
-                            if (configurationChildNode.Name == "themePath")
-                            {
-                                configurationOut.themePath = configurationChildNode.InnerXml;
-                                Trace.WriteLine(configurationChildNode.InnerXml);
-                            }
-
-                            // если узел - assetsPath
-                            if (configurationChildNode.Name == "assetsPath")
-                            {
-                                configurationOut.assetsPath = configurationChildNode.InnerXml;
-                                Trace.WriteLine(configurationChildNode.InnerXml);
-                            }
-
-                            // если узел - logPath
-                            if (configurationChildNode.Name == "logPath")
-                            {
-                                configurationOut.logPath = configurationChildNode.InnerXml;
-                                Trace.WriteLine(configurationChildNode.InnerXml);
-                            }
-
-                            // если узел - SQLConnectionString
-                            if (configurationChildNode.Name == "SQLConnectionString")
-                            {
-                                configurationOut.SQLConnectionString = configurationChildNode.InnerXml;
-                                Trace.WriteLine(configurationChildNode.InnerXml);
-                            }
-
-                            // если узел - serverIp
-                            if (configurationChildNode.Name == "serverIp")
-                            {
-                                configurationOut.serverIp = configurationChildNode.InnerXml;
-                                Trace.WriteLine(configurationChildNode.InnerXml);
-                            }
-
-                            // если узел - serverPort
-                            if (configurationChildNode.Name == "serverPort")
-                            {
-                                configurationOut.serverPort = configurationChildNode.InnerXml;
-                                Trace.WriteLine(configurationChildNode.InnerXml);
-                            }
-
-                            // если узел - netPath
-                            if (configurationChildNode.Name == "netPath")
-                            {
-                                configurationOut.netPath = configurationChildNode.InnerXml;
-                                Trace.WriteLine(configurationChildNode.InnerXml);
-                            }
-
-                            // если узел - district
-                            if (configurationChildNode.Name == "district")
-                            {
-                                configurationOut.district = configurationChildNode.InnerXml;
-                                Trace.WriteLine(configurationChildNode.InnerXml);
-                            }
-
-                            // если узел - room
-                            if (configurationChildNode.Name == "room")
-                            {
-                                configurationOut.room = configurationChildNode.InnerXml;
-                                Trace.WriteLine(configurationChildNode.InnerXml);
-                            }
-                            */
                         }
+                        App.logger.NewLog(202, "Конфигурация " + name + " найдена");
                     }
                 }
                 Trace.WriteLine("Поиск закончен");
             }
             catch(Exception ex)
             {
-                Log.NewLog(302, ex.Message);
+                App.logger.NewLog(400, "Ошибка при поиске конфигурации " + name + " " + ex.Message);
             }
             return configurationOut;
         }
 
+        /// <summary>
+        /// Возвращает конфигурацию с именем <paramref name="name"/> из стандартного файла
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static Configuration GetConfiguration(string name)
         {
             return GetConfiguration(name, standartConfigurationAddres);
         }
 
         //удаление конфигурации по имени
+        /// <summary>
+        /// Удаляет конфигурацию с названием <paramref name="name"/> из файла <paramref name="configurationPath"/>
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="configurationPath"></param>
+        /// <returns></returns>
         public static int DeleteConfiguration(string name, string configurationPath)
         {
             try
@@ -315,17 +271,22 @@ namespace Dispatcher.Class
                 //сохранение документа
                 xDoc.Save(configurationPath);
 
-                Log.NewLog(001, "Удалена конфигурация " + name);
+                App.logger.NewLog(200, "Конфигурация " + name + " удалена");
 
                 return 0;
             }
             catch(Exception ex)
             {
-                Log.NewLog(301, ex.Message);
+                App.logger.NewLog(400, "Ошибка при удалении конфигурации " + name + " " + ex.Message);
                 return 1;
             }
         }
 
+        /// <summary>
+        /// Удаляет конфигурацию с названием <paramref name="name"/> из стандартного файла
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static int DeleteConfiguration(string name)
         {
             try
@@ -334,12 +295,19 @@ namespace Dispatcher.Class
             }
             catch(Exception ex)
             {
-                Log.NewLog(302, ex.Message);
+                App.logger.NewLog(401, "Ошибка в ConfigManage.DeleteConfiguration " + ex.Message);
                 return 1;
             }
         }
 
         //изменение конфигурации по имени
+        /// <summary>
+        /// Заменяет конфигурацию с именем <paramref name="name"/> из файла <paramref name="configurationPath"/> на конфигурацию <paramref name="newConfiguration"/>
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="newConfiguration"></param>
+        /// <param name="configurationPath"></param>
+        /// <returns></returns>
         public static int ChangeConfiguration(string name, Configuration newConfiguration, string configurationPath)
         {
             try
@@ -442,11 +410,12 @@ namespace Dispatcher.Class
                             }
                         }
 
-                        Log.NewLog(101, "Изменена конфигурация " + name);
-
                         //TODO переопредели ещё один метод без выхода после нахождения первой подходящей конфигурации
                         //сохраняем документ
                         xDoc.Save(configurationPath);
+
+                        App.logger.NewLog(201, "Изменена конфигурация " + name);
+
                         return 0;
                     }
                 }
@@ -455,25 +424,38 @@ namespace Dispatcher.Class
                 xDoc.Save(configurationPath);
                 return 0;
             }
-            catch
+            catch (Exception ex)
             {
+                App.logger.NewLog(400, "Ошибка в ConfigManage.ChangeConfiguration " + ex.Message);
                 return 1;
             }
         }
 
+        /// <summary>
+        /// Заменяет конфигурацию с именем <paramref name="name"/> из стандартного файла на конфигурацию <paramref name="newConfiguration"/>
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="newConfiguration"></param>
+        /// <returns></returns>
         public static int ChangeConfiguration(string name, Configuration newConfiguration)
         {
             try
             {
                 return ChangeConfiguration(name, newConfiguration, standartConfigurationAddres);
             }
-            catch
+            catch (Exception ex)
             {
+                App.logger.NewLog(401, "Ошибка в ConfigManage.ChangeConfiguration " + ex.Message);
                 return 1;
             }
         }
 
         // Получение списка конфигураций
+        /// <summary>
+        /// Возвращает Список всех доступных конфигураций по указанному адресу <paramref name="configurationPath"/>
+        /// </summary>
+        /// <param name="configurationPath"></param>
+        /// <returns></returns>
         public static List<string> GetAllConfigurationName(string configurationPath)
         {
             List<string> configurationsName = new List<string> { };
@@ -507,12 +489,22 @@ namespace Dispatcher.Class
             return configurationsName;
         }
 
+        /// <summary>
+        /// Возвращает Список всех доступных конфигураций по стандартному адрессу адресу
+        /// </summary>
+        /// <returns></returns>
         public static List<string> GetAllConfigurationName()
         {
             return GetAllConfigurationName(standartConfigurationAddres);
         }
 
         //Проверка на повторяемость имени
+        /// <summary>
+        /// Ищет конфигурации с именем равным <paramref name="name"/> в документе по адрессу <paramref name="configurationPath"/>
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="configurationPath"></param>
+        /// <returns> <c>true</c> если найденно, <c>false</c> если не найдено</returns>
         public static bool HaveName(string name, string configurationPath)
         {
             try
@@ -523,18 +515,29 @@ namespace Dispatcher.Class
                         return true;
                 return false;
             }
-            catch
+            catch (Exception ex)
             {
+                App.logger.NewLog(405, "Ошибка в ConfigManage.HaveName " + ex.Message);
                 return false;
             }
         }
 
+        /// <summary>
+        /// Ищет конфигурации с именем равным <paramref name="name"/> в документе по стандартному адрессу
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static bool HaveName(string name)
         {
             return HaveName(name, standartConfigurationAddres);
         }
 
-        //Работа с сохранением выбора конфигурации
+        //Получение последней конфигурации
+        /// <summary>
+        /// Возвращение последней конфигурации по адрессу <paramref name="configurationPath"/>
+        /// </summary>
+        /// <param name="configurationPath"></param>
+        /// <returns></returns>
         public static string GetSavedConfiguration(string configurationPath)
         {
             try
@@ -552,21 +555,33 @@ namespace Dispatcher.Class
                     }
                 }
 
+                App.logger.NewLog(300, "Не найдена сохранённая операция ConfigManage.GetSavedConfiguration");
                 return string.Empty;
             }
             catch(Exception ex)
             {
-                //TODO добавь логирование
+                App.logger.NewLog(400, "Не найдена сохранённая операция ConfigManage.GetSavedConfiguration " + ex.Message);
                 Trace.WriteLine(ex.Message);
                 return string.Empty;
             }
         }
 
+        /// <summary>
+        /// Возвращение последней конфигурации
+        /// </summary>
+        /// <returns></returns>
         public static string GetSavedConfiguration()
         {
             return GetSavedConfiguration(standartConfigurationAddres);
         }
 
+        //Запись последней конфигурации
+        /// <summary>
+        /// Запись <paramref name="configurationName"> как последняя конфигурация, в файл по адрессу <paramref name="configurationPath"/>
+        /// </summary>
+        /// <param name="configurationName"> Название конфигурации </param>
+        /// <param name="configurationPath"> Путь к файлу конфигурации </param>
+        /// <returns></returns>
         public static int SetSavedConfiguration(string configurationName, string configurationPath)
         {
             try
@@ -582,7 +597,7 @@ namespace Dispatcher.Class
                     {
                         //Trace.WriteLine("нашли");
                         node.InnerText = configurationName;
-                        //Trace.WriteLine(node.InnerText);
+                        App.logger.NewLog(200, "Записали конфигурацию для старта");
                     }
                 }
 
@@ -596,36 +611,66 @@ namespace Dispatcher.Class
             }
         }
 
+        /// <summary>
+        /// Запись <paramref name="configurationName"> как последняя конфигурация
+        /// </summary>
+        /// <param name="configurationName"></param>
+        /// <returns></returns>
         public static int SetSavedConfiguration(string configurationName)
         {
             return SetSavedConfiguration(configurationName, standartConfigurationAddres);
         }
 
+        //Проверка наличия или создания каталога
+        /// <summary>
+        /// Проверяет существует директория по указанному пути и создаёт её если не было
+        /// </summary>
+        /// <param name="LogPath"></param>
+        /// <returns><c>0</c> если <paramref name="LogPath"/> существует,<c>1</c> если <paramref name="LogPath"> не существует, но был создан, <c>2</c> если произошла ошибка</returns>
         public static int CheckLogPath(string LogPath)
         {
             try
             {
                 if (Directory.Exists(LogPath))
+				{
+                    App.logger.NewLog(100, "Директория для логов найдена");
                     return 0;
+                }
                 else
                 {
                     Directory.CreateDirectory(LogPath);
+                    App.logger.NewLog(101, "Директория для логов не найдена, но создана");
                     return 1;
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                App.logger.NewLog(400, "ConfigManage.CheckLogPath " + ex.Message);
                 return 2;
             }
 
         }
 
+        //Создание файла лога
+        /// <summary>
+        /// Создаёт файл лога в директории по указанному пути
+        /// </summary>
+        /// <param name="LogPath">Адрес директории в которой будет создан файл логов</param>
+        /// <returns></returns>
         public static int MakeLogFile(string LogPath)
         {
-            DateTime dateTime = DateTime.Now;
-            string newLogFile = String.Concat(dateTime.Date.ToShortDateString(), ".", dateTime.Hour, ".", dateTime.Minute, ".", dateTime.Second, ".json");
-            File.Create(String.Concat(LogPath, newLogFile));
-            App.logFile = newLogFile;
+            try
+			{
+                DateTime dateTime = DateTime.Now;
+                string newLogFile = String.Concat(dateTime.Date.ToShortDateString(), ".", dateTime.Hour, ".", dateTime.Minute, ".", dateTime.Second, ".json");
+                File.Create(String.Concat(LogPath, newLogFile));
+                App.logFile = newLogFile;
+                App.logger.NewLog(100, "Файл для лога создан");
+            }
+            catch (Exception ex)
+			{
+                App.logger.NewLog(400, "ConfigManage.MakeLogFile " + ex.Message);
+			}
             return 0;
         }
     }
