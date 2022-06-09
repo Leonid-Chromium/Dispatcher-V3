@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <configurations>
-  <SavedConfiguration>Leonid-Laptop6</SavedConfiguration>
+  <SavedConfiguration>Diplom</SavedConfiguration>
   <configuration name="Manual">
     <themePath>Themes\\</themePath>
     <theme>Light</theme>
@@ -131,6 +131,18 @@
     <serverPort>8880</serverPort>
     <netPath>file://192.168.1.160/Crystal_monitoring/NewDispatcher/</netPath>
     <district>3</district>
+    <room>0</room>
+  </configuration>
+  <configuration name="Diplom">
+    <themePath>Themes\\</themePath>
+    <theme>Light</theme>
+    <assetsPath>Assets\\</assetsPath>
+    <logPath>D:\File\TestDir\Test6\</logPath>
+    <SQLConnectionString>Data Source=192.168.1.116,1433;Initial Catalog=DispatcherV4;Persist Security Info=True;User ID=Admin;Password=Admin</SQLConnectionString>
+    <serverIp>192.168.1.51</serverIp>
+    <serverPort>8880</serverPort>
+    <netPath>file://192.168.1.160/Crystal_monitoring/NewDispatcher/</netPath>
+    <district>1</district>
     <room>0</room>
   </configuration>
 </configurations>

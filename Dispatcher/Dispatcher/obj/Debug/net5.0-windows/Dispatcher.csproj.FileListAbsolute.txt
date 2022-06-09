@@ -82,4 +82,6 @@ D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\Data
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\DataLib.pdb
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\LogLib.dll
 D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\bin\Debug\net5.0-windows\LogLib.pdb
-D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\Dispatcher.csproj.CopyComplete
+D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\TimeSpanUC.g.cs
+D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\UCs\TimeSpanUC.baml
+D:\File\GitHub\Dispatcher-V3\Dispatcher\Dispatcher\obj\Debug\net5.0-windows\Dispatcher.csproj.AssemblyReference.cache
