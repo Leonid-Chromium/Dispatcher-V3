@@ -79,6 +79,9 @@
 			<TabItem x:Name="BatchsMonitor" Header="Монитор партий">
 				<local:BatchsMonitor/>
 			</TabItem>
+			<TabItem x:Name="TimeSpanTI" Header="Промежуток времени">
+				<local:TimeSpanUC/>
+			</TabItem>
 		</TabControl>
 	</Grid>
 </UserControl>
